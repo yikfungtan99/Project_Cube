@@ -3,7 +3,8 @@
  
  # Changelog
  
- #v0.0.1 
+ ##v0.0.1 
+ 
  Added Universal Render Pipeline Added Probuilder Added Progrids Added TextMeshPro Added Photon PUN2 Added ParallelSync
 
 Created Network Manager Created basic testlab scene Testing basic room connection UI Testing basic room connection logic

@@ -14,7 +14,9 @@ Current Status: Players are able to create a room(default room name = "basic") P
 ### v0.0.2
 
 Removed ScriptableObjectSingleton for Network Settings (Unnecessary)
+
 Now able to join lobby
+
 Now able to find rooms
 
 # Links

@@ -12,11 +12,6 @@ public class RoomListing : MonoBehaviourPunCallbacks
 
     private List<RoomButton> _buttons = new List<RoomButton>();
 
-    private void Start()
-    {
-
-    }
-
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         UpdateList(roomList);

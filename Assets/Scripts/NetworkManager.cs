@@ -5,10 +5,13 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    #region UI Events
+
     public event EventHandler OnConnectedToServer;
     public event EventHandler OnConnectedToRoom;
     public event EventHandler OnDisconnectedFromRoom;
@@ -16,7 +19,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public delegate void CreatedRoom(string roomNum);
     public event EventHandler OnJoinButtonPressed;
 
+    #endregion
+    
     private bool _creatingRoom = false;
+    private bool _inGame = false;
     
     private void Awake()
     {
@@ -26,24 +32,39 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     private void Start()
     {
-        print("Connecting to Master");
+        ConnectToMaster();
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.ConnectUsingSettings();
     }
 
     #region  Network Functions
 
-    private int RandRoomNumber()
+    //Connect To Project Cube's Photon
+    private void ConnectToMaster()
     {
-        return Random.Range(0, 999);
+        print("Connecting to Master");
+        PhotonNetwork.ConnectUsingSettings();
     }
 
+    #region OnClick Events
+
+    //Host Button Logic
     public void HostButton()
     {
         JoinLobby();
         _creatingRoom = true;
     }
+    
+    //Join Button Logic
+    public void JoinButton()
+    {
+        JoinLobby();
+        OnJoinButtonPressed?.Invoke(this, EventArgs.Empty);
+    }
 
+    #endregion
+    
+    //Generate Room
+    //Call when successfully joined a lobby
     private void CreateRoom()
     {
         RoomOptions options = new RoomOptions();
@@ -51,23 +72,39 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         options.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(RandRoomNumber().ToString(), options, TypedLobby.Default);
     }
+    
+    //Generate Room Number
+    private int RandRoomNumber()
+    {
+        return Random.Range(0, 999);
+    }
 
-    public void JoinLobby()
-    { 
+    //Join a lobby if attempted to Create or Join room
+    private void JoinLobby()
+    {
         PhotonNetwork.JoinLobby();
     }
 
-    public void JoinButton()
-    {
-        JoinLobby();
-        OnJoinButtonPressed?.Invoke(this, EventArgs.Empty);
-    }
-
+    //Disconnect from Room
     public void DisconnectRoom()
     {
+        if (!PhotonNetwork.InRoom) return;
         PhotonNetwork.LeaveRoom();
     }
-    
+
+    public void DisconnectGame()
+    {
+        PhotonNetwork.Disconnect();
+        StartCoroutine(DisconnectAndReturn());
+    }
+
+    private static IEnumerator DisconnectAndReturn()
+    {
+        while (PhotonNetwork.IsConnected) yield return null;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     #endregion
 
     #region Network Logic
@@ -80,10 +117,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private void LoadNextLevel()
     {
         PhotonNetwork.LoadLevel(1);
+        _inGame = true;
     }
     #endregion
 
-    #region  Callbacks
+    #region Callbacks
 
     public override void OnConnectedToMaster()
     {
@@ -146,7 +184,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         print("Player has entered Room");
-        if(CheckPlayerCount()) LoadNextLevel();
+        if(CheckPlayerCount() && !_inGame) LoadNextLevel();
+    }
+    
+    public override void OnPlayerLeftRoom(Player newPlayer)
+    {
+        print("Player left room");
+        if(!CheckPlayerCount() && _inGame) DisconnectGame();
     }
 
     #endregion

@@ -10,8 +10,8 @@ public class SpawnSystem : MonoBehaviourPun
     [SerializeField] private CinemachineVirtualCamera playerCamera;
 
     //Cache player cube
-    private GameObject _playerCube;
-    
+    public GameObject playerCube;
+
     private void Start()
     {
         SpawnCubes();
@@ -22,12 +22,12 @@ public class SpawnSystem : MonoBehaviourPun
     private void SpawnCubes()
     {
         int spawnPosNum = PhotonNetwork.LocalPlayer.ActorNumber - 1;
-        _playerCube = PhotonNetwork.Instantiate(cubePrefab.name, spawnPoints[spawnPosNum].position, Quaternion.identity);
+        playerCube = PhotonNetwork.Instantiate(cubePrefab.name, spawnPoints[spawnPosNum].position, Quaternion.identity);
     }
 
     private void SetCamera()
     {
-        playerCamera.Follow = _playerCube.transform;
-        playerCamera.LookAt = _playerCube.transform;
+        playerCamera.Follow = playerCube.transform;
+        playerCamera.LookAt = playerCube.transform;
     }
 }

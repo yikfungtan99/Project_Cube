@@ -36,7 +36,6 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-  - RPCLoadNextLevel
-  DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  DisableAutoOpenWizard: 0
+  ShowSettings: 0
   DevRegionSetOnce: 1

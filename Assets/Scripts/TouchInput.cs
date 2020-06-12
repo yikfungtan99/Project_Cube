@@ -10,6 +10,11 @@ public class TouchInput : MonoBehaviour
     private Vector3 _initPos;
     private Touch _touch;
 
+    private void Start()
+    {
+        cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,9 +24,12 @@ public class TouchInput : MonoBehaviour
     void UpdateInput()
     {
         if (Input.touchCount <= 0) return;
-        
-        //Take the first touch, refreshes every frame
-        _touch = Input.GetTouch(0);
+
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            //Take the first touch, refreshes every frame
+            _touch = Input.GetTouch(i);
+        }
 
         if (_touch.phase != TouchPhase.Moved) return;
 

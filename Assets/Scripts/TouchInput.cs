@@ -1,28 +1,40 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
+    public bool useOnlyTouch = false;
+    
     [SerializeField] private Transform cubeTransform;
     [SerializeField] private float rotateSpd;
     private Vector3 _initPos;
     private Touch _touch;
+    
+    float mouseDirX;
+    float mouseDirY;
+
+    private Vector2 _mouseDelta;
 
     private void Start()
     {
-        cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
+        if (!cubeTransform) cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
+        Input.simulateMouseWithTouches = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateInput();
+        UpdateInputUsingTouchScreen();
+        UpdateInputUsingMouse();
     }
 
-    void UpdateInput()
+    void UpdateInputUsingTouchScreen()
     {
+        if (!useOnlyTouch) return;
+        
         if (Input.touchCount <= 0) return;
 
         for (int i = 0; i < Input.touchCount; i++)
@@ -36,7 +48,7 @@ public class TouchInput : MonoBehaviour
         var rotation = cubeTransform.rotation;
         //rotation = Quaternion.Euler(_touch.deltaPosition.y * rotateSpd * Time.deltaTime, -_touch.deltaPosition.x* rotateSpd* Time.deltaTime, rotation.z);
 
-        if (CheckTouchRotation())
+        if (CheckTouchDelta())
         {
             rotation = Quaternion.Euler(0f,-_touch.deltaPosition.x* rotateSpd* Time.deltaTime,0f);
         }
@@ -48,7 +60,52 @@ public class TouchInput : MonoBehaviour
         cubeTransform.rotation = rotation * cubeTransform.rotation;
     }
 
-    private bool CheckTouchRotation()
+    private void UpdateInputUsingMouse()
+    {
+        if (useOnlyTouch) return;
+        if (Input.GetMouseButtonDown(0)) _initPos = Input.mousePosition;
+
+        if (!Input.GetMouseButton(0)) return;
+        
+        _mouseDelta = Input.mousePosition - _initPos;
+        
+        if (_mouseDelta.x > 0)
+        {
+            mouseDirX = 1;
+        }
+        else
+        {
+            mouseDirX = -1;
+        }
+
+        if (_mouseDelta.y > 0)
+        {
+            mouseDirY = 1;
+        }
+        else
+        {
+            mouseDirY = -1;
+        }
+        
+        Debug.Log(mouseDirX);
+        
+        var rotation = cubeTransform.rotation;
+        
+        if (CheckMouseDelta())
+        {
+            rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * mouseDirX * rotateSpd * Time.deltaTime,0f);
+        }else 
+        {
+            rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
+        }
+        
+        //rotation = Quaternion.Euler(_mouseDelta.y * rotateSpd * Time.deltaTime, -_mouseDelta.x* rotateSpd* Time.deltaTime, rotation.z);
+
+        cubeTransform.rotation = rotation * cubeTransform.rotation;
+
+    }
+
+    private bool CheckTouchDelta()
     {
         bool deltaX;
 
@@ -56,4 +113,14 @@ public class TouchInput : MonoBehaviour
 
         return deltaX;
     }
+
+    private bool CheckMouseDelta()
+    {
+        bool deltaX;
+
+        deltaX = Mathf.Abs(_mouseDelta.x) > Mathf.Abs(_mouseDelta.y);
+
+        return deltaX;
+    }
+    
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class SpawnSystem : MonoBehaviourPun
     //Cache player cube
     public GameObject playerCube;
 
-    private void Start()
+    private void Awake()
     {
         SpawnCubes();
         SetCamera();

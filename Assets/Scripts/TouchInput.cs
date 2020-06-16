@@ -7,6 +7,9 @@ using UnityEngine;
 public class TouchInput : MonoBehaviour
 {
     public bool useOnlyTouch = false;
+
+    [SerializeField] private Camera mainCam;
+    
     
     [SerializeField] private Transform cubeTransform;
     [SerializeField] private float rotateSpd;
@@ -21,6 +24,7 @@ public class TouchInput : MonoBehaviour
     private void Start()
     {
         if (!cubeTransform) cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
+        
         Input.simulateMouseWithTouches = true;
     }
 
@@ -29,6 +33,7 @@ public class TouchInput : MonoBehaviour
     {
         UpdateInputUsingTouchScreen();
         UpdateInputUsingMouse();
+        Tap();
     }
 
     void UpdateInputUsingTouchScreen()
@@ -86,9 +91,7 @@ public class TouchInput : MonoBehaviour
         {
             mouseDirY = -1;
         }
-        
-        Debug.Log(mouseDirX);
-        
+
         var rotation = cubeTransform.rotation;
         
         if (CheckMouseDelta())
@@ -123,4 +126,17 @@ public class TouchInput : MonoBehaviour
         return deltaX;
     }
     
+    //Tap
+    private void Tap()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast (ray, out var hit)) {
+            
+            if (hit.collider){
+                if(hit.collider.GetComponent<IInteractable>() != null) hit.collider.GetComponent<IInteractable>().Interact();
+            }
+        }
+    }
 }

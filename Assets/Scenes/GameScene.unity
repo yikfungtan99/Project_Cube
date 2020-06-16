@@ -680,6 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOnlyTouch: 0
+  mainCam: {fileID: 506332939}
   cubeTransform: {fileID: 0}
   rotateSpd: 200
 --- !u!1 &675282796

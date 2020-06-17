@@ -62,7 +62,10 @@ public class PlayerCube : MonoBehaviourPun
     {
         for (int i = 0; i < modules.Length; i++)
         {
-            modules[i].GetComponent<IInteractable>().OnInteracted -= Action;
+            if (modules[i].GetComponent<IInteractable>() != null)
+            {
+                modules[i].GetComponent<IInteractable>().OnInteracted -= Action;
+            }
         }
     }
 }

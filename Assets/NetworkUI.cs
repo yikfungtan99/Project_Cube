@@ -25,11 +25,11 @@ public class NetworkUI : MonoBehaviour
 
     private void InitEvents()
     {
+        Debug.Log("Init Event");
         _networkManager.OnConnectedToServer += EnableNetworkCanvas;
         _networkManager.OnConnectedToRoom += WaitingScreen;
         _networkManager.OnDisconnectedFromRoom += RoomScreen;
         _networkManager.OnRoomCreated += UpdateRoomNumber;
-        _networkManager.OnJoinButtonPressed += JoinScreen;
     }
     
     private void EnableNetworkCanvas(object sender, EventArgs e)
@@ -49,14 +49,21 @@ public class NetworkUI : MonoBehaviour
         roomPanel.SetActive(true);
     }
 
+    private void Test(object sender, EventArgs e)
+    {
+        print("Test");
+    }
+
     private void JoinScreen(object sender, EventArgs e)
     {
+        Debug.Log("Join Screen");
         ToggleJoinScreen();
     }
 
     //Toggle JoinPanel
     public void ToggleJoinScreen()
     {
+        Debug.Log("JoinPanel");
         joinPanel.SetActive(!joinPanel.activeInHierarchy);
         joinPanel.GetComponent<RoomListing>().ClearListing();
     }
@@ -72,6 +79,5 @@ public class NetworkUI : MonoBehaviour
         _networkManager.OnConnectedToRoom -= WaitingScreen;
         _networkManager.OnDisconnectedFromRoom -= RoomScreen;
         _networkManager.OnRoomCreated -= UpdateRoomNumber;
-        _networkManager.OnJoinButtonPressed -= JoinScreen;
     }
 }

@@ -17,12 +17,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public event EventHandler OnDisconnectedFromRoom;
     public event CreatedRoom OnRoomCreated;
     public delegate void CreatedRoom(string roomNum);
-    public event EventHandler OnJoinButtonPressed;
 
     #endregion
     
     private bool _creatingRoom = false;
+    private bool _joiningRoom = false;
     private bool _inGame = false;
+    
     
     private void Awake()
     {
@@ -57,8 +58,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //Join Button Logic
     public void JoinButton()
     {
+        Debug.Log("Join Button");
         JoinLobby();
-        OnJoinButtonPressed?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion
@@ -80,7 +81,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     //Join a lobby if attempted to Create or Join room
-    private void JoinLobby()
+    public void JoinLobby()
     {
         PhotonNetwork.JoinLobby();
     }

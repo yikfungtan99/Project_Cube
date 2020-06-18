@@ -14,6 +14,7 @@ public class TestButton : PuzzleModule, IInteractable
     
     public void Interact()
     {
+        Debug.Log("Click");
         AnimPressButton();
         OnInteracted?.Invoke(this, new OnInteractedEventArgs{Id = base.PuzzleId});
     }

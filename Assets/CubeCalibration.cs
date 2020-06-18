@@ -6,14 +6,19 @@ using UnityEngine;
 public class CubeCalibration : MonoBehaviour
 {
     [SerializeField] private Transform cube;
-    
+
+    private void Start()
+    {
+        if (!cube) cube = GetComponent<TouchInput>().cubeTransform;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)) CalibrateCube();
     }
 
-    private void CalibrateCube()
+    public void CalibrateCube()
     {
         Vector3 rotation = cube.transform.rotation.eulerAngles;
         float roundedX = RoundToAngle(rotation.x);
@@ -31,12 +36,16 @@ public class CubeCalibration : MonoBehaviour
     private float RoundToAngle(float curAngle)
     {
         float roundedAngle = 0;
+        
+        Debug.Log(curAngle);
 
-        if (curAngle > 0 && curAngle < 90) roundedAngle = CloserToValue(curAngle, 0, 90);
-        if (curAngle > 90 && curAngle < 180) roundedAngle = CloserToValue(curAngle, 90, 180);
-        if (curAngle > 180 && curAngle < 270) roundedAngle = CloserToValue(curAngle, 180, 270);
-        if (curAngle > 270 && curAngle < 360) roundedAngle = CloserToValue(curAngle, 270, 360);
-
+        if (curAngle >= 0 && curAngle < 90) roundedAngle = CloserToValue(curAngle, 0, 90);
+        if (curAngle >= 90 && curAngle < 180) roundedAngle = CloserToValue(curAngle, 90, 180);
+        if (curAngle >= 180 && curAngle < 270) roundedAngle = CloserToValue(curAngle, 180, 270);
+        if (curAngle >= 270 && curAngle < 360) roundedAngle = CloserToValue(curAngle, 270, 360);
+        
+        Debug.Log(roundedAngle);
+        
         return roundedAngle;
     }
 }

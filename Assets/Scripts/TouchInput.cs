@@ -4,40 +4,50 @@ using System.Collections.Generic;
 using Cinemachine.Utility;
 using UnityEngine;
 
+[RequireComponent(typeof(CubeState))]
 public class TouchInput : MonoBehaviour
 {
     public bool useOnlyTouch = false;
 
     [SerializeField] private Camera mainCam;
+    [SerializeField] private CubeState cubeState;
+    private CubeStates _currentCubeState;
     
-    
-    [SerializeField] private Transform cubeTransform;
+    public Transform cubeTransform;
     [SerializeField] private float rotateSpd;
     private Vector3 _initPos;
     private Touch _touch;
     
-    float mouseDirX;
-    float mouseDirY;
+    private float _mouseDirX;
+    private float _mouseDirY;
 
     private Vector2 _mouseDelta;
 
     private void Start()
     {
         if (!cubeTransform) cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
-        
+        cubeState = GetComponent<CubeState>();
+
         Input.simulateMouseWithTouches = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateCubeState();
         UpdateInputUsingTouchScreen();
         UpdateInputUsingMouse();
-        Tap();
+        TapOnInteractables();
+    }
+
+    private void UpdateCubeState()
+    {
+        _currentCubeState = cubeState.currentState;
     }
 
     void UpdateInputUsingTouchScreen()
     {
+        if (_currentCubeState != CubeStates.Rotate) return;
         if (!useOnlyTouch) return;
         
         if (Input.touchCount <= 0) return;
@@ -67,6 +77,7 @@ public class TouchInput : MonoBehaviour
 
     private void UpdateInputUsingMouse()
     {
+        if (_currentCubeState != CubeStates.Rotate) return;
         if (useOnlyTouch) return;
         if (Input.GetMouseButtonDown(0)) _initPos = Input.mousePosition;
 
@@ -76,30 +87,30 @@ public class TouchInput : MonoBehaviour
         
         if (_mouseDelta.x > 0)
         {
-            mouseDirX = 1;
+            _mouseDirX = 1;
         }
         else
         {
-            mouseDirX = -1;
+            _mouseDirX = -1;
         }
 
         if (_mouseDelta.y > 0)
         {
-            mouseDirY = 1;
+            _mouseDirY = 1;
         }
         else
         {
-            mouseDirY = -1;
+            _mouseDirY = -1;
         }
 
         var rotation = cubeTransform.rotation;
         
         if (CheckMouseDelta())
         {
-            rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * mouseDirX * rotateSpd * Time.deltaTime,0f);
+            rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * _mouseDirX * rotateSpd * Time.deltaTime,0f);
         }else 
         {
-            rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
+            rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * _mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
         }
         
         //rotation = Quaternion.Euler(_mouseDelta.y * rotateSpd * Time.deltaTime, -_mouseDelta.x* rotateSpd* Time.deltaTime, rotation.z);
@@ -127,9 +138,11 @@ public class TouchInput : MonoBehaviour
     }
     
     //Tap
-    private void Tap()
+    private void TapOnInteractables()
     {
+        if (_currentCubeState != CubeStates.Examine) return;
         if (!Input.GetMouseButtonDown(0)) return;
+
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast (ray, out var hit)) {

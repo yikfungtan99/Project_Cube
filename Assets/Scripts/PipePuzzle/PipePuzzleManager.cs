@@ -18,6 +18,8 @@ public class PipePuzzleManager : MonoBehaviour
     }
 
     public Puzzle puzzle;
+
+    public bool GenerateRandom;
     public bool IsSolved = false;
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

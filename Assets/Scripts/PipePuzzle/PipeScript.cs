@@ -21,7 +21,7 @@ public class PipeScript : MonoBehaviour
         //FixRotation();    
     }
 
-    private void OnMouseDown()
+    private void OnMouseDown() // for testing without buttons ****NOT IN USE****
     {
         /*
         if(isFlipped)

@@ -1833,8 +1833,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 69664782}
-  examineDistance: 7
-  rotateDistance: 6
+  examineDistance: 6
+  rotateDistance: 7
+  zoomSpeed: 5
 --- !u!1001 &5112610650662050273
 PrefabInstance:
   m_ObjectHideFlags: 0

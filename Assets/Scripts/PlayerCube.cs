@@ -48,7 +48,7 @@ public class PlayerCube : MonoBehaviourPun
 
     public void Action(object sender, OnInteractedEventArgs e)
     {
-        this.photonView.RPC("RpcAction", RpcTarget.Others, e.Id);
+        this.photonView.RPC("RpcAction", RpcTarget.All, e.Id);
     }
 
     [PunRPC]

@@ -1471,6 +1471,7 @@ MonoBehaviour:
   mainCamera: {fileID: 675282797}
   examineDistance: 6
   rotateDistance: 7
+  zoomSpeed: 5
 --- !u!1 &675282796
 GameObject:
   m_ObjectHideFlags: 0

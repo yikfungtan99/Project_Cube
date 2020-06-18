@@ -8,6 +8,9 @@ public class CubeCamera : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     [SerializeField] private float examineDistance;
     [SerializeField] private float rotateDistance;
+    [SerializeField] private float zoomSpeed;
+
+    private float _currentDistance;
 
     private CinemachineTransposer _transposer;
     
@@ -15,14 +18,15 @@ public class CubeCamera : MonoBehaviour
     private CubeStates _currentState;
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _cubeState = GetComponent<CubeState>();
         _transposer = mainCamera.GetCinemachineComponent<CinemachineTransposer>();
+        _currentDistance = _transposer.m_FollowOffset.z;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         UpdateCubeState();
         UpdateCamera();
@@ -38,12 +42,13 @@ public class CubeCamera : MonoBehaviour
         switch (_currentState)
         {
             case CubeStates.Examine:
-                _transposer.m_FollowOffset = new Vector3(0, 0, -examineDistance);
+                _currentDistance = Mathf.Lerp(_currentDistance, -examineDistance, Time.deltaTime * zoomSpeed);
                 break;
             
             case CubeStates.Rotate:
-                _transposer.m_FollowOffset = new Vector3(0, 0, -rotateDistance);
+                _currentDistance = Mathf.Lerp(_currentDistance, -rotateDistance, Time.deltaTime * zoomSpeed);
                 break;
         }
+        _transposer.m_FollowOffset = new Vector3(0,0, _currentDistance);
     }
 }

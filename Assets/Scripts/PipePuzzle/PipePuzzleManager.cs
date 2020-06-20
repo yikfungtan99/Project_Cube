@@ -16,18 +16,31 @@ public class PipePuzzleManager : MonoBehaviour
         public PipeScript[,] pipes;
         public PipeButtonScript[,] buttons;
     }
-
     public Puzzle puzzle;
 
-    public bool GenerateRandom;
+    private class AnchorTransform
+    {
+        public Vector3 p;
+        public Quaternion q;
+        public Vector3 s;
+    }
+    GameObject p1;
+    GameObject p2;
+    List<GameObject> Anchors = new List<GameObject>();
+    List<AnchorTransform> AnchorT = new List<AnchorTransform>();
+    
     public bool IsSolved = false;
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     void Start()
     {
+        ResetTransform(); // stores transform values and reset transform values for initialization purposes
+
         InitializePipes();
-        //DebugPipe();
+
+        OriginalTransform(); // restore original transform values after initialization
+        
         puzzle.winValue = GetWinValue(); // set required connections to solve puzzle
         Shuffle(); // rotate pipes randomly
         puzzle.currentValue = Sweep(); // count current connections
@@ -138,10 +151,75 @@ public class PipePuzzleManager : MonoBehaviour
         return value;
     }
 
+    public void ButtonPress(int x, int y) // When button is pressed rotate the equivalent pipe and set current value
+    {
+        puzzle.pipes[x, y].Rotate90Degrees();
+        SetCurrentValue();
+    }
+
+    void InitializePipes()
+    {
+        // set dimensions 
+        Vector2 dimensions = CheckDimensions();
+
+        puzzle.width = (int)dimensions.x;
+        puzzle.height = (int)dimensions.y;
+        
+        // set pipes
+        puzzle.pipes = new PipeScript[puzzle.width , puzzle.height];
+        
+        foreach (GameObject pipe in GameObject.FindGameObjectsWithTag("Pipes"))
+        {
+            puzzle.pipes[(int)pipe.transform.localPosition.x, (int)pipe.transform.localPosition.y] = pipe.GetComponent<PipeScript>();
+        }
+
+        // set buttons
+        puzzle.buttons = new PipeButtonScript[puzzle.width , puzzle.height];
+
+        foreach (GameObject button in GameObject.FindGameObjectsWithTag("PipeButtons"))
+        {
+            puzzle.buttons[(int)button.transform.localPosition.x, (int)button.transform.localPosition.y] = button.GetComponent<PipeButtonScript>();
+        }
+    }
+
+    void ResetTransform() // Store transform values then resets it
+    {
+        p1 = GameObject.FindGameObjectWithTag("PipesAnchor");
+        p2 = GameObject.FindGameObjectWithTag("PipeButtonsAnchor");
+        Anchors.Add(p1);
+        Anchors.Add(p2);
+        Anchors.Add(this.gameObject);
+        for (int i = 0; i < Anchors.Count; i++)
+        {
+            AnchorT.Add(new AnchorTransform());
+        }
+
+        for (int i = 0; i < Anchors.Count; i++)
+        {
+            AnchorT[i].p = Anchors[i].transform.localPosition;
+            AnchorT[i].q = Anchors[i].transform.localRotation;
+            AnchorT[i].s = Anchors[i].transform.localScale;
+
+            Anchors[i].transform.localPosition = new Vector3(0, 0, 0);
+            Anchors[i].transform.localRotation = new Quaternion(0, 0, 0, 0);
+            Anchors[i].transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void OriginalTransform() // Restore transform values to original values
+    {
+        for (int i = 0; i < AnchorT.Count; i++)
+        {
+            Anchors[i].transform.localPosition = AnchorT[i].p;
+            Anchors[i].transform.localRotation = AnchorT[i].q;
+            Anchors[i].transform.localScale = AnchorT[i].s;
+        }
+    }
+
     public int QuickSweep(int w, int h) // check ONLY 1 piece // ****NOT IN USE****
     {
         int value = 0;
-        
+
         if (h != puzzle.height - 1) //compare top
         {
             if (puzzle.pipes[w, h].values[0] == 1 && puzzle.pipes[w, h + 1].values[2] == 1)
@@ -156,14 +234,14 @@ public class PipePuzzleManager : MonoBehaviour
                 value++;
             }
         }
-        if(w != 0) // compare bottom
+        if (w != 0) // compare bottom
         {
             if (puzzle.pipes[w, h].values[2] == 1 && puzzle.pipes[w, h - 1].values[0] == 1)
             {
                 value++;
             }
         }
-        if(h != 0) // compare left
+        if (h != 0) // compare left
         {
             if (puzzle.pipes[w, h].values[3] == 1 && puzzle.pipes[w - 1, h].values[1] == 1)
             {
@@ -172,39 +250,6 @@ public class PipePuzzleManager : MonoBehaviour
         }
 
         return value;
-    }
-
-    public void ButtonPress(int x, int y) // when button is pressed rotate the equivalent pipe and set current value
-    {
-        puzzle.pipes[x, y].Rotate90Degrees();
-        SetCurrentValue();
-    }
-
-    void InitializePipes()
-    {
-        // set dimensions 
-        Vector2 dimensions = CheckDimensions();
-
-        puzzle.width = (int)dimensions.x;
-        puzzle.height = (int)dimensions.y;
-
-        // set pipes
-        puzzle.pipes = new PipeScript[puzzle.width , puzzle.height];
-
-        foreach (GameObject pipe in GameObject.FindGameObjectsWithTag("Pipes"))
-        {
-            puzzle.pipes[(int)pipe.transform.localPosition.x, (int)pipe.transform.localPosition.y] = pipe.GetComponent<PipeScript>();
-            //print(pipe.transform.localPosition);
-            //print(pipe.transform.position);
-        }
-
-        // set buttons
-        puzzle.buttons = new PipeButtonScript[puzzle.width , puzzle.height];
-
-        foreach (GameObject button in GameObject.FindGameObjectsWithTag("PipeButtons"))
-        {
-            puzzle.buttons[(int)button.transform.localPosition.x, (int)button.transform.localPosition.y] = button.GetComponent<PipeButtonScript>();
-        }
     }
 
     void DebugPipe() //shows pipes in console

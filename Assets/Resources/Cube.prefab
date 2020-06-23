@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 0
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0
 --- !u!1 &2942601048902812216
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 4
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0
 --- !u!1 &4244794574052979872
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 5
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0
 --- !u!1 &4887223348589216838
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +579,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 2
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0
 --- !u!1 &8238006187812333827
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +626,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 3
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0
 --- !u!1 &9062057550371011520
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,3 +673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 1
+  puzzleType: 0
+  puzzleVariation: 0
+  puzzleRole: 0

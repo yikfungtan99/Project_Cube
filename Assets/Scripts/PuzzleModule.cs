@@ -5,15 +5,22 @@ using UnityEngine;
 public class PuzzleModule:MonoBehaviour
 {
     public int PuzzleId;
-    public PuzzleModuleData moduleData;
+
+    public PuzzleTypes puzzleType;
+    public int puzzleVariation;
+    public int puzzleRole;
 
     //This is to init the puzzle using PuzzleModuleData to spawn the correct puzzle
-    public void SpawnPuzzle()
+    public void SpawnPuzzle(int pt, int pv, int pr)
     {
+        puzzleType = (PuzzleTypes) pt;
+        puzzleVariation = pv;
+        puzzleRole = pr;
+        
         print("Cube" + PuzzleId 
                   + " spawned Cube according to data \n"
-                  + "PuzzleType: " + moduleData.PuzzleType + "\n"
-                  + "PuzzleVariation: " +moduleData.PuzzleVariation  + "\n"
-                  + "PuzzleRole: " +moduleData.PuzzleRole+ "\n"); 
+                  + "PuzzleType: " + pt + "\n"
+                  + "PuzzleVariation: " + pv  + "\n"
+                  + "PuzzleRole: " + pr + "\n");
     }
-}
+}    

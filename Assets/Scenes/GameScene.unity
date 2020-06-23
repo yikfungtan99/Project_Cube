@@ -1729,6 +1729,7 @@ MonoBehaviour:
   - {fileID: 604749366}
   - {fileID: 2001777147}
   playerCamera: {fileID: 675282797}
+  currentCubes: []
   playerCube: {fileID: 0}
 --- !u!4 &1170576670
 Transform:

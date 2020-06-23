@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
-public class PlayerCube : MonoBehaviourPun
+public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
 {
     public PlayerCube otherCube;
     [SerializeField] private PuzzleModule[] modules;
     private bool _allPuzzleGenerated = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
         // for (int i = 0; i < modules.Length; i++)
         // {
@@ -21,63 +21,64 @@ public class PlayerCube : MonoBehaviourPun
         //         modules[i].GetComponent<IInteractable>().OnInteracted += Action;
         //     }
         // }
+        while (!otherCube)
+        {
+            yield return null;
+        }
+        print("Start");
+        GenerateRandomPuzzle();
     }
 
-    private void Update()
-    {
-        if (!otherCube)
-        {
-            LoadCube();
-        }
-        else
-        {
-            GeneratePuzzle();
-        }
-    }
-
-    private void LoadCube()
-    {
-        if (!otherCube)
-        {
-            AssignOtherCube();
-        }
-    }
-
-    //Find better way to Assign network instantiated object
-    private void AssignOtherCube()
-    {
-        foreach (var view in PhotonNetwork.PhotonViews)
-        {
-            if (!view.IsMine)
-            {
-                otherCube = view.GetComponent<PlayerCube>();
-                
-                //This is stupid 
-                otherCube.otherCube = this;
-            }
-        }
-    }
+    //Archived: Now used IPunInstantiateMagicCallback to called for spawn system to help init other cube
+    
+    // private void LoadCube()
+    // {
+    //     if (!otherCube)
+    //     {
+    //         AssignOtherCube();
+    //     }
+    // }
+    //
+    // //Find better way to Assign network instantiated object
+    // private void AssignOtherCube()
+    // {
+    //     print("Finding Cube");
+    //     foreach (var view in PhotonNetwork.PhotonViews)
+    //     {
+    //         if (!view.IsMine)
+    //         {
+    //             otherCube = view.GetComponent<PlayerCube>();
+    //             
+    //             //This is stupid 
+    //             otherCube.otherCube = this;
+    //         }
+    //     }
+    // }
 
     //Init the puzzle generate
-    private void GeneratePuzzle()
+    private void GenerateRandomPuzzle()
     {
-        if (_allPuzzleGenerated) return;
-
+        if (!photonView.IsMine) return;
         //Only host can generate puzzle to determine randomness
-        if (PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient) return;
+        
+        if (_allPuzzleGenerated) return;
+        print("generating puzzle");
+        
+        for (int i = 0; i < 6; i++)
         {
-            for (int i = 0; i < 6; i++)
-            {
-                PuzzleModuleData moduleDataInstance = GeneratePuzzleModuleData();
-                modules[i].moduleData = moduleDataInstance;
-                modules[i].SpawnPuzzle();
-                moduleDataInstance.ReverseRole();
-                otherCube.modules[i].moduleData = moduleDataInstance;
-                otherCube.modules[i].SpawnPuzzle();
-            }
-
-            _allPuzzleGenerated = true;
+            PuzzleModuleData moduleDataInstance = GeneratePuzzleModuleData();
+            this.photonView.RPC("RpcSpawnPuzzle", RpcTarget.All, i,(int)moduleDataInstance.PuzzleType, moduleDataInstance.PuzzleVariation, moduleDataInstance.PuzzleRole);
         }
+
+        _allPuzzleGenerated = true;
+    }
+
+    [PunRPC]
+    private void RpcSpawnPuzzle(int id,int pt, int pv, int pr)
+    {
+        modules[id].SpawnPuzzle(pt, pv, pr);
+        otherCube.modules[id].SpawnPuzzle(pt, pv, -pr);
     }
 
     //Random Puzzle Generation
@@ -121,5 +122,12 @@ public class PlayerCube : MonoBehaviourPun
                 modules[i].GetComponent<IInteractable>().OnInteracted -= Action;
             }
         }
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        SpawnSystem ss = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>();
+        ss.currentCubes.Add(info.photonView.GetComponent<PlayerCube>());
+        ss.AssignCube();
     }
 }

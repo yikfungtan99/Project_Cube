@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c722cbae6f07940a7b2a00b15fb633, type: 3}
+  m_Name: DropSlots A
+  m_EditorClassIdentifier: 
+  boxPrefabs: {fileID: 4962442081930310739, guid: 9ec117b97b103cf47a08b3a898dcfff6,
+    type: 3}
+  boxType: 1
+  boxIndex: 3
+  description: This is a drop slot for drag box A to be dropped into it.

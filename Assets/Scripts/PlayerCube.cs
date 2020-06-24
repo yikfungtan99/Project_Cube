@@ -14,13 +14,6 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
 
     private IEnumerator Start()
     {
-        // for (int i = 0; i < modules.Length; i++)
-        // {
-        //     if (modules[i].GetComponent<IInteractable>() != null)
-        //     {
-        //         modules[i].GetComponent<IInteractable>().OnInteracted += Action;
-        //     }
-        // }
         while (!otherCube)
         {
             yield return null;
@@ -55,7 +48,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     //     }
     // }
 
-    //Init the puzzle generate
+    //Init the puzzle generation
+    
     private void GenerateRandomPuzzle()
     {
         if (!photonView.IsMine) return;
@@ -70,10 +64,13 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
             PuzzleModuleData moduleDataInstance = GeneratePuzzleModuleData();
             this.photonView.RPC("RpcSpawnPuzzle", RpcTarget.All, i,(int)moduleDataInstance.PuzzleType, moduleDataInstance.PuzzleVariation, moduleDataInstance.PuzzleRole);
         }
+        
+        InitModuleComponents();
 
         _allPuzzleGenerated = true;
     }
 
+    //Called on the cubes to spawn the puzzle according to data given
     [PunRPC]
     private void RpcSpawnPuzzle(int id,int pt, int pv, int pr)
     {
@@ -85,7 +82,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
         PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
-        int puzzleGenVar = Random.Range(0, 2);
+        int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
         if (puzzleGenRole == 0)
@@ -101,8 +98,20 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         return generatedPuzzleModuleData;
     }
 
+    private void InitModuleComponents()
+    {
+        for (int i = 0; i < modules.Length; i++)
+        {
+            if (modules[i].GetComponentInChildren<IInteractable>() != null)
+            {
+                modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
+            }
+        }
+    }
+    
     public void Action(object sender, OnInteractedEventArgs e)
     {
+        print("Attempt to call Rpc");
         this.photonView.RPC("RpcAction", RpcTarget.All, e.Id);
     }
 
@@ -110,7 +119,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     void RpcAction(int id)
     {
         Debug.Log(id);
-        otherCube.modules[id + 1].GetComponent<IReactable>().ReAct();
+        otherCube.modules[id].GetComponentInChildren<IReactable>().ReAct();
     }
 
     private void OnDestroy()

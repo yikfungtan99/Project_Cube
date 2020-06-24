@@ -10,6 +10,8 @@ public class PuzzleModule:MonoBehaviour
     public int puzzleVariation;
     public int puzzleRole;
 
+    private PuzzleMasterStorage puzzleStorage;
+    
     //This is to init the puzzle using PuzzleModuleData to spawn the correct puzzle
     public void SpawnPuzzle(int pt, int pv, int pr)
     {
@@ -17,10 +19,23 @@ public class PuzzleModule:MonoBehaviour
         puzzleVariation = pv;
         puzzleRole = pr;
         
+        SpawnLog(pt, pv, pr);
+
+        puzzleStorage = PuzzleMasterStorage.instance;
+
+        Instantiate(
+            pr < 0
+                ? puzzleStorage.puzzleTypes[pt].puzzleVariation[pv].puzzleInteractor
+                : puzzleStorage.puzzleTypes[pt].puzzleVariation[pv].puzzleReactor, transform
+        );
+    }
+
+    private void SpawnLog(int pt, int pv, int pr)
+    {
         print("Cube" + PuzzleId 
-                  + " spawned Cube according to data \n"
-                  + "PuzzleType: " + pt + "\n"
-                  + "PuzzleVariation: " + pv  + "\n"
-                  + "PuzzleRole: " + pr + "\n");
+                     + " spawned Cube according to data \n"
+                     + "PuzzleType: " + pt + "\n"
+                     + "PuzzleVariation: " + pv  + "\n"
+                     + "PuzzleRole: " + pr + "\n");
     }
 }    

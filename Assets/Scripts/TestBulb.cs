@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class TestBulb : PuzzleModule, IReactable
+public class TestBulb : MonoBehaviour, IReactable
 {
     [SerializeField] private Light bulbLight;
 

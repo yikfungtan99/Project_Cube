@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Settings/NetworkSettings")]

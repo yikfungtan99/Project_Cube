@@ -2,9 +2,9 @@
 
 public enum PuzzleTypes
 {
-    Pipe,
+    Maze,
     Pigpen,
-    Cipher
+    Cipher,
 }
 
 //This class solve the problem of Monobehaviour not having a constructor;
@@ -19,10 +19,5 @@ public class PuzzleModuleData
         PuzzleType = type;
         PuzzleVariation = variation;
         PuzzleRole = role;
-    }
-
-    public void ReverseRole()
-    {
-        PuzzleRole *= -1;
     }
 }

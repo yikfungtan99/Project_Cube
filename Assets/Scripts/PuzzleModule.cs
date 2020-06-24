@@ -21,7 +21,7 @@ public class PuzzleModule:MonoBehaviour
         
         SpawnLog(pt, pv, pr);
 
-        puzzleStorage = PuzzleMasterStorage.instance;
+        puzzleStorage = PuzzleMasterStorage.Instance;
 
         Instantiate(
             pr < 0

@@ -53,6 +53,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private void GenerateRandomPuzzle()
     {
         if (!photonView.IsMine) return;
+        
         //Only host can generate puzzle to determine randomness
         if (!PhotonNetwork.IsMasterClient) return;
         
@@ -64,9 +65,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
             PuzzleModuleData moduleDataInstance = GeneratePuzzleModuleData();
             this.photonView.RPC("RpcSpawnPuzzle", RpcTarget.All, i,(int)moduleDataInstance.PuzzleType, moduleDataInstance.PuzzleVariation, moduleDataInstance.PuzzleRole);
         }
-        
-        InitModuleComponents();
 
+        this.photonView.RPC("RpcInitModuleEvents", RpcTarget.All);
         _allPuzzleGenerated = true;
     }
 
@@ -78,10 +78,17 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         otherCube.modules[id].SpawnPuzzle(pt, pv, -pr);
     }
 
+    [PunRPC]
+    private void RpcInitModuleEvents()
+    {
+        InitModuleComponents();
+    }
+
     //Random Puzzle Generation
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
-        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
         int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
@@ -100,13 +107,29 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
 
     private void InitModuleComponents()
     {
-        for (int i = 0; i < modules.Length; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            if (modules[i].GetComponentInChildren<IInteractable>() != null)
+            for (int i = 0; i < modules.Length; i++)
             {
-                modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
+                if (modules[i].GetComponentInChildren<IInteractable>() != null)
+                {
+                    modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
+                }
             }
         }
+        else
+        {
+            for (int i = 0; i < otherCube.modules.Length; i++)
+            {
+                if (otherCube.modules[i].GetComponentInChildren<IInteractable>() != null)
+                {
+                    otherCube.modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
+                }
+            }
+        }
+       
+        
+        print("Finished Initialisation of Module Components");
     }
     
     public void Action(object sender, OnInteractedEventArgs e)
@@ -119,7 +142,15 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     void RpcAction(int id)
     {
         Debug.Log(id);
-        otherCube.modules[id].GetComponentInChildren<IReactable>().ReAct();
+        if (otherCube.modules[id].GetComponentInChildren<IReactable>() != null)
+        {
+            otherCube.modules[id].GetComponentInChildren<IReactable>().ReAct();
+        }
+        else
+        {
+            modules[id].GetComponentInChildren<IReactable>().ReAct();
+        }
+        
     }
 
     private void OnDestroy()

@@ -1,22 +1,20 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace ScriptableObjects
+public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : ScriptableObject
 {
-    public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : ScriptableObject
-    {
-        private static T _instance = null;
+    private static T _instance = null;
 
-        public static T Instance
+    public static T Instance
+    {
+        get
         {
-            get
+            if (_instance == null)
             {
-                if (_instance == null)
-                {
-                    _instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
-                }
-                return _instance;
+                _instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
             }
+            return _instance;
         }
     }
 }
+

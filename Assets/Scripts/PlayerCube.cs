@@ -12,43 +12,20 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     [SerializeField] private PuzzleModule[] modules;
     private bool _allPuzzleGenerated = false;
 
+    //Using a coroutine as we need to wait until other cube is detected
     private IEnumerator Start()
     {
+        //wait until other cube is detected
         while (!otherCube)
         {
             yield return null;
         }
-        print("Start");
+        
+        //Generate puzzle at Start
         GenerateRandomPuzzle();
     }
 
-    //Archived: Now used IPunInstantiateMagicCallback to called for spawn system to help init other cube
-    
-    // private void LoadCube()
-    // {
-    //     if (!otherCube)
-    //     {
-    //         AssignOtherCube();
-    //     }
-    // }
-    //
-    // //Find better way to Assign network instantiated object
-    // private void AssignOtherCube()
-    // {
-    //     print("Finding Cube");
-    //     foreach (var view in PhotonNetwork.PhotonViews)
-    //     {
-    //         if (!view.IsMine)
-    //         {
-    //             otherCube = view.GetComponent<PlayerCube>();
-    //             
-    //             //This is stupid 
-    //             otherCube.otherCube = this;
-    //         }
-    //     }
-    // }
-
-    //Init the puzzle generation
+    #region  Puzzle Generation
     
     private void GenerateRandomPuzzle()
     {
@@ -58,7 +35,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         if (!PhotonNetwork.IsMasterClient) return;
         
         if (_allPuzzleGenerated) return;
-        print("generating puzzle");
+        //print("generating puzzle");
         
         for (int i = 0; i < 6; i++)
         {
@@ -87,8 +64,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     //Random Puzzle Generation
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
-        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
         int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
@@ -105,6 +81,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         return generatedPuzzleModuleData;
     }
 
+    //Initialise components events
+    //*Need to change to detect multiple Intractable
     private void InitModuleComponents()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -132,16 +110,20 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         print("Finished Initialisation of Module Components");
     }
     
+    #endregion
+
+    #region Info Sending
+    
     public void Action(object sender, OnInteractedEventArgs e)
     {
-        print("Attempt to call Rpc");
+        //print("Attempt to call Rpc");
         this.photonView.RPC("RpcAction", RpcTarget.All, e.Id);
     }
 
     [PunRPC]
     void RpcAction(int id)
     {
-        Debug.Log(id);
+        //Need to change to detect multiple reactor
         if (otherCube.modules[id].GetComponentInChildren<IReactable>() != null)
         {
             otherCube.modules[id].GetComponentInChildren<IReactable>().ReAct();
@@ -153,10 +135,13 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         
     }
 
+    #endregion
+    
     private void OnDestroy()
     {
         for (int i = 0; i < modules.Length; i++)
         {
+            //Need to change to detect multiple interactor
             if (modules[i].GetComponent<IInteractable>() != null)
             {
                 modules[i].GetComponent<IInteractable>().OnInteracted -= Action;

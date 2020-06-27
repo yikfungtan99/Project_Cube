@@ -37,8 +37,6 @@ public class CubeCalibration : MonoBehaviour
     {
         float roundedAngle = 0;
         
-        Debug.Log(curAngle);
-
         if (curAngle >= 0 && curAngle < 90) roundedAngle = CloserToValue(curAngle, 0, 90);
         if (curAngle >= 90 && curAngle < 180) roundedAngle = CloserToValue(curAngle, 90, 180);
         if (curAngle >= 180 && curAngle < 270) roundedAngle = CloserToValue(curAngle, 180, 270);

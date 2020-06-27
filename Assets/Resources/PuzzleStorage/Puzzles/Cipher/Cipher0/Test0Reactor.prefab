@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5112610650536279735
+--- !u!1 &8254131594945496154
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5112610650536279734}
-  - component: {fileID: 5112610650536279736}
-  - component: {fileID: 5112610650536279737}
+  - component: {fileID: 8254131594945496155}
+  - component: {fileID: 8254131594945496149}
+  - component: {fileID: 8254131594945496148}
   m_Layer: 0
   m_Name: m_base
   m_TagString: Untagged
@@ -18,35 +18,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5112610650536279734
+--- !u!4 &8254131594945496155
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610650536279735}
+  m_GameObject: {fileID: 8254131594945496154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.39385}
   m_Children: []
-  m_Father: {fileID: 5112610652202633094}
+  m_Father: {fileID: 8254131596545981803}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5112610650536279736
+--- !u!33 &8254131594945496149
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610650536279735}
+  m_GameObject: {fileID: 8254131594945496154}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5112610650536279737
+--- !u!23 &8254131594945496148
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610650536279735}
+  m_GameObject: {fileID: 8254131594945496154}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &5112610651726926688
+--- !u!1 &8254131595801667981
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +87,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5112610651726926691}
-  - component: {fileID: 5112610651726926692}
-  - component: {fileID: 5112610651726926693}
-  - component: {fileID: 5112610651726926690}
+  - component: {fileID: 8254131595801667982}
+  - component: {fileID: 8254131595801667977}
+  - component: {fileID: 8254131595801667976}
+  - component: {fileID: 8254131595801667983}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -98,35 +98,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5112610651726926691
+--- !u!4 &8254131595801667982
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651726926688}
+  m_GameObject: {fileID: 8254131595801667981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.153}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
-  m_Father: {fileID: 5112610652202633094}
+  m_Father: {fileID: 8254131596545981803}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5112610651726926692
+--- !u!33 &8254131595801667977
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651726926688}
+  m_GameObject: {fileID: 8254131595801667981}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5112610651726926693
+--- !u!23 &8254131595801667976
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651726926688}
+  m_GameObject: {fileID: 8254131595801667981}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -159,20 +159,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5112610651726926690
+--- !u!135 &8254131595801667983
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651726926688}
+  m_GameObject: {fileID: 8254131595801667981}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5112610651759756965
+--- !u!1 &8254131595902794824
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,8 +180,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5112610651759756964}
-  - component: {fileID: 5112610651759756967}
+  - component: {fileID: 8254131595902794825}
+  - component: {fileID: 8254131595902794826}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -189,27 +189,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &5112610651759756964
+--- !u!4 &8254131595902794825
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651759756965}
+  m_GameObject: {fileID: 8254131595902794824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5112610652202633094}
+  m_Father: {fileID: 8254131596545981803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &5112610651759756967
+--- !u!108 &8254131595902794826
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610651759756965}
+  m_GameObject: {fileID: 8254131595902794824}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
@@ -264,7 +264,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &5112610652202633095
+--- !u!1 &8254131596545981802
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,42 +272,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5112610652202633094}
-  - component: {fileID: 5112610652202633097}
+  - component: {fileID: 8254131596545981803}
+  - component: {fileID: 8254131596545981796}
   m_Layer: 0
-  m_Name: Bulb
+  m_Name: Test0Reactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5112610652202633094
+--- !u!4 &8254131596545981803
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610652202633095}
+  m_GameObject: {fileID: 8254131596545981802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.082, z: -3.521}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5112610651759756964}
-  - {fileID: 5112610650536279734}
-  - {fileID: 5112610651726926691}
+  - {fileID: 8254131595902794825}
+  - {fileID: 8254131594945496155}
+  - {fileID: 8254131595801667982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5112610652202633097
+--- !u!114 &8254131596545981796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112610652202633095}
+  m_GameObject: {fileID: 8254131596545981802}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1cd9f007c9c59543810a402f83d20cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulbLight: {fileID: 5112610651759756965}
+  bulbLight: {fileID: 8254131595902794824}

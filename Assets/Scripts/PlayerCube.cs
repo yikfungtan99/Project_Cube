@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -43,7 +44,16 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
             this.photonView.RPC("RpcSpawnPuzzle", RpcTarget.All, i,(int)moduleDataInstance.PuzzleType, moduleDataInstance.PuzzleVariation, moduleDataInstance.PuzzleRole);
         }
 
-        this.photonView.RPC("RpcInitModuleEvents", RpcTarget.All);
+        // foreach (var module in modules)
+        // {
+        //     foreach (var interactor in module.interactors)
+        //     {
+        //         interactor.OnInteracted += Action;
+        //     }
+        // }
+        //
+        
+        //this.photonView.RPC("RpcInitModuleEvents", RpcTarget.All);
         _allPuzzleGenerated = true;
     }
 
@@ -55,16 +65,17 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         otherCube.modules[id].SpawnPuzzle(pt, pv, -pr);
     }
 
-    [PunRPC]
-    private void RpcInitModuleEvents()
-    {
-        InitModuleComponents();
-    }
+    // [PunRPC]
+    // private void RpcInitModuleEvents()
+    // {
+    //     InitModuleComponents();
+    // }
 
     //Random Puzzle Generation
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
-        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 0;
         int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
@@ -83,54 +94,52 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
 
     //Initialise components events
     //*Need to change to detect multiple Intractable
-    private void InitModuleComponents()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            for (int i = 0; i < modules.Length; i++)
-            {
-                if (modules[i].GetComponentInChildren<IInteractable>() != null)
-                {
-                    modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < otherCube.modules.Length; i++)
-            {
-                if (otherCube.modules[i].GetComponentInChildren<IInteractable>() != null)
-                {
-                    otherCube.modules[i].GetComponentInChildren<IInteractable>().OnInteracted += Action;
-                }
-            }
-        }
-       
-        
-        print("Finished Initialisation of Module Components");
-    }
-    
+    // private void InitModuleComponents()
+    // {
+    //     if (PhotonNetwork.IsMasterClient)
+    //     {
+    //         for (int i = 0; i < modules.Length; i++)
+    //         {
+    //             if (modules[i].GetComponentInChildren<Interactor>() != null)
+    //             {
+    //                 modules[i].GetComponentInChildren<Interactor>().OnInteracted += Action;
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         for (int i = 0; i < otherCube.modules.Length; i++)
+    //         {
+    //             if (otherCube.modules[i].GetComponentInChildren<Interactor>() != null)
+    //             {
+    //                 otherCube.modules[i].GetComponentInChildren<Interactor>().OnInteracted += Action;
+    //             }
+    //         }
+    //     }
+    // }
+
     #endregion
 
     #region Info Sending
     
-    public void Action(object sender, OnInteractedEventArgs e)
+    public void Action(object sender, Interactor.OnInteractedEventArgs e)
     {
-        //print("Attempt to call Rpc");
-        this.photonView.RPC("RpcAction", RpcTarget.All, e.Id);
+        print("Action" + e);
+        this.photonView.RPC("RpcAction", RpcTarget.All, e.ModuleId, e.ComponentId);
     }
 
     [PunRPC]
-    void RpcAction(int id)
+    void RpcAction(int id, int cid)
     {
+        print("Rpc: " + "id= " + id);
         //Need to change to detect multiple reactor
-        if (otherCube.modules[id].GetComponentInChildren<IReactable>() != null)
+        if (otherCube.modules[id].GetComponentInChildren<Reactor>() != null)
         {
-            otherCube.modules[id].GetComponentInChildren<IReactable>().ReAct();
+            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
         }
         else
         {
-            modules[id].GetComponentInChildren<IReactable>().ReAct();
+            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
         }
         
     }
@@ -142,9 +151,9 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         for (int i = 0; i < modules.Length; i++)
         {
             //Need to change to detect multiple interactor
-            if (modules[i].GetComponent<IInteractable>() != null)
+            if (modules[i].GetComponent<Interactor>() != null)
             {
-                modules[i].GetComponent<IInteractable>().OnInteracted -= Action;
+                modules[i].GetComponent<Interactor>().OnInteracted -= Action;
             }
         }
     }

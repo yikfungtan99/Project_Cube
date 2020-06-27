@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.39385}
   m_Children: []
   m_Father: {fileID: 8254131596545981803}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8254131594945496149
 MeshFilter:
@@ -110,7 +110,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 8254131596545981803}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8254131595801667977
 MeshFilter:
@@ -201,7 +201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8254131596545981803}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &8254131595902794826
 Light:
@@ -292,9 +292,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8254131595902794825}
   - {fileID: 8254131594945496155}
   - {fileID: 8254131595801667982}
-  - {fileID: 8254131595902794825}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,8 +310,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cd9f007c9c59543810a402f83d20cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleId: 0
-  puzzleType: 0
-  puzzleVariation: 0
-  puzzleRole: 0
-  bulbLight: {fileID: 8254131595902794826}
+  bulbLight: {fileID: 8254131595902794824}

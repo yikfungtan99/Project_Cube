@@ -47,6 +47,10 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}
 --- !u!1 &2942601048902812216
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +98,10 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}
 --- !u!1 &4244794574052979872
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +543,10 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}
 --- !u!1 &4887223348589216838
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +594,10 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}
 --- !u!1 &8238006187812333827
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +645,10 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}
 --- !u!1 &9062057550371011520
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,3 +696,7 @@ MonoBehaviour:
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
+  moduleCompleted: 0
+  interactors: []
+  reactors: []
+  _playerCube: {fileID: -2851397399996033650}

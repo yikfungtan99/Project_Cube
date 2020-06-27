@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class TestButton : MonoBehaviour, IInteractable
+public class TestButton : Interactor
 {
-    private PuzzleModule _puzzleModule;
-    public event EventHandler<OnInteractedEventArgs> OnInteracted;
     private Animator _anim;
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         _anim = GetComponent<Animator>();
-        _puzzleModule = GetComponentInParent<PuzzleModule>();
     }
-    
-    public void Interact()
+
+    public override void Interact()
     {
-        Debug.Log("Click");
+        print("Clicked");
+        base.Interact();
         AnimPressButton();
-        OnInteracted?.Invoke(this, new OnInteractedEventArgs{Id = _puzzleModule.PuzzleId});
     }
 
     private void AnimPressButton()

@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class TestBulb : MonoBehaviour, IReactable
+public class TestBulb : Reactor
 {
-    [SerializeField] private Light bulbLight;
+    [SerializeField] private GameObject bulbLight;
+
+    private void Awake()
+    {
+        bulbLight.SetActive(false);
+    }
 
     private void LightUp()
     {
-        Debug.Log("Light Up");
-        bulbLight.gameObject.SetActive(true);
+        print(bulbLight.name + "Lit");
+        bulbLight.SetActive(true);
     }
 
-    public void ReAct()
+    public override void ReAct()
     {
         Debug.Log("REACTED");
         LightUp();

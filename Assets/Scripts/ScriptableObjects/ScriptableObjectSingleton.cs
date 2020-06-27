@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : ScriptableObject
@@ -19,3 +17,4 @@ public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : 
         }
     }
 }
+

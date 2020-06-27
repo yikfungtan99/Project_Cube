@@ -30,7 +30,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.39385}
   m_Children: []
   m_Father: {fileID: 5112610652202633094}
+<<<<<<< HEAD
   m_RootOrder: 0
+=======
+  m_RootOrder: 1
+>>>>>>> master
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5112610650536279736
 MeshFilter:
@@ -110,7 +114,11 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 5112610652202633094}
+<<<<<<< HEAD
   m_RootOrder: 1
+=======
+  m_RootOrder: 2
+>>>>>>> master
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5112610651726926692
 MeshFilter:
@@ -201,7 +209,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5112610652202633094}
+<<<<<<< HEAD
   m_RootOrder: 2
+=======
+  m_RootOrder: 0
+>>>>>>> master
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &5112610651759756967
 Light:
@@ -292,9 +304,15 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.082, z: -3.521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 5112610650536279734}
   - {fileID: 5112610651726926691}
   - {fileID: 5112610651759756964}
+=======
+  - {fileID: 5112610651759756964}
+  - {fileID: 5112610650536279734}
+  - {fileID: 5112610651726926691}
+>>>>>>> master
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,4 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cd9f007c9c59543810a402f83d20cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   bulbLight: {fileID: 5112610651759756967}
+=======
+  bulbLight: {fileID: 5112610651759756965}
+>>>>>>> master

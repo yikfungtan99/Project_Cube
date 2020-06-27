@@ -5,7 +5,7 @@ using UnityEngine;
 public class PipePuzzleManager : MonoBehaviour
 {
     [System.Serializable]
-    public class Puzzle
+    public class PipePuzzle
     {
         public int winValue;
         public int currentValue;
@@ -16,7 +16,7 @@ public class PipePuzzleManager : MonoBehaviour
         public PipeScript[,] pipes;
         public PipeButtonScript[,] buttons;
     }
-    public Puzzle puzzle;
+    public PipePuzzle pipePuzzle;
 
     private class AnchorTransform
     {
@@ -41,9 +41,9 @@ public class PipePuzzleManager : MonoBehaviour
 
         OriginalTransform(); // restore original transform values after initialization
         
-        puzzle.winValue = GetWinValue(); // set required connections to solve puzzle
+        pipePuzzle.winValue = GetWinValue(); // set required connections to solve puzzle
         Shuffle(); // rotate pipes randomly
-        puzzle.currentValue = Sweep(); // count current connections
+        pipePuzzle.currentValue = Sweep(); // count current connections
     }
 
     void Update()
@@ -77,7 +77,7 @@ public class PipePuzzleManager : MonoBehaviour
     int GetWinValue() // set required connections to solve puzzle
     {
         int winValue = 0;
-        foreach (PipeScript pipe in puzzle.pipes)
+        foreach (PipeScript pipe in pipePuzzle.pipes)
         {
             foreach(int i in pipe.values)
             {
@@ -92,12 +92,12 @@ public class PipePuzzleManager : MonoBehaviour
 
     public void SetCurrentValue() // add to current connections from a quicksweep
     {
-        puzzle.currentValue = Sweep();
+        pipePuzzle.currentValue = Sweep();
     }
 
     public void CheckWin() // use this to change state to puzzle is completed
     {
-        if(puzzle.currentValue == puzzle.winValue)
+        if(pipePuzzle.currentValue == pipePuzzle.winValue)
         {
             IsSolved = true;
         }
@@ -112,7 +112,7 @@ public class PipePuzzleManager : MonoBehaviour
 
     void Shuffle() // rotate pipes randomly
     {
-        foreach (var pipe in puzzle.pipes)
+        foreach (var pipe in pipePuzzle.pipes)
         {
             int k = Random.Range(0, 4);
             
@@ -127,20 +127,20 @@ public class PipePuzzleManager : MonoBehaviour
     {
         int value = 0;
 
-        for(int h = 0; h < puzzle.height; h++)
+        for(int h = 0; h < pipePuzzle.height; h++)
         {
-            for(int w = 0; w < puzzle.width; w++)
+            for(int w = 0; w < pipePuzzle.width; w++)
             {
-                if(h != puzzle.height - 1) //compare top
+                if(h != pipePuzzle.height - 1) //compare top
                 {
-                    if (puzzle.pipes[w, h].values[0] == 1 && puzzle.pipes[w, h + 1].values[2] == 1) 
+                    if (pipePuzzle.pipes[w, h].values[0] == 1 && pipePuzzle.pipes[w, h + 1].values[2] == 1) 
                     {
                         value++;
                     }
                 }
-                if (w != puzzle.width - 1) //compare right
+                if (w != pipePuzzle.width - 1) //compare right
                 {
-                    if (puzzle.pipes[w, h].values[1] == 1 && puzzle.pipes[w + 1, h].values[3] == 1)
+                    if (pipePuzzle.pipes[w, h].values[1] == 1 && pipePuzzle.pipes[w + 1, h].values[3] == 1)
                     {
                         value++;
                     }
@@ -153,7 +153,7 @@ public class PipePuzzleManager : MonoBehaviour
 
     public void ButtonPress(int x, int y) // When button is pressed rotate the equivalent pipe and set current value
     {
-        puzzle.pipes[x, y].Rotate90Degrees();
+        pipePuzzle.pipes[x, y].Rotate90Degrees();
         SetCurrentValue();
     }
 
@@ -162,23 +162,23 @@ public class PipePuzzleManager : MonoBehaviour
         // set dimensions 
         Vector2 dimensions = CheckDimensions();
 
-        puzzle.width = (int)dimensions.x;
-        puzzle.height = (int)dimensions.y;
+        pipePuzzle.width = (int)dimensions.x;
+        pipePuzzle.height = (int)dimensions.y;
         
         // set pipes
-        puzzle.pipes = new PipeScript[puzzle.width , puzzle.height];
+        pipePuzzle.pipes = new PipeScript[pipePuzzle.width , pipePuzzle.height];
         
         foreach (GameObject pipe in GameObject.FindGameObjectsWithTag("Pipes"))
         {
-            puzzle.pipes[(int)pipe.transform.localPosition.x, (int)pipe.transform.localPosition.y] = pipe.GetComponent<PipeScript>();
+            pipePuzzle.pipes[(int)pipe.transform.localPosition.x, (int)pipe.transform.localPosition.y] = pipe.GetComponent<PipeScript>();
         }
 
         // set buttons
-        puzzle.buttons = new PipeButtonScript[puzzle.width , puzzle.height];
+        pipePuzzle.buttons = new PipeButtonScript[pipePuzzle.width , pipePuzzle.height];
 
         foreach (GameObject button in GameObject.FindGameObjectsWithTag("PipeButtons"))
         {
-            puzzle.buttons[(int)button.transform.localPosition.x, (int)button.transform.localPosition.y] = button.GetComponent<PipeButtonScript>();
+            pipePuzzle.buttons[(int)button.transform.localPosition.x, (int)button.transform.localPosition.y] = button.GetComponent<PipeButtonScript>();
         }
     }
 
@@ -220,30 +220,30 @@ public class PipePuzzleManager : MonoBehaviour
     {
         int value = 0;
 
-        if (h != puzzle.height - 1) //compare top
+        if (h != pipePuzzle.height - 1) //compare top
         {
-            if (puzzle.pipes[w, h].values[0] == 1 && puzzle.pipes[w, h + 1].values[2] == 1)
+            if (pipePuzzle.pipes[w, h].values[0] == 1 && pipePuzzle.pipes[w, h + 1].values[2] == 1)
             {
                 value++;
             }
         }
-        if (w != puzzle.width - 1) //compare right
+        if (w != pipePuzzle.width - 1) //compare right
         {
-            if (puzzle.pipes[w, h].values[1] == 1 && puzzle.pipes[w + 1, h].values[3] == 1)
+            if (pipePuzzle.pipes[w, h].values[1] == 1 && pipePuzzle.pipes[w + 1, h].values[3] == 1)
             {
                 value++;
             }
         }
         if (w != 0) // compare bottom
         {
-            if (puzzle.pipes[w, h].values[2] == 1 && puzzle.pipes[w, h - 1].values[0] == 1)
+            if (pipePuzzle.pipes[w, h].values[2] == 1 && pipePuzzle.pipes[w, h - 1].values[0] == 1)
             {
                 value++;
             }
         }
         if (h != 0) // compare left
         {
-            if (puzzle.pipes[w, h].values[3] == 1 && puzzle.pipes[w - 1, h].values[1] == 1)
+            if (pipePuzzle.pipes[w, h].values[3] == 1 && pipePuzzle.pipes[w - 1, h].values[1] == 1)
             {
                 value++;
             }
@@ -254,7 +254,7 @@ public class PipePuzzleManager : MonoBehaviour
 
     void DebugPipe() //shows pipes in console
     {
-        foreach (var item in puzzle.pipes)
+        foreach (var item in pipePuzzle.pipes)
         {
             Debug.Log(item.gameObject.name);
         }

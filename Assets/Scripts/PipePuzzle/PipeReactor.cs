@@ -8,7 +8,6 @@ public class PipeReactor : Reactor
 {
     public PipePuzzleManager ppm;
     public int[] values;
-    public float speed = 0.3f;
     float realRotation;
 
     private void Start()
@@ -32,7 +31,9 @@ public class PipeReactor : Reactor
     public override void ReAct()
     {
         //Rotate90Degrees();
-        RotatePipe();
+        RotatePipe(); // rotate pipe transform
+        RotateValues(); // change connection values when rotating
+        ppm.Sweep(); // check current connections
     }
 
     private void RotatePipe()
@@ -43,15 +44,15 @@ public class PipeReactor : Reactor
 
     private void RotateValues() //change connect values
     {
-        // int aux = values[0];
-        //
-        // for (int i = 0; i < values.Length - 1; i++)
-        // {
-        //     values [i] = values[i + 1];
-        // }
-        // values[3] = aux;
+        int aux = values[0];
         
-        transform.Rotate(new Vector3(0, 0, 90));
+        for (int i = 0; i < values.Length - 1; i++)
+        {
+            values [i] = values[i + 1];
+        }
+        values[3] = aux;
+        
+        //transform.Rotate(new Vector3(0, 0, 90));
     }
 
     // private void FixRotation() //speed doesn't work :( // ****NOT IN USE****

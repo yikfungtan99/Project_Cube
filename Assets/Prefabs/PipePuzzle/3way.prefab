@@ -43,12 +43,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2716431439513434391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ce61ae1e48a9341ae0355e35474bad, type: 3}
+  m_Script: {fileID: 11500000, guid: c1489c30c67dd7c45b969cde9075541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ppm: {fileID: 0}
   values: 01000000010000000100000000000000
-  speed: 1
+  speed: 0.3
 --- !u!65 &2716431439513434392
 BoxCollider:
   m_ObjectHideFlags: 0

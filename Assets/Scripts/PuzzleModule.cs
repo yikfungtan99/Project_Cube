@@ -6,6 +6,7 @@ using UnityEngine;
 public class PuzzleModule:MonoBehaviour
 {
     public int PuzzleId;
+    public PuzzleManager puzzleManager;
 
     public PuzzleTypes puzzleType;
     public int puzzleVariation;
@@ -37,7 +38,8 @@ public class PuzzleModule:MonoBehaviour
             ? puzzleStorage.puzzleTypes[pt].puzzleVariation[pv].puzzleInteractor
             : puzzleStorage.puzzleTypes[pt].puzzleVariation[pv].puzzleReactor;
 
-        GameObject spawnedPuzzle = Instantiate(puzzleToSpawn, transform);
+        GameObject spawnedPuzzle = Instantiate(puzzleToSpawn, transform.position, transform.rotation);
+        spawnedPuzzle.transform.parent = transform;
 
         foreach (var interactor in spawnedPuzzle.GetComponentsInChildren<Interactor>())
         {
@@ -51,6 +53,9 @@ public class PuzzleModule:MonoBehaviour
             reactors.Add(reactor);
             print(PuzzleId + "Reactors " + reactors.Count);
         }
+        
+        //Assign Puzzle Manager
+        puzzleManager = GetComponentInChildren<PuzzleManager>();
     }
 
     private void SpawnLog(int pt, int pv, int pr)

@@ -38,7 +38,6 @@ MonoBehaviour:
   - RespawnSpaceship
   - RpcAction
   - RpcSpawnPuzzle
-  - RpcInitModuleEvents
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

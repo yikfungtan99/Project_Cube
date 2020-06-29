@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 0
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 4
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
@@ -540,6 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 5
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
@@ -591,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 2
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
@@ -642,6 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 3
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0
@@ -693,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleId: 1
+  puzzleManager: {fileID: 0}
   puzzleType: 0
   puzzleVariation: 0
   puzzleRole: 0

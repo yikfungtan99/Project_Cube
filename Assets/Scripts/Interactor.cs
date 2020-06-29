@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
-    private PuzzleModule _puzzleModule;
+    internal PuzzleModule _puzzleModule;
     public int componentId;
 
     public event EventHandler<OnInteractedEventArgs> OnInteracted;
@@ -15,6 +15,12 @@ public class Interactor : MonoBehaviour
         OnInteracted += _puzzleModule.transform.parent.GetComponent<PlayerCube>().Action;
     }
 
+    /// <summary>
+    /// This is called whenever the button is clicked
+    /// For networking function inherit base version
+    /// base.Interact();
+    /// This will trigger a reaction on the Reactor that have the moduleId and componentId of this Interactor
+    /// </summary>
     public virtual void Interact()
     {
         if (_puzzleModule)

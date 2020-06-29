@@ -148,7 +148,7 @@ public class TouchInput : MonoBehaviour
         if (Physics.Raycast (ray, out var hit)) {
             
             if (hit.collider){
-                if(hit.collider.GetComponent<Interactor>() != null) hit.collider.GetComponent<Interactor>().Interact();
+                if(hit.collider.GetComponent<IInteractable>() != null) hit.collider.GetComponent<IInteractable>().Interact();
             }
         }
     }

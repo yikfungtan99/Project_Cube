@@ -328,7 +328,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1001 &4067809575434508422
+--- !u!1001 &1816603208
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -393,18 +393,13 @@ PrefabInstance:
     - target: {fileID: 4067809576530305788, guid: be6c2e26ca8f84f4d8fae04aa4f483e1,
         type: 3}
       propertyPath: m_Name
-      value: $Manager
+      value: PigpenManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4067809576530305788, guid: be6c2e26ca8f84f4d8fae04aa4f483e1,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 4067809576530305789, guid: be6c2e26ca8f84f4d8fae04aa4f483e1,
         type: 3}
-      propertyPath: dragBox.Array.size
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: pigpenPrefab
+      value: 
+      objectReference: {fileID: 7655910774223841667, guid: f6b90439eb9a2f44db81d9050c49c143,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be6c2e26ca8f84f4d8fae04aa4f483e1, type: 3}

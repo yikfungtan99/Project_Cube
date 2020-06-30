@@ -17,6 +17,7 @@ public class PipeButton: Interactor
     {
         print("Pipe Button Clicked");
         base.Interact();
+        ppm.Sweep();
     }
     
     //Interaction here

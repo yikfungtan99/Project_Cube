@@ -7,7 +7,7 @@
 /// </summary>
 public class PuzzleManager : MonoBehaviour
 {
-    private PuzzleModule _puzzleModule;
+    public PuzzleModule _puzzleModule;
 
     private void Start()
     {

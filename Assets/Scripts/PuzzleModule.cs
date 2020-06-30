@@ -22,7 +22,12 @@ public class PuzzleModule:MonoBehaviour
     private PuzzleMasterStorage puzzleStorage;
 
     [SerializeField] private PlayerCube _playerCube;
-    
+
+    void Start()
+    {
+        puzzleManager = GetComponentInChildren<PuzzleManager>();    
+    }
+
     //This is to init the puzzle using PuzzleModuleData to spawn the correct puzzle
     public void SpawnPuzzle(int pt, int pv, int pr)
     {

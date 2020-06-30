@@ -79,6 +79,8 @@ public class PipePuzzleManager : PuzzleManager
 
         int indexCounter = 0;
 
+        pipePuzzle.pipes = new PipeReactor[pipePuzzle.width, pipePuzzle.height];
+
         for (int h = 0; h < dimensions; h++)
         {
             for (int w = 0; w < dimensions; w++)

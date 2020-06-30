@@ -33,7 +33,7 @@ public class PipeReactor : Reactor
         //Rotate90Degrees();
         RotatePipe(); // rotate pipe transform
         RotateValues(); // change connection values when rotating
-        ppm.Sweep(); // check current connections
+        ppm.pipePuzzle.currentValue = ppm.Sweep(); // check current connections
     }
 
     private void RotatePipe()

@@ -19,8 +19,9 @@ public class PipePuzzleManager : PuzzleManager
     }
     public PipePuzzle pipePuzzle;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         InitializePipes();
         pipePuzzle.winValue = GetWinValue();
         pipePuzzle.currentValue = Sweep();
@@ -44,6 +45,7 @@ public class PipePuzzleManager : PuzzleManager
 
     public int Sweep() // check every pipes for connections
     {
+        print("Sweep");
         int value = 0;
 
         for (int h = 0; h < pipePuzzle.height; h++)

@@ -9,7 +9,7 @@ public class PuzzleManager : MonoBehaviour
 {
     public PuzzleModule _puzzleModule;
 
-    private void Start()
+    public virtual void Start()
     {
         _puzzleModule = GetComponentInParent<PuzzleModule>();
     }

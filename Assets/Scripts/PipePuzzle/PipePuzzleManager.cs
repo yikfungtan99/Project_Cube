@@ -57,6 +57,7 @@ public class PipePuzzleManager : PuzzleManager
                     if (pipePuzzle.pipes[w, h].values[0] == 1 && pipePuzzle.pipes[w, h + 1].values[2] == 1)
                     {
                         value++;
+                        
                     }
                 }
                 if (w != pipePuzzle.width - 1) //compare right
@@ -66,6 +67,8 @@ public class PipePuzzleManager : PuzzleManager
                         value++;
                     }
                 }
+                
+                print(pipePuzzle.pipes[w,h]);
             }
         }
 
@@ -87,7 +90,7 @@ public class PipePuzzleManager : PuzzleManager
         {
             for (int w = 0; w < dimensions; w++)
             {
-                pipePuzzle.pipes[h, w] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
+                pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
                 indexCounter++;
             }
         }

@@ -7,6 +7,8 @@ public class Interactor : MonoBehaviour
     internal PuzzleModule _puzzleModule;
     public int componentId;
 
+    public bool disabled = false;
+
     public event EventHandler<OnInteractedEventArgs> OnInteracted;
     
     public virtual void Start()
@@ -23,6 +25,7 @@ public class Interactor : MonoBehaviour
     /// </summary>
     public virtual void Interact()
     {
+        if (disabled) return;
         if (_puzzleModule)
         {
             print("Interact");    

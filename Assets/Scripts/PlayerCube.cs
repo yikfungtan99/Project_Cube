@@ -131,17 +131,28 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     [PunRPC]
     void RpcAction(int id, int cid)
     {
-        print("Rpc: " + "id= " + id);
-        //Need to change to detect multiple reactor
-        if (otherCube.modules[id].GetComponentInChildren<Reactor>() != null)
-        {
-            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
-        }
-        else
-        {
-            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
-        }
+        // //Need to change to detect multiple reactor
+        // if (otherCube.modules[id].GetComponentInChildren<Reactor>() != null)
+        // {
+        //     otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+        // }
+        // else
+        // {
+        //     otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+        // }
         
+        otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+    }
+
+    public void CompletedModule(int id)
+    {
+        this.photonView.RPC("RpcCompletion", RpcTarget.All, id);
+    }
+
+    [PunRPC]
+    void RpcCompletion(int id)
+    {
+        otherCube.modules[id].SetModuleCompleted();
     }
 
     #endregion

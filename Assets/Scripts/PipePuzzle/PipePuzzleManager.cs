@@ -26,7 +26,35 @@ public class PipePuzzleManager : PuzzleManager
         pipePuzzle.winValue = GetWinValue();
         pipePuzzle.currentValue = Sweep();
     }
+    
+    void InitializePipes()
+    {
+        //int dimensions = (int)Mathf.Sqrt(transform.childCount);
+        int dimensions = 4;
 
+        pipePuzzle.width = dimensions;
+        pipePuzzle.height = dimensions;
+
+        int indexCounter = 0;
+
+        pipePuzzle.pipes = new PipeReactor[pipePuzzle.width, pipePuzzle.height];
+
+        for (int h = 0; h < dimensions; h++)
+        {
+            for (int w = 0; w < dimensions; w++)
+            {
+                //pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
+
+                if (transform.GetChild(indexCounter).GetComponent<PipeReactor>())
+                {
+                    pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
+                }
+                
+                indexCounter++;
+            }
+        }
+    }
+    
     int GetWinValue() // set required connections to solve puzzle
     {
         int winValue = 0;
@@ -75,27 +103,13 @@ public class PipePuzzleManager : PuzzleManager
         return value;
     }
 
-    void InitializePipes()
+    public void CheckForWin()
     {
-        int dimensions = (int)Mathf.Sqrt(transform.childCount);
-
-        pipePuzzle.width = dimensions;
-        pipePuzzle.height = dimensions;
-
-        int indexCounter = 0;
-
-        pipePuzzle.pipes = new PipeReactor[pipePuzzle.width, pipePuzzle.height];
-
-        for (int h = 0; h < dimensions; h++)
+        if (pipePuzzle.currentValue == pipePuzzle.winValue)
         {
-            for (int w = 0; w < dimensions; w++)
-            {
-                pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
-                indexCounter++;
-            }
+            _puzzleModule.ModuleComplete();
         }
     }
-
 }
 
 

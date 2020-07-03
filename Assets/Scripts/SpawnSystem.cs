@@ -38,9 +38,7 @@ public class SpawnSystem : MonoBehaviourPun
 
     public void AssignCube()
     {
-        print(currentCubes.Count);
         if (currentCubes.Count < 2) return;
-        print("Cube assigned successfully");
         currentCubes[0].otherCube = currentCubes[1];
         currentCubes[1].otherCube = currentCubes[0];
     }

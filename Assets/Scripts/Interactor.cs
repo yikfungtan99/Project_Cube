@@ -41,5 +41,6 @@ public class Interactor : MonoBehaviour
     {
         public int ModuleId;
         public int ComponentId;
+        public int DataInt;
     }
 }

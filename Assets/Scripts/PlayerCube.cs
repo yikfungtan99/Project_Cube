@@ -75,7 +75,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(2,4);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 4;
         int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
@@ -124,8 +124,10 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     
     public void Action(object sender, Interactor.OnInteractedEventArgs e)
     {
-        print("Action" + e);
-        this.photonView.RPC("RpcAction", RpcTarget.All, e.ModuleId, e.ComponentId);
+        if (this.photonView.IsMine)
+        {
+            this.photonView.RPC("RpcAction", RpcTarget.All, e.ModuleId, e.ComponentId);
+        }
     }
 
     [PunRPC]
@@ -143,7 +145,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         
         otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
     }
-
+    
     public void CompletedModule(int id)
     {
         this.photonView.RPC("RpcCompletion", RpcTarget.All, id);

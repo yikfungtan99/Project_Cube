@@ -39,7 +39,6 @@ public class PipeReactor : Reactor
 
     private void RotatePipe()
     {
-        print("Rotate");
         transform.RotateAround(transform.position, transform.forward, 90);
     }
 

@@ -73,7 +73,6 @@ public class PipePuzzleManager : PuzzleManager
 
     public int Sweep() // check every pipes for connections
     {
-        print("Sweep");
         int value = 0;
 
         for (int h = 0; h < pipePuzzle.height; h++)
@@ -95,8 +94,6 @@ public class PipePuzzleManager : PuzzleManager
                         value++;
                     }
                 }
-                
-                print(pipePuzzle.pipes[w,h]);
             }
         }
 

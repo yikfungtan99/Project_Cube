@@ -75,7 +75,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData()
     {
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 0;
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) 4;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(3,5);
         int puzzleGenVar = 0;
         int puzzleGenRole = Random.Range(0, 2);
 
@@ -124,24 +125,37 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     
     public void Action(object sender, Interactor.OnInteractedEventArgs e)
     {
-        print("Action" + e);
-        this.photonView.RPC("RpcAction", RpcTarget.All, e.ModuleId, e.ComponentId);
+        if (this.photonView.IsMine)
+        {
+            this.photonView.RPC("RpcAction", RpcTarget.All, e.ModuleId, e.ComponentId);
+        }
     }
 
     [PunRPC]
     void RpcAction(int id, int cid)
     {
-        print("Rpc: " + "id= " + id);
-        //Need to change to detect multiple reactor
-        if (otherCube.modules[id].GetComponentInChildren<Reactor>() != null)
-        {
-            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
-        }
-        else
-        {
-            otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
-        }
+        // //Need to change to detect multiple reactor
+        // if (otherCube.modules[id].GetComponentInChildren<Reactor>() != null)
+        // {
+        //     otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+        // }
+        // else
+        // {
+        //     otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+        // }
         
+        otherCube.modules[id].reactors[cid].GetComponent<Reactor>().ReAct();
+    }
+    
+    public void CompletedModule(int id)
+    {
+        this.photonView.RPC("RpcCompletion", RpcTarget.All, id);
+    }
+
+    [PunRPC]
+    void RpcCompletion(int id)
+    {
+        otherCube.modules[id].SetModuleCompleted();
     }
 
     #endregion

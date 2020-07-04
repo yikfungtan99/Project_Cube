@@ -5,6 +5,8 @@ public enum PuzzleTypes
     Maze,
     Pigpen,
     Cipher,
+    Pipe,
+    SimonSays
 }
 
 //This class solve the problem of Monobehaviour not having a constructor;

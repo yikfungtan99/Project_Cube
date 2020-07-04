@@ -8,6 +8,8 @@ TagManager:
   - SpawnSystem
   - Cube
   - OtherCube
+  - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX

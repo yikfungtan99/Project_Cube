@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
+  m_Name: SimonSays0
+  m_EditorClassIdentifier: 
+  puzzleInteractor: {fileID: 724771688978410998, guid: 5223ec8e40f188b4385ddbf65f8362ce,
+    type: 3}
+  puzzleReactor: {fileID: 8979674378225697930, guid: 436c25bd320c21d43beb2e8c74c3e815,
+    type: 3}

@@ -39,6 +39,6 @@ MonoBehaviour:
   - RpcAction
   - RpcCompletion
   - RpcSpawnPuzzle
-  DisableAutoOpenWizard: 0
+  DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

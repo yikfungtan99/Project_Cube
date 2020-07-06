@@ -75,6 +75,9 @@ public class NetworkUI : MonoBehaviour
 
     private void OnDestroy()
     {
+
+        if (!_networkManager) return;
+        
         _networkManager.OnConnectedToServer -= EnableNetworkCanvas;
         _networkManager.OnConnectedToRoom -= WaitingScreen;
         _networkManager.OnDisconnectedFromRoom -= RoomScreen;

@@ -98,12 +98,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         StartCoroutine(DisconnectAndReturn());
     }
+    
+    
+    public void DisconnectMaster()
+    {
+        PhotonNetwork.Disconnect();
+    }
 
     private static IEnumerator DisconnectAndReturn()
     {
         while (PhotonNetwork.IsConnected) yield return null;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(1);
     }
 
     #endregion
@@ -195,5 +202,4 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-
 }

@@ -12,6 +12,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     public PlayerCube otherCube;
     [SerializeField] private PuzzleModule[] modules;
     private bool _allPuzzleGenerated = false;
+    private PuzzleMasterStorage _puzzleMasterStorage;
 
     //Using a coroutine as we need to wait until other cube is detected
     private IEnumerator Start()
@@ -22,6 +23,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
             yield return null;
         }
         
+        _puzzleMasterStorage = PuzzleMasterStorage.Instance;
         //Generate puzzle at Start
         GenerateRandomPuzzle();
     }
@@ -77,7 +79,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, Enum.GetNames(typeof(PuzzleTypes)).Length);
         //PuzzleTypes puzzleGenType = (PuzzleTypes) 4;
         PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(3,5);
-        int puzzleGenVar = 0;
+        //int puzzleGenVar = 0;
+        int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int)puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
 
         if (puzzleGenRole == 0)

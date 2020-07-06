@@ -28,6 +28,11 @@ public class mainMenu : MonoBehaviour
 
     public void backButton()
     {
+        if (GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>())
+        {
+            GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>().DisconnectMaster();
+        }
+        
         SceneManager.LoadScene (0);
     }
 }

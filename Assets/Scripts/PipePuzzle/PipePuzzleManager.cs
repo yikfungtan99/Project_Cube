@@ -23,10 +23,24 @@ public class PipePuzzleManager : PuzzleManager
     {
         base.Start();
         InitializePipes();
+        Shuffle();
         pipePuzzle.winValue = GetWinValue();
         pipePuzzle.currentValue = Sweep();
     }
     
+    void Shuffle() // rotate pipes randomly
+    {
+        foreach (PipeReactor pipe in pipePuzzle.pipes)
+        {
+            int k = UnityEngine.Random.Range(0, 4);
+
+            for (int i = 0; i < k; i++)
+            {
+                pipe.Rotate();
+            }
+        }
+    }
+
     void InitializePipes()
     {
         //int dimensions = (int)Mathf.Sqrt(transform.childCount);

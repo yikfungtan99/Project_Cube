@@ -8,38 +8,43 @@ public class PipeReactor : Reactor
 {
     public PipePuzzleManager ppm;
     public int[] values;
+    public bool inversed;
     float realRotation;
 
     private void Start()
     {
         ppm = GetComponentInParent<PuzzleModule>().puzzleManager as PipePuzzleManager;
     }
-
-    //Reaction here
-    public void Rotate90Degrees()
-    {
-        realRotation += 90;
-        if(realRotation == 360)
-        {
-            realRotation = 0;
-        }
-        transform.localRotation = Quaternion.Euler(0, 0, realRotation);
-
-        //RotateValues();
-    }
     
     public override void ReAct()
     {
-        //Rotate90Degrees();
-        RotatePipe(); // rotate pipe transform
-        RotateValues(); // change connection values when rotating
+        Rotate();
         ppm.pipePuzzle.currentValue = ppm.Sweep(); // check current connections
         ppm.CheckForWin();
+    }
+
+    public void Rotate()
+    {
+        if (inversed)
+        {
+            RotatePipe(); // rotate pipe transform
+            RotateValues(); // change connection values when rotating
+        }
+        else
+        {
+            InverseRotatePipe(); // rotate pipe transform
+            InverseRotateValues(); // change connection values when rotating
+        }
     }
 
     private void RotatePipe()
     {
         transform.RotateAround(transform.position, transform.forward, 90);
+    }
+
+    private void InverseRotatePipe()
+    {
+        transform.RotateAround(transform.position, transform.forward, -90);
     }
 
     private void RotateValues() //change connect values
@@ -55,6 +60,16 @@ public class PipeReactor : Reactor
         //transform.Rotate(new Vector3(0, 0, 90));
     }
 
+    private void InverseRotateValues() //change connect values
+    {
+        int aux = values[3];
+
+        for (int i = values.Length - 1; i > 0 ; i--)
+        {
+            values[i] = values[i - 1];
+        }
+        values[0] = aux;
+    }
     // private void FixRotation() //speed doesn't work :( // ****NOT IN USE****
     // {
     //     if (transform.root.eulerAngles.z != realRotation)

@@ -117,7 +117,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     
     private void LoadNextLevel()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(2);
         _inGame = true;
     }
     #endregion

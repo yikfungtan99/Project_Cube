@@ -37,9 +37,8 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RpcAction
-  - RpcSpawnPuzzle
   - RpcCompletion
-  - RpcUpdateSimonSays
-  DisableAutoOpenWizard: 1
+  - RpcSpawnPuzzle
+  DisableAutoOpenWizard: 0
   ShowSettings: 0
   DevRegionSetOnce: 1

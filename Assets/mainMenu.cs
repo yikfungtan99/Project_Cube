@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour
 {
+    private NetworkManager _networkManager;
 
     public void StartButton()
     {
@@ -23,16 +24,20 @@ public class mainMenu : MonoBehaviour
 
     public void CreditsButton()
     {
-        SceneManager.LoadScene (3);
+        SceneManager.LoadScene(3);
     }
 
-    public void backButton()
+    public void BackButton()
     {
-        if (GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>())
+        _networkManager = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+        if (_networkManager)
         {
-            GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>().DisconnectMaster();
+            _networkManager.DisconnectGame();
         }
-        
-        SceneManager.LoadScene (0);
+    }
+
+    public void CreditsBackButton()
+    {
+        SceneManager.LoadScene(0);
     }
 }

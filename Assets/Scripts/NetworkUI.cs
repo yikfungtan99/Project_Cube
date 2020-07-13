@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.PlayerLoop;
 
 // ReSharper disable once InconsistentNaming
-public class NetworkUI : MonoBehaviour
+public class NetworkUI : MonoBehaviourPun
 {
     private NetworkManager _networkManager;
     [SerializeField] private GameObject networkCanvas;
@@ -15,7 +16,10 @@ public class NetworkUI : MonoBehaviour
     [SerializeField] private GameObject waitingPanel;
     [SerializeField] private GameObject joinPanel;
     [SerializeField] private TextMeshProUGUI roomNumber;
+    [SerializeField] private TextMeshProUGUI playerNumber;
 
+    [SerializeField] private Button btnStartGame;
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -30,6 +34,8 @@ public class NetworkUI : MonoBehaviour
         _networkManager.OnConnectedToRoom += WaitingScreen;
         _networkManager.OnDisconnectedFromRoom += RoomScreen;
         _networkManager.OnRoomCreated += UpdateRoomNumber;
+        _networkManager.OnPlayerEnter += WaitingScreen;
+        _networkManager.OnPlayerLeft += WaitingScreen;
     }
     
     private void EnableNetworkCanvas(object sender, EventArgs e)
@@ -39,7 +45,11 @@ public class NetworkUI : MonoBehaviour
 
     private void WaitingScreen(object sender, EventArgs e)
     {
+        if(joinPanel.activeInHierarchy) joinPanel.SetActive(false);
         waitingPanel.SetActive(true);
+        roomNumber.text = PhotonNetwork.CurrentRoom.Name;
+        playerNumber.text = (PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers).ToString();
+        btnStartGame.gameObject.SetActive(PhotonNetwork.LocalPlayer.ActorNumber == 1);
         roomPanel.SetActive(false);
     }
 
@@ -82,5 +92,7 @@ public class NetworkUI : MonoBehaviour
         _networkManager.OnConnectedToRoom -= WaitingScreen;
         _networkManager.OnDisconnectedFromRoom -= RoomScreen;
         _networkManager.OnRoomCreated -= UpdateRoomNumber;
+        _networkManager.OnPlayerEnter -= WaitingScreen;
+        _networkManager.OnPlayerLeft -= WaitingScreen;
     }
 }

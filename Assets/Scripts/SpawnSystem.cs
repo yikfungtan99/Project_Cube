@@ -27,6 +27,7 @@ public class SpawnSystem : MonoBehaviourPun
     private void SpawnCubes()
     {
         int spawnPosNum = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        if (spawnPosNum > 1) spawnPosNum = 1;
         playerCube = PhotonNetwork.Instantiate(cubePrefab.name, spawnPoints[spawnPosNum].position, Quaternion.identity);
     }
 

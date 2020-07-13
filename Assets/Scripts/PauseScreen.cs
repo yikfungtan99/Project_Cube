@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour
@@ -18,6 +19,6 @@ public class PauseScreen : MonoBehaviour
 
     public void DisconnectButton()
     {
-        _networkManager.DisconnectGame();
+        _networkManager.DisconnectRoom();
     }
 }

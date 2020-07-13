@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEditor;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -15,6 +17,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public event EventHandler OnConnectedToServer;
     public event EventHandler OnConnectedToRoom;
     public event EventHandler OnDisconnectedFromRoom;
+    public event EventHandler OnPlayerEnter;
+    public event EventHandler OnPlayerLeft;
     public event CreatedRoom OnRoomCreated;
     public delegate void CreatedRoom(string roomNum);
 
@@ -23,8 +27,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private bool _creatingRoom = false;
     private bool _joiningRoom = false;
     private bool _inGame = false;
-    
-    
+
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -91,6 +95,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.InRoom) return;
         PhotonNetwork.LeaveRoom();
+        DisconnectGame();
     }
 
     public void DisconnectGame()
@@ -98,19 +103,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         StartCoroutine(DisconnectAndReturn());
     }
-    
-    
-    public void DisconnectMaster()
-    {
-        PhotonNetwork.Disconnect();
-    }
 
-    private static IEnumerator DisconnectAndReturn()
+    public static IEnumerator DisconnectAndReturn()
     {
         while (PhotonNetwork.IsConnected) yield return null;
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        //SceneManager.LoadScene(1);
     }
 
     #endregion
@@ -120,6 +119,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private bool CheckPlayerCount()
     {
         return PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers;
+    }
+
+    public void StartGame()
+    {
+        if (CheckPlayerCount() && PhotonNetwork.IsMasterClient)
+        {
+            LoadNextLevel();
+        }
     }
     
     private void LoadNextLevel()
@@ -192,13 +199,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         print("Player has entered Room");
-        if(CheckPlayerCount() && !_inGame) LoadNextLevel();
+        OnPlayerEnter?.Invoke(this, EventArgs.Empty);
+        //if(CheckPlayerCount() && !_inGame) ableToStartGame = true;
     }
     
     public override void OnPlayerLeftRoom(Player newPlayer)
     {
         print("Player left room");
-        if(!CheckPlayerCount() && _inGame) DisconnectGame();
+
+        if (!_inGame)
+        {
+            
+            if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            {
+                OnPlayerLeft?.Invoke(this,EventArgs.Empty);
+            }
+            else
+            {
+                DisconnectRoom();
+            }
+        }
+        else
+        {
+            DisconnectGame();
+        }
+
+        //if(!CheckPlayerCount() && _inGame) DisconnectGame();
     }
 
     #endregion

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6157659958954341777}
   - component: {fileID: 6157659958954341783}
-  - component: {fileID: 163836505256460374}
+  - component: {fileID: 2386498831456981198}
   m_Layer: 0
   m_Name: Button
   m_TagString: PipeButtons
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6157659958954341776}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.50000024, y: 0.50000024, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6157659959295598321}
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &163836505256460374
+--- !u!114 &2386498831456981198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,10 +55,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6157659958954341776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb9e297b1ac7d89478b99b543403569a, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ca1be200b52514f89b978ea7823750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentId: 0
   ppm: {fileID: 0}
 --- !u!1 &6157659959295598320
 GameObject:

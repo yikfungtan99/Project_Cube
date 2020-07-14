@@ -8,6 +8,12 @@ TagManager:
   - SpawnSystem
   - Cube
   - OtherCube
+  - Pipes
+  - PipePuzzleManager
+  - PipesAnchor
+  - PipeButtonsAnchor
+  - PipeButtons
+  - CipherButtons
   layers:
   - Default
   - TransparentFX

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzleVariation:
   - {fileID: 11400000, guid: 234672b480297514eb472ec04f6209a0, type: 2}
+  - {fileID: 11400000, guid: d44c99c17b6c11a48b75eea230c056e9, type: 2}

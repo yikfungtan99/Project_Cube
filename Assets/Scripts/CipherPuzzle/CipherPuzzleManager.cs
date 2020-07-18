@@ -51,11 +51,6 @@ public class CipherPuzzleManager : MonoBehaviour
         atbashTest2 = GetAtbash(atbashTest);
     }
 
-    void Update()
-    {
-        
-    }
-
     //-SETTERS AND GETTERS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetAtbash(string input) // A-Z Inverse

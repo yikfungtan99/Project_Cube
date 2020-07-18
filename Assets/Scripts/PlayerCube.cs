@@ -87,7 +87,6 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     [PunRPC]
     private void RpcSpawnPuzzle(int seed)
     {
-        
         Random.InitState(seed);
         
         for (int i = 0; i < 6; i++)
@@ -131,9 +130,10 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData(int seed)
     {
         Random.InitState(seed);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(3, 5);
-
-        int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(3, 5);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
+        int puzzleGenVar = 1;
+        //int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
 
         if (puzzleGenRole == 0)

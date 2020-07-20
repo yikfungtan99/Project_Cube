@@ -30,10 +30,6 @@ public class KeyboardButtons : MonoBehaviour
         letter = s;
         letter = Regex.Replace(s, "[^a-zA-Z]", "");
         letterEncoded.SetText(cpm.Encode(letter).ToUpper());
-        //str = cpm.Encode(letter);
-        //str = str.ToUpper();
-        //letterEncoded.SetText(str);
-
     }
 
     private void OnMouseDown()

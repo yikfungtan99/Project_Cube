@@ -42,4 +42,5 @@ public class LetterSlots : MonoBehaviour
             transform.GetChild(0).transform.gameObject.SetActive(true);
         }
     }
+   
 }

@@ -328,10 +328,7 @@ MonoBehaviour:
     buttons: []
     letterSlots: []
     slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
+  isReactor: 0
 --- !u!1 &1660268329
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660268330}
-  - component: {fileID: 1660268331}
   m_Layer: 0
   m_Name: CipherPuzzle
   m_TagString: Untagged
@@ -365,30 +361,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1660268331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660268329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cipherPuzzle:
-    cipher: 0
-    cipherHint: 0
-    pictureHint: 0
-    answer: 
-    buttons: []
-    letterSlots: []
-    slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
 --- !u!1 &1758460326
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,10 +493,7 @@ MonoBehaviour:
     buttons: []
     letterSlots: []
     slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
+  isReactor: 0
 --- !u!1 &1899523335
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +710,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3676148460318172364, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3676148460749741892, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
@@ -819,6 +793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cipher0Reactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889763660007269307, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
+        type: 3}
+      propertyPath: m_TagString
+      value: CipherReactor
       objectReference: {fileID: 0}
     - target: {fileID: 7889763660007269308, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
         type: 3}

@@ -8,6 +8,8 @@ TagManager:
   - SpawnSystem
   - Cube
   - OtherCube
+  - CipherButtons
+  - CipherReactor
   layers:
   - Default
   - TransparentFX

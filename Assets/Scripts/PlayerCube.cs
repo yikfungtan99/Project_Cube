@@ -131,8 +131,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         Random.InitState(seed);
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(3, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
-        int puzzleGenVar = 1;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 4;
+        int puzzleGenVar = 0;
         //int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
 

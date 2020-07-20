@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
-  m_Name: Pigpen0
+  m_Script: {fileID: 11500000, guid: e0c722cbae6f07940a7b2a00b15fb633, type: 3}
+  m_Name: DropSlots2
   m_EditorClassIdentifier: 
-  puzzleInteractor: {fileID: 270114932812210278, guid: 9e3ec96f3fdf965499acade0dff4cd3f,
+  boxPrefabs: {fileID: 6381879470054378811, guid: beb27b69355a06345a779cd56eebe86d,
     type: 3}
-  puzzleReactor: {fileID: 8828671411999907597, guid: 598cb4300ed7f924cb790cbc3e90613e,
-    type: 3}
+  boxType: 1
+  boxIndex: 2
+  description: This is a drop slot for drag box 2 to be dropped into it.

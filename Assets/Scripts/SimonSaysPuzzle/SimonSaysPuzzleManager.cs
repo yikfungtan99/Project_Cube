@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -69,6 +70,19 @@ public class SimonSaysPuzzleManager : PuzzleManager
             OnCalled?.Invoke(this, new Interactor.OnInteractedEventArgs{ModuleId = _puzzleModule.PuzzleId, ComponentId = curSequence[i]});
             yield return new WaitForSeconds(0.6f);
         }
+    }
+
+    private void SetSequence()
+    {
+        PhotonView view = _puzzleModule.GetComponentInParent<PhotonView>();
+        int seed = Random.Range(0, 999);
+        view.RPC("RpcSetSequence", RpcTarget.All, seed);
+    }
+
+    [PunRPC]
+    private void RpcSetSequence(int seed)
+    {
+        
     }
 
     //if the button press is the same button of the current Sequence

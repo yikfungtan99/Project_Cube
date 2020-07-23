@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //This is the puzzle module game component
 public class PuzzleModule:MonoBehaviour
@@ -12,21 +13,22 @@ public class PuzzleModule:MonoBehaviour
     public int puzzleVariation;
     public int puzzleRole;
 
+    public bool moduleInitialized = false;
     public bool moduleCompleted = false;
     
     public List<Interactor> interactors = new List<Interactor>();
     public List<Reactor> reactors = new List<Reactor>();
     public List<Indicator> indicators = new List<Indicator>();
 
+    public Indicator selfIndicator;
+    public Indicator otherIndicator;
+    public Indicator completeIndicator;
+
     private PuzzleMasterStorage puzzleStorage;
 
-    [SerializeField] private PlayerCube _playerCube;
-
-    void Start()
-    {
-        puzzleManager = GetComponentInChildren<PuzzleManager>();    
-    }
-
+    [FormerlySerializedAs("_playerCube")] public PlayerCube playerCube;
+    
+    
     //This is to init the puzzle using PuzzleModuleData to spawn the correct puzzle
     public void SpawnPuzzle(int pt, int pv, int pr)
     {
@@ -59,15 +61,64 @@ public class PuzzleModule:MonoBehaviour
         foreach (var indicator in spawnedPuzzle.GetComponentsInChildren<Indicator>())
         {
             indicators.Add(indicator);
+            switch (indicator.indicatorType)
+            {
+                case IndicatorTypes.CompleteIndicator:
+                    completeIndicator = indicator;
+                    break;
+                case IndicatorTypes.SelfIndicator:
+                    selfIndicator = indicator;
+                    break;
+                case IndicatorTypes.OtherIndicator:
+                    otherIndicator = indicator;
+                    break;
+            }
         }
         
         //Assign Puzzle Manager
-        puzzleManager = GetComponentInChildren<PuzzleManager>();
+        puzzleManager = spawnedPuzzle.GetComponent<PuzzleManager>();
+        if (puzzleManager)
+        {
+            puzzleManager._puzzleModule = this;
+            moduleInitialized = true;
+            playerCube.CheckAllModuleInitialized();
+            //puzzleManager.PuzzleStart();
+        }
+        else
+        {
+            print(gameObject.name + " puzzleManager not found");
+        }
+    }
+
+    public void ToggleOtherIndicator()
+    {
+        if (!otherIndicator) return;
+        if (!otherIndicator.isActive)
+        {
+            otherIndicator.ActiveIndicator();
+        }
+        else
+        {
+            otherIndicator.DeActivateIndicator();
+        }
+    } 
+    
+    public void ToggleSelfIndicator()
+    {
+        if (!selfIndicator) return;
+        if (!selfIndicator.isActive)
+        {
+            selfIndicator.ActiveIndicator();
+        }
+        else
+        {
+            selfIndicator.DeActivateIndicator();
+        }
     }
 
     public void ModuleComplete()
     {
-        _playerCube.CompletedModule(PuzzleId);
+        playerCube.CompletedModule(PuzzleId);
         SetModuleCompleted();
     }
 
@@ -75,7 +126,7 @@ public class PuzzleModule:MonoBehaviour
     {
         moduleCompleted = true;
         DisableAllInteractors();
-        EnableIndicators();
+        LightUpCompleteIndicator();
     }
 
     private void DisableAllInteractors()
@@ -90,14 +141,11 @@ public class PuzzleModule:MonoBehaviour
         }
     }
 
-    private void EnableIndicators()
+    private void LightUpCompleteIndicator()
     {
-        if (indicators.Count > 0)
+        if (completeIndicator)
         {
-            foreach (var indicator in indicators)
-            {
-                indicator.ActivateIndicator();
-            }
+            completeIndicator.ActiveIndicator();
         }
     }
 

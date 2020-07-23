@@ -11,6 +11,8 @@ public class SpawnSystem : MonoBehaviourPun
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [SerializeField] private CubeState cubeState;
+    
 
     public List<PlayerCube> currentCubes;
 
@@ -29,6 +31,10 @@ public class SpawnSystem : MonoBehaviourPun
         int spawnPosNum = PhotonNetwork.LocalPlayer.ActorNumber - 1;
         if (spawnPosNum > 1) spawnPosNum = 1;
         playerCube = PhotonNetwork.Instantiate(cubePrefab.name, spawnPoints[spawnPosNum].position, Quaternion.identity);
+        if (!cubeState.Cube)
+        {
+            cubeState.Cube = playerCube.GetComponent<PlayerCube>();
+        }
     }
 
     private void SetCamera()

@@ -28,7 +28,6 @@ Transform:
   m_LocalPosition: {x: 1.97, y: 2.001, z: -0.037}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
-  - {fileID: 3268583496873828550}
   - {fileID: 517044523536750626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,11 +70,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3268583496873828551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.16799998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: 0.000000015454312, w: 0.000000015454312}
+  m_LocalPosition: {x: 0, y: 0, z: 0.16800001}
+  m_LocalScale: {x: 0.13683155, y: 0.13475119, z: 1}
   m_Children: []
-  m_Father: {fileID: 3268583496233263588}
+  m_Father: {fileID: 517044523536750626}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &3268583496873828549
@@ -151,7 +150,7 @@ GameObject:
   - component: {fileID: 132760841636970490}
   - component: {fileID: 8253204323926997095}
   m_Layer: 0
-  m_Name: Diode 002
+  m_Name: CompleteIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,9 +166,10 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: -0.000000015454312, w: 0.000000015454312}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.421083, y: 7.3082547, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3268583496873828550}
   m_Father: {fileID: 3268583496233263588}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &132760841636970490
 MeshFilter:

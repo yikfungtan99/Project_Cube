@@ -11,8 +11,13 @@ public class PuzzleManager : MonoBehaviourPun
 {
     public PuzzleModule _puzzleModule;
 
+    public virtual void PuzzleStart()
+    {
+        
+    }
+    
     public virtual void Start()
     {
-        _puzzleModule = GetComponentInParent<PuzzleModule>();
+
     }
 }

@@ -24,6 +24,7 @@ public class SimonSaysButton : Interactor
 
     public override void Interact()
     {
+        if (disabled) return;
         if (!_canPress) return;
         
         if (!_simonSaysPuzzleManager)

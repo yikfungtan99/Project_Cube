@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  Cube: {fileID: 0}
 --- !u!114 &608188509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1791,6 +1792,7 @@ MonoBehaviour:
   - {fileID: 604749366}
   - {fileID: 2001777147}
   playerCamera: {fileID: 675282797}
+  cubeState: {fileID: 608188508}
   currentCubes: []
   playerCube: {fileID: 0}
 --- !u!4 &1170576670

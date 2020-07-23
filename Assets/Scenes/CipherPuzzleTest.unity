@@ -302,36 +302,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1347143104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3676148460318172364, guid: 6f7234ab30a72234aa4e6776c2913063,
-    type: 3}
-  m_PrefabInstance: {fileID: 3676148460981775055}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1347143105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347143104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cipherPuzzle:
-    cipher: 0
-    cipherHint: 0
-    pictureHint: 0
-    answer: 
-    buttons: []
-    letterSlots: []
-    slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
 --- !u!1 &1660268329
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +311,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660268330}
-  - component: {fileID: 1660268331}
   m_Layer: 0
   m_Name: CipherPuzzle
   m_TagString: Untagged
@@ -365,30 +334,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1660268331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660268329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cipherPuzzle:
-    cipher: 0
-    cipherHint: 0
-    pictureHint: 0
-    answer: 
-    buttons: []
-    letterSlots: []
-    slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
 --- !u!1 &1758460326
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,36 +440,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1808930811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7889763660007269307, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 7889763660122295888}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1808930812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808930811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cipherPuzzle:
-    cipher: 0
-    cipherHint: 0
-    pictureHint: 0
-    answer: 
-    buttons: []
-    letterSlots: []
-    slotInput: 
-  atbashTest: 
-  caeserForwardTest: 
-  caeserBackwardTest: 
-  atbashTest2: 
 --- !u!1 &1899523335
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,26 +551,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1660268330}
     m_Modifications:
-    - target: {fileID: 105254177979683796, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 282885597999330907, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793612430718225061, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898602268895517422, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2261123390105153748, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
@@ -665,11 +560,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3425076310111672779, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3574942630072449739, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
@@ -736,11 +626,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cipher0Interactor
       objectReference: {fileID: 0}
-    - target: {fileID: 3676148460318172364, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3676148460749741892, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
@@ -751,25 +636,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5215002598809679589, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5439906589862469628, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5686571778688914886, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6143424232261381840, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722833012848301843, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
@@ -781,20 +651,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7900723861938978316, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8698181804492759034, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8905623377650890467, guid: 6f7234ab30a72234aa4e6776c2913063,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9080256961958067417, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
@@ -810,11 +670,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1660268330}
     m_Modifications:
-    - target: {fileID: 7889763659094210215, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7889763660007269307, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
         type: 3}
       propertyPath: m_Name

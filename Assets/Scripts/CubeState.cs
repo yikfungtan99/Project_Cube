@@ -13,9 +13,13 @@ public class CubeState : MonoBehaviour
 {
     public CubeStates currentState;
     private bool autoCalibrateCube = true;
-    
+
+    public PlayerCube Cube;
+
     public void ChangeState()
     {
+        Cube.GetExaminingModule();
+        
         if ((int) currentState < Enum.GetValues(typeof(CubeStates)).Length - 1)
         {
             currentState += 1;

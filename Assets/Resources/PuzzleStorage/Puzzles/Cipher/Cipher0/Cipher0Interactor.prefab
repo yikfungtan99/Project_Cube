@@ -171,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3676148460318172363}
+  - component: {fileID: 1347143105}
   m_Layer: 0
   m_Name: Cipher0Interactor
   m_TagString: Untagged
@@ -196,6 +197,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1347143105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676148460318172364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzleModule: {fileID: 0}
+  cipherPuzzle:
+    cipher: 0
+    cipherHint: 0
+    pictureHint: 0
+    answer: 
+    buttons: []
+    letterSlots: []
+    slotInput: 
+  ocpm: {fileID: 0}
+  isReactor: 0
 --- !u!1 &3676148460819172787
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 771277814072972826, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 771277814072972831, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -550,7 +574,7 @@ PrefabInstance:
     - target: {fileID: 865125200209655097, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 865125200209655100, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -590,7 +614,7 @@ PrefabInstance:
     - target: {fileID: 1233757843019099404, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1806698759353111757, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -645,7 +669,7 @@ PrefabInstance:
     - target: {fileID: 3025259568589782480, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3025259568589782485, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -710,12 +734,12 @@ PrefabInstance:
     - target: {fileID: 4596418980041569599, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984099319262793736, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984099319262793741, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -730,12 +754,12 @@ PrefabInstance:
     - target: {fileID: 5166720593355404679, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5718896149700364665, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5718896149700364668, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -770,7 +794,7 @@ PrefabInstance:
     - target: {fileID: 6775616465345354034, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6775616465345354039, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
@@ -785,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 7770595240053430807, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7993498158656532525, guid: 300e2359c59f7ff438f3bef3c467aaac,
         type: 3}

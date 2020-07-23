@@ -1,7 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class ListExensions // custom extension to list
 {
@@ -11,7 +14,7 @@ public static class ListExensions // custom extension to list
     }
 }
 
-public class CipherPuzzleManager : MonoBehaviour
+public class CipherPuzzleManager : PuzzleManager
 {
     [System.Serializable]
     public class CipherPuzzle
@@ -20,40 +23,28 @@ public class CipherPuzzleManager : MonoBehaviour
         public int cipherHint; // store which cipher hint to use based on cipher chosen (if atbash, randomly select atbash hint preset (1 = AtbashHint1, 2 = AtbashHint2, etc)
         public int pictureHint; // store which picture hint to use (1 = monkeyPicture, 2 = birdPicture, 3 = tigerPicture)
         public string answer; // store which answer is required to solve puzzle based on picture stored (if monkeyPicture, 1 = monkey, 2 = chimp)
-        //public string answerEncoded;
-        
-        public List<KeyboardButtons> buttons; // for initializing buttons
+        public List<CipherButtons> buttons; // for initializing buttons
         public List<LetterSlots> letterSlots; // for initializing slots
-        public string slotInput; 
+        public string slotInput; // player input to compare to answer (if slotInput == answer, Win)
+        public int test;
     }
     public CipherPuzzle cipherPuzzle;
-    //for testing
-    public string atbashTest;
-    public string caeserForwardTest;
-    public string caeserBackwardTest;
-    public string atbashTest2;
+    public bool isReactor = true;
+    private bool _started = false;
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void Start()
+    public override void PuzzleStart()
     {
-        InitializeCipher(); 
-        InitializeCipherHint();
-        InitializePictureHint();
-        InitializeAnswer();
-        InitializeKeyboard();
-        InitializeLetterSlots();
-
-        //for testing
-        atbashTest = GetAtbash(cipherPuzzle.answer);
-        caeserForwardTest = GetCaeserForward(cipherPuzzle.answer, 3);
-        caeserBackwardTest = GetCaeserBackward(cipherPuzzle.answer, 3);
-        atbashTest2 = GetAtbash(atbashTest);
+        if (_started) return;
+        InitSeed();
+        _started = true;
     }
 
     //-SETTERS AND GETTERS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #region Setters And Getters
 
-    string GetAtbash(string input) // A-Z Inverse
+    private string GetAtbash(string input) // A-Z Inverse
     {
         string s = input.ToLower();
         char[] charArray = s.ToCharArray();
@@ -69,7 +60,7 @@ public class CipherPuzzleManager : MonoBehaviour
         return new string(charArray);
     }
 
-    string GetCaeserForward(string input, int shift) // shift forward in the alphabet
+    private string GetCaeserForward(string input, int shift) // shift forward in the alphabet
     {
         string s = input.ToLower();
         char[] charArray = s.ToCharArray();
@@ -77,7 +68,7 @@ public class CipherPuzzleManager : MonoBehaviour
         {
             char c = charArray[i]; // letter
             c = (char)(c + shift); // add shift
-            if(c > 'z')
+            if (c > 'z')
             {
                 c = (char)(c - 26);
             }
@@ -86,7 +77,7 @@ public class CipherPuzzleManager : MonoBehaviour
         return new string(charArray);
     }
 
-    string GetCaeserBackward(string input, int shift) // shift backward in the alphabet
+    private string GetCaeserBackward(string input, int shift) // shift backward in the alphabet
     {
         string s = input.ToLower();
         char[] charArray = s.ToCharArray();
@@ -115,7 +106,7 @@ public class CipherPuzzleManager : MonoBehaviour
             return s;
     }
 
-    public string Decode(string s)
+    private string Decode(string s)
     {
         if (cipherPuzzle.cipher == 0)
             return GetAtbash(s);
@@ -127,32 +118,107 @@ public class CipherPuzzleManager : MonoBehaviour
             return s;
     }
 
-public void KeyboardButtonPress(string s)
+
+    #endregion
+    //-FUNCTIONS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Archived============================================================================================================
+    //RPC this
+    public void KeyboardButtonPress(string s) // turn this into ReAct()?
     {
+        if (!isReactor)
+        {
+            _puzzleModule.playerCube.CipherPuzzleButton(_puzzleModule.PuzzleId, s);
+            
+        }
+        
         cipherPuzzle.slotInput = cipherPuzzle.slotInput + Decode(s);
-        if(cipherPuzzle.slotInput.Length > cipherPuzzle.letterSlots.Count)
+
+        
+
+        if (cipherPuzzle.slotInput.Length > cipherPuzzle.answer.Length) // clear slots if full
         {
             cipherPuzzle.slotInput = "";
-            for (int i = 0; i < cipherPuzzle.letterSlots.Count; i++)
+
+            if (isReactor)
             {
-                cipherPuzzle.letterSlots[i].ClearSlot();
+                for (int i = 0; i < cipherPuzzle.answer.Length; i++)
+                {
+                    cipherPuzzle.letterSlots[i].ClearSlot();
+                }
             }
         }
         else
         {
-            char[] charArray = cipherPuzzle.slotInput.ToCharArray();
-
-            for (int i = 0; i < charArray.Length; i++)
+            if (isReactor)
             {
-                cipherPuzzle.letterSlots[i].SetSlot(charArray[i].ToString());
+                char[] charArray = cipherPuzzle.slotInput.ToCharArray();
+        
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                   cipherPuzzle.letterSlots[i].SetSlot(charArray[i].ToString());
+                }
             }
+        }
+        
+        if (!isReactor)
+        {
+            CheckWin();
         }
     }
 
-    //-FUNCTIONS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    void InitializeCipher() // randomize which cipher to use
+    private void InitSeed()
     {
+        CipherHint cipherHint = GetComponentInChildren<CipherHint>();
+        if (isReactor) return;
+        int seed = Random.Range(0, 999);
+        
+        InitializeCipherPuzzle(seed);
+    }
+
+    //Initializer
+    public void InitializeCipherPuzzle(int seed)
+    {
+        Random.InitState(seed);
+        //set values
+        RandomizeCipher();
+        RandomizeCipherHint();
+        RandomizePictureHint();
+        RandomizeAnswer();
+        
+        
+        if (!isReactor)
+        {
+            InitializeKeyboard();
+            _puzzleModule.playerCube.CipherPuzzleRpc(_puzzleModule.PuzzleId, seed);
+            // ocpm = GameObject.Find("Cipher0Reactor").GetComponent<CipherPuzzleManager>();
+            // ocpm.InitializeCipherPuzzle(seed);
+        }
+        else
+        {
+            InitializeCipherHint();
+            InitializeLetterSlots();
+        }
+        
+        //InitializeReactor(cipherPuzzle.cipher, cipherPuzzle.cipherHint, cipherPuzzle.pictureHint, cipherPuzzle.answer);
+
+        // else
+        // {
+        //     //Remove this======================================================================================================
+        //     isReactor = true;
+        //     //cpm = _puzzleModule.puzzleManager as CipherPuzzleManager; // yik fung like this ah?
+        //     cpm = GameObject.Find("Cipher0Reactor").GetComponent<CipherPuzzleManager>(); // @yik fung change this to how networking get the other cube component idk xd
+        //     StartCoroutine(InitializeReactor());
+        // }
+    }
+
+    //Receiver
+
+    #region Randomization
+
+    private void RandomizeCipher() // randomize which cipher to use
+    {
+        cipherPuzzle.test = Random.Range(0, 999);
         int i = UnityEngine.Random.Range(0, 3);
         if (i == 0)
             cipherPuzzle.cipher = 0; // atbash
@@ -162,12 +228,14 @@ public void KeyboardButtonPress(string s)
             cipherPuzzle.cipher = 2; // caeser backward
     }
 
-    void InitializeCipherHint()
+    private void RandomizeCipherHint() // requires cipher to be randomized 1st
     {
         int i = UnityEngine.Random.Range(0, 3);
-        if(cipherPuzzle.cipher == 0) // if atbash
+        
+        //=======================================================================
+        if (cipherPuzzle.cipher == 0) // if atbash
         {
-            if (i == 0) 
+            if (i == 0)
                 cipherPuzzle.cipherHint = 0; // atbash cipher hint 1
             else if (i == 1)
                 cipherPuzzle.cipherHint = 1; // atbash cipher hint 2
@@ -192,11 +260,11 @@ public void KeyboardButtonPress(string s)
             else if (i == 2)
                 cipherPuzzle.cipherHint = 8; // caeser cipher backward hint 3
         }
-        CipherHint cipherHint = GetComponentInChildren<CipherHint>();
-        cipherHint.transform.GetChild(cipherPuzzle.cipherHint).gameObject.SetActive(true);
+        //=======================================================================
+
     }
 
-    void InitializePictureHint()
+    private void RandomizePictureHint() // randomize which picture to use
     {
         int i = UnityEngine.Random.Range(0, 3);
         if (i == 0)
@@ -205,14 +273,14 @@ public void KeyboardButtonPress(string s)
             cipherPuzzle.pictureHint = 1; // Picture of Dog
         else if (i == 2)
             cipherPuzzle.pictureHint = 2; // Picture of Tree
-        PictureHint pictureHint = GetComponentInChildren<PictureHint>();
-        pictureHint.transform.GetChild(cipherPuzzle.pictureHint).gameObject.SetActive(true);
+        
+        InitializePictureHint();
     }
 
-    void InitializeAnswer()
+    private void RandomizeAnswer() // requires picturehint to be initialized 1st
     {
         int i = UnityEngine.Random.Range(0, 3);
-        if(cipherPuzzle.pictureHint == 0) 
+        if (cipherPuzzle.pictureHint == 0)
         {
             if (i == 0)
                 cipherPuzzle.answer = "bird";
@@ -221,7 +289,7 @@ public void KeyboardButtonPress(string s)
             else if (i == 2)
                 cipherPuzzle.answer = "fly";
         }
-        else if (cipherPuzzle.pictureHint == 1) 
+        else if (cipherPuzzle.pictureHint == 1)
         {
             if (i == 0)
                 cipherPuzzle.answer = "dog";
@@ -230,7 +298,7 @@ public void KeyboardButtonPress(string s)
             else if (i == 2)
                 cipherPuzzle.answer = "pet";
         }
-        else if (cipherPuzzle.pictureHint == 2) 
+        else if (cipherPuzzle.pictureHint == 2)
         {
             if (i == 0)
                 cipherPuzzle.answer = "tree";
@@ -240,15 +308,25 @@ public void KeyboardButtonPress(string s)
                 cipherPuzzle.answer = "wood";
         }
     }
+    #endregion
 
-    void InitializeKeyboard()
+    #region Interactor Initialization
+
+    private void InitializePictureHint()
     {
-        KeyboardButtons[] cipherButtons = GetComponentsInChildren<KeyboardButtons>();
-        
-        if(cipherButtons.Length > 0) // check if not empty
+        PictureHint pictureHint = GetComponentInChildren<PictureHint>();
+        if (pictureHint != null)
+            pictureHint.transform.GetChild(cipherPuzzle.pictureHint).gameObject.SetActive(true);
+    }
+
+    private void InitializeKeyboard()
+    {
+        CipherButtons[] cipherButtons = GetComponentsInChildren<CipherButtons>();
+        if (cipherButtons.Length > 0) // check if not empty
         {
             for (int i = 0; i < cipherButtons.Length; i++)
             {
+                cipherButtons[i].cpm = this;
                 cipherPuzzle.buttons.Add(cipherButtons[i]);
             }
             // bunch of alphabet stuff
@@ -267,7 +345,7 @@ public void KeyboardButtonPress(string s)
                 letters[i] = cipherPuzzle.answer[i].ToString();
             }
 
-            for(int i = 0; i < letters.Length; i++)
+            for (int i = 0; i < letters.Length; i++)
             {
                 answerLetters.Add(letters[i].ToUpper());
                 if (remainingAlphabet.Contains(letters[i].ToUpper()))
@@ -304,11 +382,22 @@ public void KeyboardButtonPress(string s)
             }
         }
     }
+    #endregion
 
-    void InitializeLetterSlots()
+    #region Reactor Initialization
+
+    private void InitializeCipherHint()
+    {
+        CipherHint cipherHint = GetComponentInChildren<CipherHint>();
+        if (cipherHint != null)
+            cipherHint.transform.GetChild(cipherPuzzle.cipherHint).gameObject.SetActive(true);
+    }
+
+    private void InitializeLetterSlots()
     {
         LetterSlots[] slots = GetComponentsInChildren<LetterSlots>();
-        if(slots.Length > 0) // check if not empty
+        
+        if (slots.Length > 0) // check if not empty
         {
             for (int i = 0; i < cipherPuzzle.answer.Length; i++)
             {
@@ -317,9 +406,13 @@ public void KeyboardButtonPress(string s)
             }
         }
     }
+    #endregion
 
-    void CheckWin()
+    void CheckWin() 
     {
-
+        if(cipherPuzzle.slotInput == cipherPuzzle.answer)
+        {
+            _puzzleModule.ModuleComplete();
+        }
     }
 }

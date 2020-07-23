@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
   m_Name: Cipher0
   m_EditorClassIdentifier: 
-  puzzleInteractor: {fileID: 7577235375749116816, guid: 262c7dfbb25603044a6724f21da64432,
+  puzzleInteractor: {fileID: 3676148460318172364, guid: 6f7234ab30a72234aa4e6776c2913063,
     type: 3}
-  puzzleReactor: {fileID: 8254131596545981802, guid: a8c3d0516f0ade3478c2c69aa60db591,
+  puzzleReactor: {fileID: 7889763660007269307, guid: 62a0c5d45cfa424479ac05c4dbb548ea,
     type: 3}

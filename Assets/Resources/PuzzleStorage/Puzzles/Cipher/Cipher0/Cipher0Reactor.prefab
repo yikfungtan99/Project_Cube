@@ -752,6 +752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7889763660007269308}
+  - component: {fileID: 1808930812}
   m_Layer: 0
   m_Name: Cipher0Reactor
   m_TagString: Untagged
@@ -779,6 +780,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1808930812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889763660007269307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d90738448c17574b965a3287f87e780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzleModule: {fileID: 0}
+  cipherPuzzle:
+    cipher: 0
+    cipherHint: 0
+    pictureHint: 0
+    answer: 
+    buttons: []
+    letterSlots: []
+    slotInput: 
+  ocpm: {fileID: 0}
+  isReactor: 1
 --- !u!1 &7889763660109465268
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,15 +18,26 @@ public class PipePuzzleManager : PuzzleManager
         public PipeReactor[,] pipes;
     }
     public PipePuzzle pipePuzzle;
+    public bool isReactor = false;
 
-    public override void Start()
+    public override void PuzzleStart()
     {
-        base.Start();
+        base.PuzzleStart();
+        if (!isReactor) return;
         InitializePipes();
         Shuffle();
         pipePuzzle.winValue = GetWinValue();
         pipePuzzle.currentValue = Sweep();
     }
+
+    // public override void Start()
+    // {
+    //     base.Start();
+    //     InitializePipes();
+    //     Shuffle();
+    //     pipePuzzle.winValue = GetWinValue();
+    //     pipePuzzle.currentValue = Sweep();
+    // }
     
     void Shuffle() // rotate pipes randomly
     {

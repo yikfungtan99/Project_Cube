@@ -26,16 +26,24 @@ public class SimonSaysPuzzleManager : PuzzleManager
     private int _curCheckingNumber = 0;
     private int _solvedCount = 0;
 
-
-    public override void Start()
+    public override void PuzzleStart()
     {
-        base.Start();
-
+        base.PuzzleStart();
         if (_puzzleModule.interactors.Count == 0) return;
         OnCalled += _puzzleModule.GetComponentInParent<PlayerCube>().Action;
         _numberOfLight = startingLightNumber;
         InitSequence();
     }
+    
+    // public override void Start()
+    // {
+    //     base.Start();
+    //
+    //     if (_puzzleModule.interactors.Count == 0) return;
+    //     OnCalled += _puzzleModule.GetComponentInParent<PlayerCube>().Action;
+    //     _numberOfLight = startingLightNumber;
+    //     InitSequence();
+    // }
 
     private void InitSequence()
     {

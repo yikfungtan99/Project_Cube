@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7337802464646830954}
+  - component: {fileID: -3700538075349184819}
   m_Layer: 0
   m_Name: PipePuzzle1Interactor
   m_TagString: PipeButtonsAnchor
@@ -47,6 +48,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3700538075349184819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337802464646830955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcc564b4589c3047a8c3c1c24f583da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzleModule: {fileID: 0}
+  pipePuzzle:
+    winValue: 0
+    currentValue: 0
+    width: 0
+    height: 0
+  isReactor: 0
 --- !u!1001 &3774204858695114123
 PrefabInstance:
   m_ObjectHideFlags: 0

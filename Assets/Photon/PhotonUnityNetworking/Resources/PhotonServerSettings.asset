@@ -37,9 +37,14 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RpcAction
+  - RpcCipherPuzzle
   - RpcCompletion
-  - RpcSpawnPuzzle
+  - RpcOtherIndicator
   - RpcSendSeed
+  - RpcSetSequence
+  - RpcSpawnPuzzle
+  - RpcCipherPuzzleButton
+  - RpcCheckAllModuleInit
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

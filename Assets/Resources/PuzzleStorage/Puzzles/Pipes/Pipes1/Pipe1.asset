@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
   m_Name: Pipe1
   m_EditorClassIdentifier: 
-  puzzleInteractor: {fileID: 7337802464646830955, guid: 9f86a09c4c8d1704d93a4b9775121282,
+  puzzleInteractor: {fileID: 7771461459834226239, guid: d4b3e81711f4da14a80d10e1038f2807,
     type: 3}
   puzzleReactor: {fileID: 5021638317041643844, guid: 11757c78045856148b85a31013287740,
     type: 3}

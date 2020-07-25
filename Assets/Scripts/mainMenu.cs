@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class mainMenu : MonoBehaviour
 {
     private NetworkManager _networkManager;
+    [SerializeField]private GameObject manualScreen;
 
     public void StartButton()
     {
@@ -39,5 +40,15 @@ public class mainMenu : MonoBehaviour
     public void CreditsBackButton()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ManualButton()
+    {
+        manualScreen.SetActive(true);
+    }
+
+    public void ManualBackButton()
+    {
+        manualScreen.SetActive(false);
     }
 }

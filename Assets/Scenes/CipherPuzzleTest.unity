@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -551,6 +551,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1660268330}
     m_Modifications:
+    - target: {fileID: 1752060138295968043, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35459112587288f4fbc27410cb28ddc6, type: 2}
     - target: {fileID: 2261123390105153748, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
@@ -631,21 +636,46 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3676148460819172787, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676148461113090904, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4da6fd0d9548d6a4ab6c1b269176bf00, type: 2}
     - target: {fileID: 4317321684237411258, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4867119969249371507, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35459112587288f4fbc27410cb28ddc6, type: 2}
     - target: {fileID: 5439906589862469628, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722833012848301841, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_text
+      value: A
       objectReference: {fileID: 0}
     - target: {fileID: 6722833012848301843, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6966051511778168079, guid: 6f7234ab30a72234aa4e6776c2913063,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35459112587288f4fbc27410cb28ddc6, type: 2}
     - target: {fileID: 7325277097943091151, guid: 6f7234ab30a72234aa4e6776c2913063,
         type: 3}
       propertyPath: m_Mesh

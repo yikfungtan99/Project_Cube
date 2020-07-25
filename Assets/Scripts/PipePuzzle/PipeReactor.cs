@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Numerics;
 using UnityEngine;
 
 //Should inherit from Reactor
@@ -11,11 +13,22 @@ public class PipeReactor : Reactor
     public bool inversed;
     float realRotation;
 
+    private UnityEngine.Quaternion targetRotation = UnityEngine.Quaternion.identity;
+    private UnityEngine.Quaternion currentRotation;
+    //private Transform currentTransform;
+    float rotationSpeed = 500;
+
     private void Start()
     {
         ppm = GetComponentInParent<PuzzleModule>().puzzleManager as PipePuzzleManager;
+        currentRotation = transform.localRotation;
     }
-    
+
+    private void Update()
+    {
+        transform.localRotation = UnityEngine.Quaternion.RotateTowards(transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
+    }
+
     public override void ReAct()
     {
         Rotate();
@@ -39,12 +52,14 @@ public class PipeReactor : Reactor
 
     private void RotatePipe()
     {
-        transform.RotateAround(transform.position, transform.forward, 90);
+        targetRotation = UnityEngine.Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z + 90);
+        currentRotation = UnityEngine.Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z + 90);
     }
 
     private void InverseRotatePipe()
     {
-        transform.RotateAround(transform.position, transform.forward, -90);
+        targetRotation = UnityEngine.Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z - 90);
+        currentRotation = UnityEngine.Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z - 90);
     }
 
     private void RotateValues() //change connect values

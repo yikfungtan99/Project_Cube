@@ -16,7 +16,6 @@ public class PauseScreen : MonoBehaviour
     {
         _networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<NetworkManager>();
     }
-
     public void DisconnectButton()
     {
         _networkManager.DisconnectRoom();

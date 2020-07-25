@@ -6,15 +6,18 @@ using UnityEngine;
 public class PipeButton: Interactor
 {
     private PipePuzzleManager ppm;
+    private Animator anim;
 
     public override void Start()
     {
         base.Start();
         ppm = _puzzleModule.puzzleManager as PipePuzzleManager;
+        anim = GetComponent<Animator>();
     }
 
     public override void Interact()
     {
+        anim.SetTrigger("isPressed");
         print("Pipe Button Clicked");
         base.Interact();
     }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -328,30 +328,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1292077444 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 553684905304462155, guid: 5223ec8e40f188b4385ddbf65f8362ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 553684904448662223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc45c132c53c5d44b694be19c09c694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2047956212 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1069727029163322685, guid: 436c25bd320c21d43beb2e8c74c3e815,
-    type: 3}
-  m_PrefabInstance: {fileID: 1069727029264955849}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc45c132c53c5d44b694be19c09c694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &553684904448662223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -359,11 +335,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 553684905304462155, guid: 5223ec8e40f188b4385ddbf65f8362ce,
-        type: 3}
-      propertyPath: otherPuzzle
-      value: 
-      objectReference: {fileID: 2047956212}
     - target: {fileID: 724771688978410998, guid: 5223ec8e40f188b4385ddbf65f8362ce,
         type: 3}
       propertyPath: m_Name
@@ -433,11 +404,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1069727029163322685, guid: 436c25bd320c21d43beb2e8c74c3e815,
-        type: 3}
-      propertyPath: otherPuzzle
-      value: 
-      objectReference: {fileID: 1292077444}
     - target: {fileID: 6799176901044190645, guid: 436c25bd320c21d43beb2e8c74c3e815,
         type: 3}
       propertyPath: m_LocalPosition.x

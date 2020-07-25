@@ -18,29 +18,19 @@ public class PipePuzzleManager : PuzzleManager
         public PipeReactor[,] pipes;
     }
     public PipePuzzle pipePuzzle;
-    public bool isReactor = false;
 
-    public override void PuzzleStart()
+    public override void Start()
     {
-        base.PuzzleStart();
-        if (!isReactor) return;
+        base.Start();
         InitializePipes();
-        Shuffle();
+        StartCoroutine(Shuffle());
         pipePuzzle.winValue = GetWinValue();
         pipePuzzle.currentValue = Sweep();
     }
 
-    // public override void Start()
-    // {
-    //     base.Start();
-    //     InitializePipes();
-    //     Shuffle();
-    //     pipePuzzle.winValue = GetWinValue();
-    //     pipePuzzle.currentValue = Sweep();
-    // }
-    
-    void Shuffle() // rotate pipes randomly
+    IEnumerator Shuffle()
     {
+        yield return new WaitForSeconds(0.5f);
         foreach (PipeReactor pipe in pipePuzzle.pipes)
         {
             int k = UnityEngine.Random.Range(0, 4);

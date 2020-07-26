@@ -10,7 +10,7 @@ public class CipherButtons : Interactor
     public CipherPuzzleManager cpm;
     public TextMeshPro letterEncoded;
     public string letter;
-    //private string str;
+    private string _letterCode;
 
     private void Awake()
     {
@@ -40,7 +40,8 @@ public class CipherButtons : Interactor
         {
             if (letterEncoded)
             {
-                letterEncoded.SetText(cpm.Encode(letter).ToUpper());
+                _letterCode = cpm.Encode(letter).ToUpper();
+                letterEncoded.SetText(_letterCode);
             }
             else
             {
@@ -69,7 +70,7 @@ public class CipherButtons : Interactor
     {
         if (disabled) return;
         print("Clicked");
-        cpm.KeyboardButtonPress(letterEncoded.text);
+        cpm.KeyboardButtonPress(_letterCode);
     }
 
 }

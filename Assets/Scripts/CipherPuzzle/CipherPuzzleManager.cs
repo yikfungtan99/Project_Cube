@@ -111,7 +111,7 @@ public class CipherPuzzleManager : PuzzleManager
         if (cipherPuzzle.cipher == 0)
             return GetAtbash(s);
         else if (cipherPuzzle.cipher == 1)
-            return GetCaeserBackward(s, 3);
+            return GetCaeserBackward(s, 3); // reminder this is SUPPOSED to be backward
         else if (cipherPuzzle.cipher == 2)
             return GetCaeserForward(s, 3);
         else
@@ -129,12 +129,8 @@ public class CipherPuzzleManager : PuzzleManager
         if (!isReactor)
         {
             _puzzleModule.playerCube.CipherPuzzleButton(_puzzleModule.PuzzleId, s);
-            
         }
-        
-        cipherPuzzle.slotInput = cipherPuzzle.slotInput + Decode(s);
-
-        
+        cipherPuzzle.slotInput += Decode(s);
 
         if (cipherPuzzle.slotInput.Length > cipherPuzzle.answer.Length) // clear slots if full
         {

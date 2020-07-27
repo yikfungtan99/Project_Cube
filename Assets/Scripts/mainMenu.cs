@@ -10,7 +10,7 @@ public class mainMenu : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene (1);
+        SceneManager.LoadScene(1);
     }
 
     public void SettingButton()

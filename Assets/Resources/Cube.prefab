@@ -813,6 +813,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: -1504981713932161579, guid: 33f0334978a7ade448012646830893a7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+>>>>>>> Stashed changes
     - target: {fileID: -927199367670048503, guid: 33f0334978a7ade448012646830893a7,
         type: 3}
       propertyPath: m_Name

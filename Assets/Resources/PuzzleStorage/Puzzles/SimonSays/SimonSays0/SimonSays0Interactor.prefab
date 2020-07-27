@@ -148,7 +148,11 @@ GameObject:
   - component: {fileID: 4537253426135928658}
   - component: {fileID: 8070514656713371704}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: selfIndicator
+=======
+  m_Name: otherIndicator
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +199,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: b6206e97b2e875446afd7ffcc587f289, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,7 +238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 1807737187095372490}
+<<<<<<< Updated upstream
   indicatorType: 0
+=======
+  indicatorType: 1
+>>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &1798703965506528278
 GameObject:
@@ -555,8 +567,13 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -860,7 +877,11 @@ GameObject:
   - component: {fileID: 6191378909866193031}
   - component: {fileID: 875171652548975820}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: otherIndicator
+=======
+  m_Name: selfIndicator
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,7 +928,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: ed17c154b61b0a341b665f703f9201a0, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -942,7 +967,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 2937789663619755623}
+<<<<<<< Updated upstream
   indicatorType: 1
+=======
+  indicatorType: 0
+>>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &3977987697617655278
 GameObject:
@@ -1646,8 +1675,13 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

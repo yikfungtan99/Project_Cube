@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/Art/Cipher Puzzle/Models/P2/Cipher_P2_01.fbx.meta
 guid: c85bd4f1f599b60488fa02793ae1614e
+=======
+guid: 71d14a445ce226142b17d283ccb3a0d4
+>>>>>>> Stashed changes:Assets/Art/Cipher Puzzle/Models/P1/Cipher_P1_01.max.meta
+=======
+guid: c85bd4f1f599b60488fa02793ae1614e
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:

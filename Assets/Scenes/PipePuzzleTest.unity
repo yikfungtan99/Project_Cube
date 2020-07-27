@@ -127,7 +127,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_Name: pb_Mesh-301338
+=======
+  m_Name: pb_Mesh-213846
+>>>>>>> Stashed changes
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -296,6 +300,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 4244794574052979872, guid: 6fe9a0a22e5c0b04b9253658f562b2ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 4244794574052979875, guid: 6fe9a0a22e5c0b04b9253658f562b2ce,
         type: 3}
       propertyPath: m_Mesh
@@ -870,6 +882,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1001 &3608590380897514865
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3089997662972366150, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_Name
+      value: PipePuzzle4Interactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366150, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089997662972366151, guid: e48ce9a8c4b87e642b490f83f85c80a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e48ce9a8c4b87e642b490f83f85c80a0, type: 3}
+>>>>>>> Stashed changes
 --- !u!1001 &4210533476457141875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -882,6 +971,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipePuzzle4Reactor
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 1264078496521819454, guid: 4dc90c5892112834c86c110507914746,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 1264078496521819455, guid: 4dc90c5892112834c86c110507914746,
         type: 3}
       propertyPath: m_LocalPosition.x

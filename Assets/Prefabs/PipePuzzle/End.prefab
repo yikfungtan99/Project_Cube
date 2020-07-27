@@ -58,7 +58,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 5629084884208175553, guid: e537a528a04f30747be7992a3754f0ab, type: 3}
+=======
+  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -220,6 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ppm: {fileID: 0}
   values: 00000000000000000100000000000000
+<<<<<<< Updated upstream
+=======
+  inversed: 0
+>>>>>>> Stashed changes
 --- !u!1 &4363793220555194325
 GameObject:
   m_ObjectHideFlags: 0

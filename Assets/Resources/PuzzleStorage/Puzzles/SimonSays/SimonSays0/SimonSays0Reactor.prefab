@@ -58,8 +58,13 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -343,7 +348,11 @@ GameObject:
   - component: {fileID: 4820026906445283076}
   - component: {fileID: 8493697510859809388}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: SelfIndicator
+=======
+  m_Name: otherIndicator
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +399,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: b6206e97b2e875446afd7ffcc587f289, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -425,7 +438,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 8544100734308704957}
+<<<<<<< Updated upstream
   indicatorType: 0
+=======
+  indicatorType: 1
+>>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &3319877165365335686
 GameObject:
@@ -487,8 +504,13 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1034,7 +1056,11 @@ GameObject:
   - component: {fileID: 6184817157887277786}
   - component: {fileID: 3637304697906234106}
   m_Layer: 0
+<<<<<<< Updated upstream
   m_Name: otherIndicator
+=======
+  m_Name: selfIndicator
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,7 +1107,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
+=======
+  - {fileID: 2100000, guid: ed17c154b61b0a341b665f703f9201a0, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1116,7 +1146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 8766702525594608845}
+<<<<<<< Updated upstream
   indicatorType: 1
+=======
+  indicatorType: 0
+>>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &6203447988407173332
 GameObject:

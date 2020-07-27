@@ -17,6 +17,8 @@ public class HUD : MonoBehaviour
     [SerializeField] private Button btnChangeState;
     [SerializeField] private TextMeshProUGUI txtChangeState;
     [SerializeField] private Button btnCalibrate;
+    [SerializeField] private Sprite examineImg;
+    [SerializeField] private Sprite rotateImg;
 
     //DO NOT need to use Update but I am lazy
     private void Update()
@@ -32,10 +34,12 @@ public class HUD : MonoBehaviour
         {
             case CubeStates.Examine:
                 nextState = "Rotate";
+                btnChangeState.image.sprite = rotateImg;
                 break;
                 
             case CubeStates.Rotate:
                 nextState = "Examine";
+                btnChangeState.image.sprite = examineImg;
                 break;
         }
 

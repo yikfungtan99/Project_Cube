@@ -6,13 +6,17 @@ using TMPro;
 public class LetterSlots : MonoBehaviour
 {
     public CipherPuzzleManager cpm;
-    public TextMeshPro slot;
+    [SerializeField] Material alphabetMat;
+    MeshRenderer meshRenderer;
     public bool slotActive;
+    //public TextMeshPro slot;
+
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
         cpm = GetComponentInParent<CipherPuzzleManager>();
-        slot = GetComponentInChildren<TextMeshPro>();
+        meshRenderer = transform.GetChild(1).GetComponent<MeshRenderer>();
+        //slot = GetComponentInChildren<TextMeshPro>();
     }
 
     public void SetActiveSlot(bool b)
@@ -23,12 +27,16 @@ public class LetterSlots : MonoBehaviour
 
     public void SetSlot(string s)
     {
-        slot.SetText(s.ToUpper());
+        //slot.SetText(s.ToUpper());
+        alphabetMat = Resources.Load<Material>("CipherAlphabetMaterials/" + s.ToUpper());
+        meshRenderer.material = alphabetMat;
     }
 
     public void ClearSlot()
     {
-        slot.SetText("-");
+        //slot.SetText("-");
+        alphabetMat = Resources.Load<Material>("Materials/_LetterSlotTexture");
+        meshRenderer.material = alphabetMat;
     }
 
     private void ChangeSlotState() // reminder to replace code inside with actual animations or something

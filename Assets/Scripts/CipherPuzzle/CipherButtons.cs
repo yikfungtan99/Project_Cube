@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 public class CipherButtons : Interactor
 {
     public CipherPuzzleManager cpm;
+    private Animator anim;
     public TextMeshPro letterEncoded;
     public string letter;
     private string _letterCode;
@@ -15,6 +16,7 @@ public class CipherButtons : Interactor
     private void Awake()
     {
         letterEncoded = GetComponentInChildren<TextMeshPro>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -70,6 +72,7 @@ public class CipherButtons : Interactor
     {
         if (disabled) return;
         print("Clicked");
+        anim.SetTrigger("isPressed");
         cpm.KeyboardButtonPress(_letterCode);
     }
 

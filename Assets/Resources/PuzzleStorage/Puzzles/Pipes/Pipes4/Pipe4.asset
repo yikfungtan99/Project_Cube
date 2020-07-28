@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
   m_Name: Pipe4
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   puzzleInteractor: {fileID: 7771461459834226239, guid: d4b3e81711f4da14a80d10e1038f2807,
-=======
-  puzzleInteractor: {fileID: 3089997662972366150, guid: e48ce9a8c4b87e642b490f83f85c80a0,
->>>>>>> Stashed changes
     type: 3}
   puzzleReactor: {fileID: 1264078496521819454, guid: 4dc90c5892112834c86c110507914746,
     type: 3}

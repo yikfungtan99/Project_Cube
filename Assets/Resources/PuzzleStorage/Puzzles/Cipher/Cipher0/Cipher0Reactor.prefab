@@ -150,13 +150,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: -7960456506634364820, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
   - {fileID: 2934955800964590389, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: de68a59886cdfd64c8a9e681a3cfc9d0, type: 2}
-  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,11 +185,7 @@ GameObject:
   - component: {fileID: 8863016138500041613}
   - component: {fileID: 2977296267813987816}
   m_Layer: 0
-<<<<<<< Updated upstream
   m_Name: P1 ExamineLight
-=======
-  m_Name: selfIndicator
->>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,11 +232,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: 5967751492454651251, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: ed17c154b61b0a341b665f703f9201a0, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -280,11 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 9157853672693073255}
-<<<<<<< Updated upstream
   indicatorType: 1
-=======
-  indicatorType: 0
->>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &2340811550203046120
 GameObject:
@@ -299,11 +282,7 @@ GameObject:
   - component: {fileID: 1289295697794012248}
   - component: {fileID: 6979411977831111287}
   m_Layer: 0
-<<<<<<< Updated upstream
   m_Name: P2 ExamineLight
-=======
-  m_Name: otherIndicator
->>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,11 +329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: 2878906130077978799, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: b6206e97b2e875446afd7ffcc587f289, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -389,11 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator:
   - {fileID: 8731129542846686860}
-<<<<<<< Updated upstream
   indicatorType: 0
-=======
-  indicatorType: 1
->>>>>>> Stashed changes
   isActive: 0
 --- !u!1 &2753936776271222176
 GameObject:
@@ -505,11 +476,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: -7161351915816769751, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -543,11 +510,7 @@ GameObject:
   - component: {fileID: 4101172401674716171}
   - component: {fileID: 1429076094407554026}
   m_Layer: 0
-<<<<<<< Updated upstream
   m_Name: SolveButton
-=======
-  m_Name: completeIndicator
->>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,13 +557,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: -7960456506634364820, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
   - {fileID: 2934955800964590389, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: de68a59886cdfd64c8a9e681a3cfc9d0, type: 2}
-  - {fileID: 2100000, guid: 8f2133de1d88f214aadf0035bbf433a7, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -695,11 +653,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< Updated upstream
   - {fileID: -7161351915816769751, guid: c85bd4f1f599b60488fa02793ae1614e, type: 3}
-=======
-  - {fileID: 2100000, guid: ac62260c2f1582c47b220760f1c6364d, type: 2}
->>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

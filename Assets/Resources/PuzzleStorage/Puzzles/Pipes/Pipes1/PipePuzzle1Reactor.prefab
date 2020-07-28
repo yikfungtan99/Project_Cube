@@ -324,6 +324,7 @@ MonoBehaviour:
     currentValue: 0
     width: 0
     height: 0
+  isReactor: 1
 --- !u!1 &5064799648602394829
 GameObject:
   m_ObjectHideFlags: 0

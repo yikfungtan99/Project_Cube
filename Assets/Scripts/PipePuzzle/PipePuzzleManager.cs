@@ -18,10 +18,13 @@ public class PipePuzzleManager : PuzzleManager
         public PipeReactor[,] pipes;
     }
     public PipePuzzle pipePuzzle;
+    [SerializeField] private bool isReactor;
+    
 
     public override void Start()
     {
         base.Start();
+        if (!isReactor) return;
         InitializePipes();
         StartCoroutine(Shuffle());
         pipePuzzle.winValue = GetWinValue();

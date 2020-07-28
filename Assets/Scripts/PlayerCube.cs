@@ -67,10 +67,10 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData(int seed)
     {
         Random.InitState(seed);
-        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(2, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
-        int puzzleGenVar = 0;
-        //int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(2, 5);
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
+        //int puzzleGenVar = 0;
+        int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
 
         if (puzzleGenRole == 0)
@@ -90,6 +90,9 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
 
     public void GetExaminingModule()
     {
+
+        PuzzleModule mod = null;
+        
         if (currentModule)
         {
             currentModule.ToggleSelfIndicator();
@@ -106,10 +109,15 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
             {
                 curHighest = module.transform.position.z;
                 currentModule = module;
-                module.ToggleSelfIndicator();
-                OtherIndicator(module.PuzzleId);
+                mod = module;
+                // module.ToggleSelfIndicator();
+                // OtherIndicator(module.PuzzleId);
             }
         }
+
+        if (!mod) return;
+        mod.ToggleSelfIndicator();
+        OtherIndicator(mod.PuzzleId);
     }
     
     #region Info Sending

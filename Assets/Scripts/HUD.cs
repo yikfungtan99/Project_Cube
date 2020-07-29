@@ -23,7 +23,7 @@ public class HUD : MonoBehaviour
     //DO NOT need to use Update but I am lazy
     private void Update()
     {
-        btnCalibrate.gameObject.SetActive(cubeState.currentState == CubeStates.Rotate);
+//        btnCalibrate.gameObject.SetActive(cubeState.currentState == CubeStates.Rotate);
     }
 
     public void UpdateStateText()

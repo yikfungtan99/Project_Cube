@@ -23,12 +23,24 @@ public class TouchInput : MonoBehaviour
 
     private Vector2 _mouseDelta;
 
+    [SerializeField] private float sensitivityThreshold;
+    private bool _resetPending = true;
+    private bool isDragging;
+
+    float _rotX = 0;
+    float _rotY = 0;
+    
+    private Quaternion _targetRotation;
+    private Quaternion _prevRotation;
+
     private void Start()
     {
         if (!cubeTransform) cubeTransform = GameObject.FindWithTag("SpawnSystem").GetComponent<SpawnSystem>().playerCube.transform;
         cubeState = GetComponent<CubeState>();
 
         Input.simulateMouseWithTouches = true;
+
+        _prevRotation = cubeTransform.rotation;
     }
 
     // Update is called once per frame
@@ -75,50 +87,113 @@ public class TouchInput : MonoBehaviour
         cubeTransform.rotation = rotation * cubeTransform.rotation;
     }
 
+    // private void UpdateInputUsingMouse()
+    // {
+    //     if (_currentCubeState != CubeStates.Rotate) return;
+    //     if (useOnlyTouch) return;
+    //     if (Input.GetMouseButtonDown(0)) _initPos = Input.mousePosition;
+    //
+    //     if (!Input.GetMouseButton(0)) return;
+    //     
+    //     _mouseDelta = Input.mousePosition - _initPos;
+    //     
+    //     if (_mouseDelta.x > 0)
+    //     {
+    //         _mouseDirX = 1;
+    //     }
+    //     else
+    //     {
+    //         _mouseDirX = -1;
+    //     }
+    //
+    //     if (_mouseDelta.y > 0)
+    //     {
+    //         _mouseDirY = 1;
+    //     }
+    //     else
+    //     {
+    //         _mouseDirY = -1;
+    //     }
+    //
+    //     var rotation = cubeTransform.rotation;
+    //     
+    //     if (CheckMouseDelta())
+    //     {
+    //         rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * _mouseDirX * rotateSpd * Time.deltaTime,0f);
+    //     }else 
+    //     {
+    //         rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * _mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
+    //     }
+    //     
+    //     //rotation = Quaternion.Euler(_mouseDelta.y * rotateSpd * Time.deltaTime, -_mouseDelta.x* rotateSpd* Time.deltaTime, rotation.z);
+    //
+    //     cubeTransform.rotation = rotation * cubeTransform.rotation;
+    //
+    // }
+
     private void UpdateInputUsingMouse()
     {
+        cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
         if (_currentCubeState != CubeStates.Rotate) return;
-        if (useOnlyTouch) return;
-        if (Input.GetMouseButtonDown(0)) _initPos = Input.mousePosition;
-
-        if (!Input.GetMouseButton(0)) return;
         
-        _mouseDelta = Input.mousePosition - _initPos;
+        if (Input.GetMouseButtonDown(0))
+        {
+            _initPos = Input.mousePosition;
+            isDragging = true;
+        }
+
+        if (isDragging)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                _mouseDelta = Input.mousePosition - _initPos;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (Mathf.Abs(_mouseDelta.x) > Mathf.Abs(_mouseDelta.y))
+                {
+                    if (_mouseDelta.x > sensitivityThreshold) // right
+                    {
+                        print("right");
+                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.up,  -90);
+                        _targetRotation = Quaternion.AngleAxis(-90, Vector3.up) * _prevRotation;
+                        _prevRotation = _targetRotation;
+                    }
+                    else if (_mouseDelta.x < -sensitivityThreshold) // left
+                    {    
+                        print("left");
+                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.up,  90);
+                        _targetRotation = Quaternion.AngleAxis(90, Vector3.up) * _prevRotation;
+                        _prevRotation = _targetRotation;
+                    }
+                }
+                else
+                {
+                    if (_mouseDelta.y > sensitivityThreshold) //up
+                    {
+                        print("up");
+                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.right,  90);
+                        _targetRotation = Quaternion.AngleAxis(90, Vector3.right) * _prevRotation;
+                        _prevRotation = _targetRotation;
+                    }
+                    else if (_mouseDelta.y < sensitivityThreshold) //down
+                    {
+                        print("down");
+                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.right,  -90);
+                        _targetRotation = Quaternion.AngleAxis(-90, Vector3.right) * _prevRotation;
+                        _prevRotation = _targetRotation;
+                    }
+                }
+                _mouseDelta = Vector2.zero;
+                _initPos = Vector3.zero;
+                isDragging = false;
+            }
+        }
         
-        if (_mouseDelta.x > 0)
-        {
-            _mouseDirX = 1;
-        }
-        else
-        {
-            _mouseDirX = -1;
-        }
-
-        if (_mouseDelta.y > 0)
-        {
-            _mouseDirY = 1;
-        }
-        else
-        {
-            _mouseDirY = -1;
-        }
-
-        var rotation = cubeTransform.rotation;
-        
-        if (CheckMouseDelta())
-        {
-            rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * _mouseDirX * rotateSpd * Time.deltaTime,0f);
-        }else 
-        {
-            rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * _mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
-        }
-        
-        //rotation = Quaternion.Euler(_mouseDelta.y * rotateSpd * Time.deltaTime, -_mouseDelta.x* rotateSpd* Time.deltaTime, rotation.z);
-
-        cubeTransform.rotation = rotation * cubeTransform.rotation;
-
+        //cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
     }
-
+    
     private bool CheckTouchDelta()
     {
         bool deltaX;
@@ -151,5 +226,10 @@ public class TouchInput : MonoBehaviour
                 if(hit.collider.GetComponent<Interactor>() != null) hit.collider.GetComponent<Interactor>().Interact();
             }
         }
+    }
+
+    public void ResetDrag()
+    {
+        isDragging = false;
     }
 }

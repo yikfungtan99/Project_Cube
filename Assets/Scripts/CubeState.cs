@@ -19,24 +19,25 @@ public class CubeState : MonoBehaviour
     public void ChangeState()
     {
         Cube.GetExaminingModule();
+        GetComponent<TouchInput>().ResetDrag();
         
         if ((int) currentState < Enum.GetValues(typeof(CubeStates)).Length - 1)
         {
             currentState += 1;
-            if (currentState == CubeStates.Examine)
-            {
-                AutoCalibrate();
-            }
+            // if (currentState == CubeStates.Examine)
+            // {
+            //     //AutoCalibrate();
+            // }
         }
         else
         {
-            currentState = (CubeStates) 0;
+            currentState = 0;
         }
     }
 
-    public void AutoCalibrate()
-    {
-        if (!autoCalibrateCube) return;
-        GetComponent<CubeCalibration>().CalibrateCube();
-    }
+    // public void AutoCalibrate()
+    // {
+    //     if (!autoCalibrateCube) return;
+    //     GetComponent<CubeCalibration>().CalibrateCube();
+    // }
 }

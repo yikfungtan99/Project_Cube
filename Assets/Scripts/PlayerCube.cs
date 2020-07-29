@@ -67,8 +67,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData(int seed)
     {
         Random.InitState(seed);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(2, 5);
-        //PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(1, 5);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 1;
         //int puzzleGenVar = 0;
         int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);

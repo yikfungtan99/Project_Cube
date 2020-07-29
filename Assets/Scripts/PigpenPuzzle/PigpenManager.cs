@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PigpenManager : MonoBehaviour
+public class PigpenManager : PuzzleManager
 {
     //public static PigpenManager instance = null;
     [SerializeField] List<GameObject> dragBox;
     [SerializeField] List<GameObject> dragBoxPos;
-
+    [SerializeField] GameObject pigpenPrefab;
     int ansBoxes = 4;
     int alphabetBoxes = 6;
 
@@ -32,22 +32,22 @@ public class PigpenManager : MonoBehaviour
     //     }
     // }
 
-    // void SpawnPigpen()
-    // {
-    //     GameObject tempGO;
-    //     tempGO = Instantiate(pigpenPrefab);
-    //     //To get alphabet answer GameObjects
-    //     for(int i=0; i<ansBoxes; i++)
-    //     {
-    //         dragBox.Add(tempGO.transform.GetChild(i).gameObject);
-    //     }
-    //
-    //     //To set alphabet boxes back to its original pos
-    //     for(int i=0; i<alphabetBoxes; i++)
-    //     {
-    //         dragBoxPos.Add(tempGO.transform.GetChild(i).gameObject);
-    //     }
-    // }
+    void SpawnPigpen()
+    {
+        GameObject tempGO;
+        tempGO = Instantiate(pigpenPrefab);
+        //To get alphabet answer GameObjects
+        for(int i=0; i<ansBoxes; i++)
+        {
+            dragBox.Add(tempGO.transform.GetChild(i).gameObject);
+        }
+
+        //To set alphabet boxes back to its original pos
+        for(int i=0; i<alphabetBoxes; i++)
+        {
+            dragBoxPos.Add(tempGO.transform.GetChild(i).gameObject);
+        }
+    }
 
     void CompareIndex()
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
 public class BoxDrag : MonoBehaviour
 {
@@ -21,16 +22,19 @@ public class BoxDrag : MonoBehaviour
 
     //Reference scriptableobject data script
     [SerializeField] BoxData boxData;
-    
+
+    private CubeState _cubeState;
 
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        _cubeState = GameObject.Find("CubeControl").GetComponent<CubeState>();
         StoreBoxOriPos();
     }
 
     void Update()
     {
+        if (_cubeState.currentState != CubeStates.Examine) return;
         DragBox();
     }
 
@@ -65,6 +69,11 @@ public class BoxDrag : MonoBehaviour
                         if (selectedObj != null)
                         {
                             selectedTransform = selectedObj.transform;
+                            screenPoint = Camera.main.WorldToScreenPoint(selectedTransform.position);
+                            objOffset = selectedTransform.position - Camera.main.ScreenToWorldPoint(new Vector3(
+                                Input.mousePosition.x,
+                                Input.mousePosition.y,
+                                screenPoint.z));
                         }
                     }
                 }
@@ -72,52 +81,10 @@ public class BoxDrag : MonoBehaviour
 
             if (Input.GetMouseButton(0) && selectedObj != null)
             {
-                selectedTransform.position = new Vector3(truePos.x, truePos.y, selectedTransform.position.z);
-            }
-        }
-        else
-        {
-            if (Input.touchCount > 0)
-            {
-                firstTap = Input.GetTouch(0);
-                ray = Camera.main.ScreenPointToRay(firstTap.position);
-                Debug.DrawRay(ray.origin, ray.direction * 5, Color.red);
-
-                if (Physics.Raycast(ray, out hit, 1000f))
-                {
-                    if (firstTap.phase == TouchPhase.Began)
-                    {
-                        //Check if tag is Draggable
-                        if (hit.collider.CompareTag("Draggable"))
-                        {
-                            selectedObj = hit.collider.transform;
-                            if (selectedObj != null)
-                            {
-                                selectedTransform = selectedObj.transform;
-                                screenPoint = Camera.main.WorldToScreenPoint(selectedTransform.position);
-                                objOffset = selectedTransform.position - Camera.main.ScreenToWorldPoint(new Vector3(firstTap.position.x, 
-                                                                                                        firstTap.position.y, 
-                                                                                                        screenPoint.z));
-                            }
-
-                        }
-                    }
-
-                    if (firstTap.phase == TouchPhase.Moved)
-                    {
-                        if (selectedTransform != null)
-                        {
-                            Vector3 cursorPoint = new Vector3(firstTap.position.x, firstTap.position.y, screenPoint.z);
-                            Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + objOffset;
-                            selectedTransform.position = cursorPosition;
-                        }
-                    }
-
-                    if (firstTap.phase == TouchPhase.Ended)
-                    {
-                        selectedTransform = null;
-                    }
-                }
+                //selectedTransform.position = new Vector3(truePos.x, truePos.y, selectedTransform.position.z);
+                Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+                Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + objOffset;
+                selectedTransform.position = cursorPosition;
             }
         }
     }

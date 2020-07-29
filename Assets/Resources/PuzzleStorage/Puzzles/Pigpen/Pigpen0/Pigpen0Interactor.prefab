@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 270114932812210277}
   - component: {fileID: 270114932812210276}
   m_Layer: 0
-  m_Name: PigPen0Interactor
+  m_Name: Pigpen0Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca34bb76c193f0e4eb7173a33a70472e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _puzzleModule: {fileID: 0}
   dragBox: []
   dragBoxPos: []
+  pigpenPrefab: {fileID: 0}
 --- !u!1 &1042799829572277334
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +424,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -468,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 8c1132ddfc1a3da478fd819aad70f35b, type: 2}
 --- !u!114 &9138883119719796650
 MonoBehaviour:
@@ -1231,7 +1233,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1277,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 1c74747960b0efa4296f0be1d28cada5, type: 2}
 --- !u!114 &507344023076285858
 MonoBehaviour:
@@ -1589,7 +1591,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1635,7 +1637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 589bfa22c5e0ca34ea4aa95fcde9e011, type: 2}
 --- !u!114 &1270030810643024658
 MonoBehaviour:
@@ -1789,7 +1791,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1835,7 +1837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 456e1a89a9c049548b958b9d479a9692, type: 2}
 --- !u!114 &1986272272295132101
 MonoBehaviour:
@@ -2237,7 +2239,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2283,7 +2285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 8e25bbd1af6117a48aaee1f51f7d2b2e, type: 2}
 --- !u!114 &5263353682193042038
 MonoBehaviour:
@@ -3463,7 +3465,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5e8dba75474b6640a5cd6b1502665ed, type: 2}
+  - {fileID: 2100000, guid: fa903cb3c5baabf44a3ae459ef305705, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3509,7 +3511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a5a16b95a52094692cda87d0512a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateMouse: 0
+  simulateMouse: 1
   boxData: {fileID: 11400000, guid: 0347adc7b48b5f74bbe4780263b2d8a5, type: 2}
 --- !u!114 &6192901558191327198
 MonoBehaviour:

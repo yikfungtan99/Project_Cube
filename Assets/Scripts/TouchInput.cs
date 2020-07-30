@@ -46,6 +46,7 @@ public class TouchInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateRotation();
         UpdateCubeState();
         UpdateInputUsingTouchScreen();
         UpdateInputUsingMouse();
@@ -87,53 +88,8 @@ public class TouchInput : MonoBehaviour
         cubeTransform.rotation = rotation * cubeTransform.rotation;
     }
 
-    // private void UpdateInputUsingMouse()
-    // {
-    //     if (_currentCubeState != CubeStates.Rotate) return;
-    //     if (useOnlyTouch) return;
-    //     if (Input.GetMouseButtonDown(0)) _initPos = Input.mousePosition;
-    //
-    //     if (!Input.GetMouseButton(0)) return;
-    //     
-    //     _mouseDelta = Input.mousePosition - _initPos;
-    //     
-    //     if (_mouseDelta.x > 0)
-    //     {
-    //         _mouseDirX = 1;
-    //     }
-    //     else
-    //     {
-    //         _mouseDirX = -1;
-    //     }
-    //
-    //     if (_mouseDelta.y > 0)
-    //     {
-    //         _mouseDirY = 1;
-    //     }
-    //     else
-    //     {
-    //         _mouseDirY = -1;
-    //     }
-    //
-    //     var rotation = cubeTransform.rotation;
-    //     
-    //     if (CheckMouseDelta())
-    //     {
-    //         rotation = Quaternion.Euler(0f,-_mouseDelta.normalized.magnitude * _mouseDirX * rotateSpd * Time.deltaTime,0f);
-    //     }else 
-    //     {
-    //         rotation = Quaternion.Euler(_mouseDelta.normalized.magnitude * _mouseDirY *rotateSpd* Time.deltaTime, 0f,0f);
-    //     }
-    //     
-    //     //rotation = Quaternion.Euler(_mouseDelta.y * rotateSpd * Time.deltaTime, -_mouseDelta.x* rotateSpd* Time.deltaTime, rotation.z);
-    //
-    //     cubeTransform.rotation = rotation * cubeTransform.rotation;
-    //
-    // }
-
     private void UpdateInputUsingMouse()
     {
-        cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
         if (_currentCubeState != CubeStates.Rotate) return;
         
         if (Input.GetMouseButtonDown(0))
@@ -173,14 +129,12 @@ public class TouchInput : MonoBehaviour
                     if (_mouseDelta.y > sensitivityThreshold) //up
                     {
                         print("up");
-                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.right,  90);
                         _targetRotation = Quaternion.AngleAxis(90, Vector3.right) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }
                     else if (_mouseDelta.y < sensitivityThreshold) //down
                     {
                         print("down");
-                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.right,  -90);
                         _targetRotation = Quaternion.AngleAxis(-90, Vector3.right) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }
@@ -190,8 +144,18 @@ public class TouchInput : MonoBehaviour
                 isDragging = false;
             }
         }
-        
-        //cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
+    }
+
+    public void RotateOnZ()
+    {
+        isDragging = false;
+        _targetRotation = Quaternion.AngleAxis(-90, Vector3.forward) * _prevRotation;
+        _prevRotation = _targetRotation;
+    }
+
+    private void UpdateRotation()
+    {
+        cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
     }
     
     private bool CheckTouchDelta()

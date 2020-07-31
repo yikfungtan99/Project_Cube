@@ -111,15 +111,11 @@ public class TouchInput : MonoBehaviour
                 {
                     if (_mouseDelta.x > sensitivityThreshold) // right
                     {
-                        print("right");
-                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.up,  -90);
                         _targetRotation = Quaternion.AngleAxis(-90, Vector3.up) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }
                     else if (_mouseDelta.x < -sensitivityThreshold) // left
-                    {    
-                        print("left");
-                        //cubeTransform.RotateAround(cubeTransform.position, Vector3.up,  90);
+                    {
                         _targetRotation = Quaternion.AngleAxis(90, Vector3.up) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }
@@ -128,13 +124,11 @@ public class TouchInput : MonoBehaviour
                 {
                     if (_mouseDelta.y > sensitivityThreshold) //up
                     {
-                        print("up");
                         _targetRotation = Quaternion.AngleAxis(90, Vector3.right) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }
                     else if (_mouseDelta.y < sensitivityThreshold) //down
                     {
-                        print("down");
                         _targetRotation = Quaternion.AngleAxis(-90, Vector3.right) * _prevRotation;
                         _prevRotation = _targetRotation;
                     }

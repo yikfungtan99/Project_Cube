@@ -231,6 +231,21 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         }
     }
 
+    public void PigpenPuzzle(int id)
+    {
+        photonView.RPC("RpcPigpenPuzzle", RpcTarget.All, id);
+    }
+
+    [PunRPC]
+    void RpcPigpenPuzzle(int id)
+    {
+        PigpenManager pigpenManager = otherCube.modules[id].puzzleManager as PigpenManager;
+        if (pigpenManager)
+        {
+            pigpenManager.CompareIndex();
+        }
+    }
+
     #endregion
     
     private void OnDestroy()

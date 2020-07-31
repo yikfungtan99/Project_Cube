@@ -12,13 +12,13 @@ public class PigpenManager : PuzzleManager
     int ansBoxes = 4;
     int alphabetBoxes = 6;
 
-    private void Awake()
-    {
-        //CheckInstance();
-        //SpawnPigpen();
-        //Subscribe to event
-        SolveButton.ansCorrectPass += CompareIndex;
-    }
+    // private void Awake()
+    // {
+    //     //CheckInstance();
+    //     //SpawnPigpen();
+    //     //Subscribe to event
+    //     //PigpenButton.ansCorrectPass += CompareIndex;
+    // }
 
     // void CheckInstance()
     // {
@@ -49,8 +49,9 @@ public class PigpenManager : PuzzleManager
         }
     }
 
-    void CompareIndex()
+    public void CompareIndex()
     {
+        print("Compare Index");
         foreach (GameObject boxDrag in dragBox)
         {
             if(boxDrag.GetComponent<BoxDrag>().BoxIndex == boxDrag.GetComponent<BoxDrag>().SlotIndex)

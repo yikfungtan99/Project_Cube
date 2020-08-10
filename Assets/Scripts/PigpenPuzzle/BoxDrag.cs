@@ -79,6 +79,11 @@ public class BoxDrag : MonoBehaviour
                         }
                     }
                 }
+
+                if (Input.GetMouseButtonUp(0) && selectedObj != null)
+                {
+                    selectedObj.transform.position = restorePos;
+                }
             }
 
             if (Input.GetMouseButton(0) && selectedObj != null)
@@ -90,11 +95,7 @@ public class BoxDrag : MonoBehaviour
                
             }
 
-            if (Input.GetMouseButtonUp(0) && selectedObj != null)
-            {
-                Debug.Log(selectedObj.transform.position);
-                selectedObj.transform.position = restorePos;
-            }
+
         }
         else
         {

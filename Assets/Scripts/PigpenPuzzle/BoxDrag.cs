@@ -151,7 +151,7 @@ public class BoxDrag : MonoBehaviour
             this.transform.position = col.transform.position;
             //Getting Slot Index number
             slotIndex = (int)col.GetComponent<DropSlots>().slotData.boxIndex;
-            Debug.Log("I HIT A SLOT" + slotIndex + "MY INDEX " + BoxIndex);
+            //Debug.Log("I HIT A SLOT" + slotIndex + "MY INDEX " + BoxIndex);
         }
     }
 

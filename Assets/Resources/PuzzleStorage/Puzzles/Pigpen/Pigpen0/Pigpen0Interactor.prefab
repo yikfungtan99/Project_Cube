@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puzzleModule: {fileID: 0}
+  isInteractor: 1
   dragBox: []
   dragBoxPos: []
   pigpenPrefab: {fileID: 0}

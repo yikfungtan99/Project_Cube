@@ -486,7 +486,7 @@ PrefabInstance:
     - target: {fileID: 4303117147456496860, guid: 9851d0f1fff45e848b6a21a94abed2f5,
         type: 3}
       propertyPath: m_Name
-      value: $SymbolManager
+      value: SymbolManager
       objectReference: {fileID: 0}
     - target: {fileID: 4303117147456496860, guid: 9851d0f1fff45e848b6a21a94abed2f5,
         type: 3}

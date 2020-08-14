@@ -14,14 +14,15 @@ public class SymbolChange : MonoBehaviour
     void Start()
     {
         m = quadBox.gameObject.GetComponent<MeshRenderer>().material;
-        UpdateTexture(symbolIndex);
+        //UpdateTexture(symbolIndex);
     }
 
-    
+    //====================================================================================================SPAWN ERROR===========================================================================================================================
     public void UpdateTexture(int textureIndex)
     {
         m.mainTexture = SymbolManager.symbolInstance.textureList[SymbolManager.symbolInstance.textureIndexList[symbolIndex]];
     }
+    //====================================================================================================SPAWN ERROR===========================================================================================================================
 
 
     // Update is called once per frame

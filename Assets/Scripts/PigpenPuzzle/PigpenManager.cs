@@ -5,6 +5,8 @@ using System;
 
 public class PigpenManager : PuzzleManager
 {
+    [SerializeField] private bool isInteractor;
+
     //public static PigpenManager instance = null;
     [SerializeField] List<GameObject> dragBox;
     [SerializeField] List<GameObject> dragBoxPos;
@@ -32,25 +34,26 @@ public class PigpenManager : PuzzleManager
     //     }
     // }
 
-    void SpawnPigpen()
-    {
-        GameObject tempGO;
-        tempGO = Instantiate(pigpenPrefab);
-        //To get alphabet answer GameObjects
-        for(int i=0; i<ansBoxes; i++)
-        {
-            dragBox.Add(tempGO.transform.GetChild(i).gameObject);
-        }
-
-        //To set alphabet boxes back to its original pos
-        for(int i=0; i<alphabetBoxes; i++)
-        {
-            dragBoxPos.Add(tempGO.transform.GetChild(i).gameObject);
-        }
-    }
+    // void SpawnPigpen()
+    // {
+    //     GameObject tempGO;
+    //     tempGO = Instantiate(pigpenPrefab);
+    //     //To get alphabet answer GameObjects
+    //     for(int i=0; i<ansBoxes; i++)
+    //     {
+    //         dragBox.Add(tempGO.transform.GetChild(i).gameObject);
+    //     }
+    //
+    //     //To set alphabet boxes back to its original pos
+    //     for(int i=0; i<alphabetBoxes; i++)
+    //     {
+    //         dragBoxPos.Add(tempGO.transform.GetChild(i).gameObject);
+    //     }
+    // }
 
     public void CompareIndex()
     {
+        if (!isInteractor) return;
         print("Compare Index");
         foreach (GameObject boxDrag in dragBox)
         {

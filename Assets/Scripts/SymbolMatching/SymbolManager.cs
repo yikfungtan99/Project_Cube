@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SymbolManager : MonoBehaviour
+public class SymbolManager : PuzzleManager
 {
     public static SymbolManager symbolInstance = null;
     [SerializeField] GameObject symbolPrefab1;
@@ -19,22 +19,26 @@ public class SymbolManager : MonoBehaviour
     [HideInInspector] public int[] textureIndexList;
     [HideInInspector] public int[] reactTextureIndexList;//! player 2's textureindexList
 
+    
+    //====================================================================================================SPAWN ERROR===========================================================================================================================
+    
     // Start is called before the first frame update
-    void Awake()
-    {
-        CheckInstance();
-        SpawnSymbolPuzzle();
-    }
+    // void Awake()
+    // {
+    //     CheckInstance();
+    //     SpawnSymbolPuzzle();
+    // }
 
-    private void Start()
-    {
-        textureList = symbolData.textures1;
+    // private void Start()
+    // {
+    //     textureList = symbolData.textures1;
+    //
+    //     //TODO Set preset from symbolData
+    //     textureIndexList = symbolData.presetList[0].p1Preset;
+    //     reactTextureIndexList = symbolData.presetList[0].p2Preset;
+    // }
 
-        //TODO Set preset from symbolData
-        textureIndexList = symbolData.presetList[0].p1Preset;
-        reactTextureIndexList = symbolData.presetList[0].p2Preset;
-    }
-
+    //====================================================================================================SPAWN ERROR===========================================================================================================================
     // Update is called once per frame
     void Update()
     {

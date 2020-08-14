@@ -68,7 +68,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         Random.InitState(seed);
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(1, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 1;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 5;
         //int puzzleGenVar = 0;
         int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
@@ -136,6 +136,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         if (_allPuzzleInitialized && otherCube._allPuzzleInitialized)
         {
             if (_gameStarted) return;
+            GameObject.Find("LoadCanvas").transform.GetChild(0).gameObject.SetActive(false);
             print("Start");
             foreach (var t in modules)
             {

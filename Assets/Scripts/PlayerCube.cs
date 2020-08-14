@@ -136,7 +136,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         if (_allPuzzleInitialized && otherCube._allPuzzleInitialized)
         {
             if (_gameStarted) return;
-            print("Start");
+            GameObject.Find("LoadCanvas").transform.GetChild(0).gameObject.SetActive(false);
             foreach (var t in modules)
             {
                 t.puzzleManager.PuzzleStart();

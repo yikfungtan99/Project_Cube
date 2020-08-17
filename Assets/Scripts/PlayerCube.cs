@@ -68,7 +68,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         Random.InitState(seed);
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(1, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 5;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 0;
         //int puzzleGenVar = 0;
         int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
@@ -229,6 +229,25 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         else
         {
             print("cypher puzzle manager not found");
+        }
+    }
+
+    public void MazePuzzleButton(int id, int i)
+    {
+        photonView.RPC("RpMazePuzzleButton", RpcTarget.All, id, i);
+    }
+
+    [PunRPC]
+    void RpMazePuzzleButton(int id, int i)
+    {
+        MazePuzzleManager mpm = otherCube.modules[id].puzzleManager as MazePuzzleManager;
+        if (mpm)
+        {
+            mpm.MazeButtonPress(i);
+        }
+        else
+        {
+            print("maze puzzle manager not found");
         }
     }
 

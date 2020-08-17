@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
   m_Name: Maze0
   m_EditorClassIdentifier: 
-  puzzleInteractor: {fileID: 7995472359273330106, guid: dc84a9cd07326b344a421c836fc90193,
+  puzzleInteractor: {fileID: 8316015517546877163, guid: 8262a2a15be96e74789c711799bc327f,
     type: 3}
-  puzzleReactor: {fileID: 7998689706361621623, guid: 834ab8eb16426414bbcaae8e9d0f90d1,
+  puzzleReactor: {fileID: 3078253871152677170, guid: ffa929bf8c377e245b66880e832562fc,
     type: 3}

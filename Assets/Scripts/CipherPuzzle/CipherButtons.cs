@@ -71,7 +71,6 @@ public class CipherButtons : Interactor
     public override void Interact()
     {
         if (disabled) return;
-        print("Clicked");
         anim.SetTrigger("isPressed");
         cpm.KeyboardButtonPress(_letterCode);
     }

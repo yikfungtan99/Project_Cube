@@ -138,10 +138,7 @@ public class CipherPuzzleManager : PuzzleManager
 
             if (isReactor)
             {
-                for (int i = 0; i < cipherPuzzle.answer.Length; i++)
-                {
-                    cipherPuzzle.letterSlots[i].ClearSlot();
-                }
+                ClearSlot();
             }
         }
         else
@@ -163,6 +160,33 @@ public class CipherPuzzleManager : PuzzleManager
         }
     }
 
+    public void Clear()
+    {
+        _puzzleModule.playerCube.CipherClear(_puzzleModule.PuzzleId);
+        
+        for (int i = 0; i < cipherPuzzle.answer.Length; i++)
+        {
+            cipherPuzzle.letterSlots[i].ClearSlot();
+        }
+        
+        cipherPuzzle.slotInput = "";
+    }
+
+    public void ClearSlot(){
+
+        print("ClearSlot");
+        //if (!isReactor)
+        //{
+            cipherPuzzle.slotInput = "";
+        //}
+        // else
+        // {
+        //     for (int i = 0; i < cipherPuzzle.answer.Length; i++)
+        //     {
+        //         cipherPuzzle.letterSlots[i].ClearSlot();
+        //     }
+        // }
+    }
     private void InitSeed()
     {
         CipherHint cipherHint = GetComponentInChildren<CipherHint>();

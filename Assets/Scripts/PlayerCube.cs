@@ -67,8 +67,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     private PuzzleModuleData GeneratePuzzleModuleData(int seed)
     {
         Random.InitState(seed);
-        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(1, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 0;
+        //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, 5);
+        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
         //int puzzleGenVar = 0;
         int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
@@ -206,6 +206,26 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         if (cpm)
         {
             cpm.InitializeCipherPuzzle(seed);
+        }
+        else
+        {
+            print("cypher puzzle manager not found");
+        }
+    }
+
+    public void CipherClear(int id)
+    {
+        photonView.RPC("RpcCipherClear", RpcTarget.All, id);
+    }
+
+    [PunRPC]
+    private void RpcCipherClear(int id)
+    {
+        CipherPuzzleManager cpm = otherCube.modules[id].puzzleManager as CipherPuzzleManager;
+
+        if (cpm)
+        {
+            cpm.ClearSlot();
         }
         else
         {

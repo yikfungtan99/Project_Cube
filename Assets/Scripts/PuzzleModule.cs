@@ -126,6 +126,8 @@ public class PuzzleModule:MonoBehaviour
     {
         moduleCompleted = true;
         DisableAllInteractors();
+        otherIndicator.DeActivateIndicator();
+        selfIndicator.DeActivateIndicator();
         LightUpCompleteIndicator();
     }
 

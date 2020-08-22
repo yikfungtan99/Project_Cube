@@ -55,13 +55,13 @@ public class MazePuzzleManager : PuzzleManager
         {
             DownButtonPressed();
         }
-        else //3 left
+        if (i == 3) //3 left
         {
             LeftButtonPressed();
         }
     }
     #region ButtonPresses
-    void UpButtonPressed() // yik fung you might have to change this
+    void UpButtonPressed()
     {
         if(mazePuzzle.yPos < mazePuzzle.gridSize-1)
         {

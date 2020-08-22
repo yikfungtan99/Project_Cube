@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class MazeButton : Interactor
 {
-    //private Animator anim;
+    private Animator anim;
     public int direction;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     public override void Interact()
     {
-        //anim.SetTrigger("isPressed");
-        //print("Pipe Button Clicked");
+        anim.SetTrigger("isPressed");
+        //print("Maze Button Clicked");
        _puzzleModule.playerCube.MazePuzzleButton(_puzzleModule.PuzzleId, direction);
-        //mpm.MazeButtonPress(direction);
     }
 
     public void SetDirection(int i)

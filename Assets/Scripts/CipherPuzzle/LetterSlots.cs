@@ -35,7 +35,7 @@ public class LetterSlots : MonoBehaviour
     public void ClearSlot()
     {
         //slot.SetText("-");
-        alphabetMat = Resources.Load<Material>("Materials/_LetterSlotTexture");
+        alphabetMat = Resources.Load<Material>("CipherAlphabetMaterials/_LetterSlotTexture");
         meshRenderer.material = alphabetMat;
     }
 

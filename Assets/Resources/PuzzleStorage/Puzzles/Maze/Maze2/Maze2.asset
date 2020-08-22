@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
+  m_Name: Maze2
+  m_EditorClassIdentifier: 
+  puzzleInteractor: {fileID: 8316015517546877163, guid: 8262a2a15be96e74789c711799bc327f,
+    type: 3}
+  puzzleReactor: {fileID: 1066783626540682576, guid: 0cc3f88031a05304bbc2118992377996,
+    type: 3}

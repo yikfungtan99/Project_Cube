@@ -19,11 +19,13 @@ public class PipePuzzleManager : PuzzleManager
     }
     public PipePuzzle pipePuzzle;
     [SerializeField] private bool isReactor;
-    
+    private SolveButton solveButton;
+
 
     public override void Start()
     {
         base.Start();
+        InitializeSolveButton();
         if (!isReactor) return;
         InitializePipes();
         StartCoroutine(Shuffle());
@@ -45,6 +47,12 @@ public class PipePuzzleManager : PuzzleManager
         }
     }
 
+    void InitializeSolveButton()
+    {
+        solveButton = GetComponentInChildren<SolveButton>();
+        solveButton.SetManager(this);
+    }
+
     void InitializePipes()
     {
         //int dimensions = (int)Mathf.Sqrt(transform.childCount);
@@ -56,6 +64,7 @@ public class PipePuzzleManager : PuzzleManager
         int indexCounter = 0;
 
         pipePuzzle.pipes = new PipeReactor[pipePuzzle.width, pipePuzzle.height];
+        PipeReactor[] tempReactors = GetComponentsInChildren<PipeReactor>();
 
         for (int h = 0; h < dimensions; h++)
         {
@@ -63,11 +72,11 @@ public class PipePuzzleManager : PuzzleManager
             {
                 //pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
 
-                if (transform.GetChild(indexCounter).GetComponent<PipeReactor>())
-                {
-                    pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
-                }
-                
+                //if (transform.GetChild(indexCounter).GetComponent<PipeReactor>())
+                //{
+                //    pipePuzzle.pipes[w, h] = transform.GetChild(indexCounter).GetComponent<PipeReactor>();
+                //}
+                pipePuzzle.pipes[w, h] = tempReactors[indexCounter];
                 indexCounter++;
             }
         }
@@ -118,7 +127,7 @@ public class PipePuzzleManager : PuzzleManager
         return value;
     }
 
-    public void CheckForWin()
+    public override void CheckWin()
     {
         if (pipePuzzle.currentValue == pipePuzzle.winValue)
         {

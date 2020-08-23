@@ -33,7 +33,6 @@ public class PipeReactor : Reactor
     {
         Rotate();
         ppm.pipePuzzle.currentValue = ppm.Sweep(); // check current connections
-        ppm.CheckForWin();
     }
 
     public void Rotate()

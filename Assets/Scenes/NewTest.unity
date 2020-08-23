@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1043462
+  m_Name: pb_Mesh-166342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -437,6 +437,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8262a2a15be96e74789c711799bc327f, type: 3}
+--- !u!1 &1071731094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8316015517546877163, guid: 8262a2a15be96e74789c711799bc327f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1071731093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071731095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071731094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f509606b2da19e4fa6b15affb6ede5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzleModule: {fileID: 0}
+  mazePuzzle:
+    mazeBall: {fileID: 0}
+    gridSize: 8
+    xPos: 3
+    yPos: 7
+    winXPos: 4
+    winYPos: 0
+  isInteractor: 1
 --- !u!1 &1145487721
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,11 +862,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Maze5Reactor
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509798140008997045, guid: 2a49d58c3341bc74092478e704cfa69f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a49d58c3341bc74092478e704cfa69f, type: 3}

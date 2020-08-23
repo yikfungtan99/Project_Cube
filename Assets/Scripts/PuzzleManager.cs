@@ -20,4 +20,9 @@ public class PuzzleManager : MonoBehaviourPun
     {
 
     }
+
+    public virtual void CheckWin()
+    {
+
+    }
 }

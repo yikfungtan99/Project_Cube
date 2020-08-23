@@ -5489,7 +5489,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4142985912258988004}
         m_MethodName: ManualBackButton
         m_Mode: 1
         m_Arguments:

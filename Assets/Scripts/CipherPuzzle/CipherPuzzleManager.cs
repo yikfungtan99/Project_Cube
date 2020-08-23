@@ -31,6 +31,8 @@ public class CipherPuzzleManager : PuzzleManager
     public CipherPuzzle cipherPuzzle;
     public bool isReactor = true;
     private bool _started = false;
+    private SolveButton solveButton;
+
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -39,11 +41,11 @@ public class CipherPuzzleManager : PuzzleManager
         if (_started) return;
         InitSeed();
         _started = true;
+        InitializeSolveButton();
     }
 
     //-SETTERS AND GETTERS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #region Setters And Getters
-
     private string GetAtbash(string input) // A-Z Inverse
     {
         string s = input.ToLower();
@@ -138,7 +140,7 @@ public class CipherPuzzleManager : PuzzleManager
 
             if (isReactor)
             {
-                ClearSlot();
+                Clear();
             }
         }
         else
@@ -156,7 +158,7 @@ public class CipherPuzzleManager : PuzzleManager
         
         if (!isReactor)
         {
-            CheckWin();
+            //CheckWin();
         }
     }
 
@@ -197,6 +199,13 @@ public class CipherPuzzleManager : PuzzleManager
     }
 
     //Initializer
+    void InitializeSolveButton()
+    {
+        solveButton = GetComponentInChildren<SolveButton>();
+        if(solveButton != null)
+            solveButton.SetManager(this);
+    }
+
     public void InitializeCipherPuzzle(int seed)
     {
         Random.InitState(seed);
@@ -428,7 +437,7 @@ public class CipherPuzzleManager : PuzzleManager
     }
     #endregion
 
-    void CheckWin() 
+    public override void CheckWin() 
     {
         if(cipherPuzzle.slotInput == cipherPuzzle.answer)
         {

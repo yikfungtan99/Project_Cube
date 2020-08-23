@@ -22,12 +22,14 @@ public class MazePuzzleManager : PuzzleManager
     MazeCell[] tempCells;
     HorizontalWalls[] tempWallHorizontal;
     VerticalWalls[] tempWallVertical;
+    SolveButton solveButton;
 
     [SerializeField] private bool isInteractor;
 
     //-START AND UPDATE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public override void Start()
     {
+        InitializeSolveButton();
         if (isInteractor) return;
         InitializeCells();
         InitializeWalls();
@@ -71,7 +73,6 @@ public class MazePuzzleManager : PuzzleManager
                 mazePuzzle.mazeBall.SetTarget(mazePuzzle.mazeCells[mazePuzzle.xPos, mazePuzzle.yPos].gameObject);
             }
         }
-        CheckWin();
     }
     void DownButtonPressed()
     {
@@ -83,7 +84,6 @@ public class MazePuzzleManager : PuzzleManager
                 mazePuzzle.mazeBall.SetTarget(mazePuzzle.mazeCells[mazePuzzle.xPos, mazePuzzle.yPos].gameObject);
             }
         }
-        CheckWin();
     }
     void LeftButtonPressed()
     {
@@ -95,7 +95,6 @@ public class MazePuzzleManager : PuzzleManager
                 mazePuzzle.mazeBall.SetTarget(mazePuzzle.mazeCells[mazePuzzle.xPos, mazePuzzle.yPos].gameObject);
             }
         }
-        CheckWin();
     }
     void RightButtonPressed()
     {
@@ -107,11 +106,15 @@ public class MazePuzzleManager : PuzzleManager
                 mazePuzzle.mazeBall.SetTarget(mazePuzzle.mazeCells[mazePuzzle.xPos, mazePuzzle.yPos].gameObject);
             }
         }
-        CheckWin();
     }
     #endregion
     //-Functions---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    void CheckWin()
+    void InitializeSolveButton()
+    {
+        solveButton = GetComponentInChildren<SolveButton>();
+        solveButton.SetManager(this);
+    }
+    public override void CheckWin()
     {
         if (mazePuzzle.xPos == mazePuzzle.winXPos && mazePuzzle.yPos == mazePuzzle.winYPos)
         {

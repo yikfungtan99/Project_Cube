@@ -149,7 +149,8 @@ public class TouchInput : MonoBehaviour
 
     private void UpdateRotation()
     {
-        cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
+        if(cubeTransform != null)
+            cubeTransform.rotation = Quaternion.Lerp(cubeTransform.rotation, _targetRotation, Time.deltaTime * rotateSpd);
     }
     
     private bool CheckTouchDelta()

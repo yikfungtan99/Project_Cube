@@ -129,6 +129,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []
@@ -186,6 +187,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []
@@ -253,7 +255,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4244794574052979872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -652,6 +654,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []
@@ -709,6 +712,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []
@@ -766,6 +770,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []
@@ -823,6 +828,7 @@ MonoBehaviour:
   puzzleRole: 0
   moduleInitialized: 0
   moduleCompleted: 0
+  solveButton: {fileID: 0}
   interactors: []
   reactors: []
   indicators: []

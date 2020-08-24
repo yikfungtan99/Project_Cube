@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,13 +20,12 @@ public class PipePuzzleManager : PuzzleManager
     }
     public PipePuzzle pipePuzzle;
     [SerializeField] private bool isReactor;
-    private SolveButton solveButton;
 
+    private SolveButton solveButton;
 
     public override void Start()
     {
         base.Start();
-        InitializeSolveButton();
         if (!isReactor) return;
         InitializePipes();
         StartCoroutine(Shuffle());
@@ -50,7 +50,8 @@ public class PipePuzzleManager : PuzzleManager
     void InitializeSolveButton()
     {
         solveButton = GetComponentInChildren<SolveButton>();
-        solveButton.SetManager(this);
+        if(solveButton != null)
+            solveButton.SetManager(this);
     }
 
     void InitializePipes()

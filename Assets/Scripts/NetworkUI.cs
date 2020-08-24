@@ -14,9 +14,12 @@ public class NetworkUI : MonoBehaviourPun
     [SerializeField] private GameObject networkCanvas;
     [SerializeField] private GameObject roomPanel;
     [SerializeField] private GameObject waitingPanel;
+    [SerializeField] private GameObject waitingPanelJoin;
     [SerializeField] private GameObject joinPanel;
     [SerializeField] private TextMeshProUGUI roomNumber;
+    [SerializeField] private TextMeshProUGUI roomNumberJoin;
     [SerializeField] private TextMeshProUGUI playerNumber;
+    [SerializeField] private TextMeshProUGUI playerNumberJoin;
 
     [SerializeField] private Button btnStartGame;
     
@@ -45,10 +48,19 @@ public class NetworkUI : MonoBehaviourPun
 
     private void WaitingScreen(object sender, EventArgs e)
     {
-        if(joinPanel.activeInHierarchy) joinPanel.SetActive(false);
-        waitingPanel.SetActive(true);
+        if (joinPanel.activeInHierarchy)
+        {
+            joinPanel.SetActive(false);
+            waitingPanelJoin.SetActive(true);
+        }
+        else
+        {
+            waitingPanel.SetActive(true);
+        }
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
+        roomNumberJoin.text = PhotonNetwork.CurrentRoom.Name;
         playerNumber.text = (PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers).ToString();
+        playerNumberJoin.text = (PhotonNetwork.CurrentRoom.PlayerCount + "/" + PhotonNetwork.CurrentRoom.MaxPlayers).ToString();
         btnStartGame.gameObject.SetActive(PhotonNetwork.LocalPlayer.ActorNumber == 1);
         roomPanel.SetActive(false);
     }

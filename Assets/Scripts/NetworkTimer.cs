@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class NetworkTimer : MonoBehaviour
@@ -49,6 +50,7 @@ public class NetworkTimer : MonoBehaviour
             {
                 _curTime = 0.0;
                 _timerEnd = true;
+                SceneManager.LoadScene(5);
                 OnTimerEnd?.Invoke(this, EventArgs.Empty);
             }
         }

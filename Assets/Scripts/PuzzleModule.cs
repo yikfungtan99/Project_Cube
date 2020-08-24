@@ -15,7 +15,8 @@ public class PuzzleModule:MonoBehaviour
 
     public bool moduleInitialized = false;
     public bool moduleCompleted = false;
-    
+
+    public SolveButton solveButton;
     public List<Interactor> interactors = new List<Interactor>();
     public List<Reactor> reactors = new List<Reactor>();
     public List<Indicator> indicators = new List<Indicator>();
@@ -46,6 +47,8 @@ public class PuzzleModule:MonoBehaviour
 
         GameObject spawnedPuzzle = Instantiate(puzzleToSpawn, transform.position, transform.rotation);
         spawnedPuzzle.transform.parent = transform;
+
+        solveButton = GetComponentInChildren<SolveButton>();
 
         foreach (var interactor in spawnedPuzzle.GetComponentsInChildren<Interactor>())
         {
@@ -125,10 +128,17 @@ public class PuzzleModule:MonoBehaviour
     public void SetModuleCompleted()
     {
         moduleCompleted = true;
+        DisableSolveButton();
         DisableAllInteractors();
         otherIndicator.DeActivateIndicator();
         selfIndicator.DeActivateIndicator();
         LightUpCompleteIndicator();
+    }
+
+    private void DisableSolveButton()
+    {
+        if(solveButton != null)
+            solveButton.disabled = true;
     }
 
     private void DisableAllInteractors()

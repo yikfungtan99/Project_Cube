@@ -5,6 +5,7 @@ using System.Threading;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
@@ -18,6 +19,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     public PuzzleModule currentModule;
     
     private bool _gameStarted = false;
+
+    private int spawnAll = 0;
 
     //Using a coroutine as we need to wait until other cube is detected
     private IEnumerator Start()
@@ -68,7 +71,8 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         Random.InitState(seed);
         //PuzzleTypes puzzleGenType = (PuzzleTypes) Random.Range(0, 5);
-        PuzzleTypes puzzleGenType = (PuzzleTypes) 2;
+        PuzzleTypes puzzleGenType = (PuzzleTypes) spawnAll;
+        spawnAll++;
         //int puzzleGenVar = 0;
         int puzzleGenVar = Random.Range(0, _puzzleMasterStorage.puzzleTypes[(int) puzzleGenType].puzzleVariation.Length);
         int puzzleGenRole = Random.Range(0, 2);
@@ -95,8 +99,11 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         
         if (currentModule)
         {
-            currentModule.ToggleSelfIndicator();
-            OtherIndicator(currentModule.PuzzleId);
+            if(!currentModule.moduleCompleted)
+            {
+                currentModule.ToggleSelfIndicator();
+                OtherIndicator(currentModule.PuzzleId);
+            }
             currentModule = null;
             return;
         }
@@ -116,8 +123,11 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         }
 
         if (!mod) return;
-        mod.ToggleSelfIndicator();
-        OtherIndicator(mod.PuzzleId);
+        if(!mod.moduleCompleted)
+        {
+            mod.ToggleSelfIndicator();
+            OtherIndicator(mod.PuzzleId);
+        }
     }
     
     #region Info Sending
@@ -166,6 +176,22 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         }
     }
     
+    public void CheckAllModuleCompleted()
+    {
+        int counter = 0;
+        foreach (PuzzleModule module in modules)
+        {
+            if(module.moduleCompleted)
+            {
+                counter++;
+            }
+        }
+        if(counter == 5)
+        {
+            SceneManager.LoadScene(4);
+        }
+    }
+
     [PunRPC]
     void RpcAction(int id, int cid)
     {
@@ -175,12 +201,14 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     public void CompletedModule(int id)
     {
         this.photonView.RPC("RpcCompletion", RpcTarget.All, id);
+        CheckAllModuleCompleted();
     }
 
     [PunRPC]
     void RpcCompletion(int id)
     {
         otherCube.modules[id].SetModuleCompleted();
+        otherCube.CheckAllModuleCompleted();
     }
 
     public void OtherIndicator(int id)

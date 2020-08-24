@@ -26,6 +26,7 @@ public class SimonSaysPuzzleManager : PuzzleManager
     private int _curCheckingNumber = 0;
     private int _solvedCount = 0;
 
+
     public override void PuzzleStart()
     {
         base.PuzzleStart();

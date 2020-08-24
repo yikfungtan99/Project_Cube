@@ -6,6 +6,7 @@ public class SolveButton : MonoBehaviour
 {
     private Animator anim;
     private PuzzleManager pm;
+    public bool disabled = false;
 
     private void Start()
     {
@@ -14,8 +15,11 @@ public class SolveButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        pm.CheckWin();
-        anim.SetTrigger("isPressed");
+        if(!disabled)
+        {
+            pm.CheckWin();
+            anim.SetTrigger("isPressed");
+        }
     }
 
     public void SetManager(PuzzleManager manager)

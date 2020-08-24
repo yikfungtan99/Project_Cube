@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class MazeBall : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Vector3 targetPos;
+    public float speed = 6;
     void Start()
     {
-        
+        targetPos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed * Time.deltaTime);
     }
 
     public void SetTarget(GameObject target)
     {
-        transform.localPosition = target.gameObject.transform.localPosition;
+        targetPos = target.gameObject.transform.localPosition;
     }
 }

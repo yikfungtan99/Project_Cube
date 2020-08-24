@@ -112,7 +112,8 @@ public class MazePuzzleManager : PuzzleManager
     void InitializeSolveButton()
     {
         solveButton = GetComponentInChildren<SolveButton>();
-        solveButton.SetManager(this);
+        if(solveButton != null)
+            solveButton.SetManager(this);
     }
     public override void CheckWin()
     {

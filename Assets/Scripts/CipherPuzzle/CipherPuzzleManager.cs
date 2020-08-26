@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public static class ListExensions // custom extension to list
@@ -31,6 +32,7 @@ public class CipherPuzzleManager : PuzzleManager
     public CipherPuzzle cipherPuzzle;
     public bool isReactor = true;
     private bool _started = false;
+    bool runFix = false;
     private SolveButton solveButton;
 
 
@@ -153,12 +155,26 @@ public class CipherPuzzleManager : PuzzleManager
                 {
                    cipherPuzzle.letterSlots[i].SetSlot(charArray[i].ToString());
                 }
+                LetterSlotFix();
             }
         }
         
         if (!isReactor)
         {
             //CheckWin();
+        }
+    }
+
+    void LetterSlotFix()
+    {
+        if(!runFix)
+        {
+            LetterSlots[] slots = GetComponentsInChildren<LetterSlots>();
+            for (int i = cipherPuzzle.answer.Length; i < slots.Length; i++)
+            {
+                slots[i].ChangeSlotState(true);
+            }
+            runFix = true;
         }
     }
 
@@ -431,7 +447,7 @@ public class CipherPuzzleManager : PuzzleManager
         {
             for (int i = 0; i < cipherPuzzle.answer.Length; i++)
             {
-                slots[i].SetActiveSlot(true);
+                slots[i].ChangeSlotState(false);
                 cipherPuzzle.letterSlots.Add(slots[i]);
             }
         }

@@ -19,12 +19,6 @@ public class LetterSlots : MonoBehaviour
         //slot = GetComponentInChildren<TextMeshPro>();
     }
 
-    public void SetActiveSlot(bool b)
-    {
-        slotActive = b;
-        ChangeSlotState();
-    }
-
     public void SetSlot(string s)
     {
         //slot.SetText(s.ToUpper());
@@ -39,15 +33,16 @@ public class LetterSlots : MonoBehaviour
         meshRenderer.material = alphabetMat;
     }
 
-    private void ChangeSlotState() // reminder to replace code inside with actual animations or something
+    public void ChangeSlotState(bool b) // reminder to replace code inside with actual animations or something
     {
-        if(slotActive)
+        transform.GetChild(0).transform.gameObject.SetActive(b);
+        if(b == true)
         {
-            transform.GetChild(0).transform.gameObject.SetActive(false);
+            slotActive = false;    
         }
         else
         {
-            transform.GetChild(0).transform.gameObject.SetActive(true);
+            slotActive = true;
         }
     }
 }

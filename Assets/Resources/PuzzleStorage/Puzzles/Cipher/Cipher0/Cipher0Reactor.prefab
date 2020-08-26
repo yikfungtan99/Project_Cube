@@ -1185,6 +1185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Letter Slot 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8494363426698558800, guid: 304968c56031e484e951ce3090bcc204,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 304968c56031e484e951ce3090bcc204, type: 3}
 --- !u!4 &1638028251181657188 stripped

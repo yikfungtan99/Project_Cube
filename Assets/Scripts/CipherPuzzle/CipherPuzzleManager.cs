@@ -425,7 +425,8 @@ public class CipherPuzzleManager : PuzzleManager
     private void InitializeLetterSlots()
     {
         LetterSlots[] slots = GetComponentsInChildren<LetterSlots>();
-        
+        //cipherPuzzle.answer.Replace(" ", string.Empty);
+        cipherPuzzle.answer.Trim();
         if (slots.Length > 0) // check if not empty
         {
             for (int i = 0; i < cipherPuzzle.answer.Length; i++)

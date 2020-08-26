@@ -99,6 +99,7 @@ public class BoxDrag : MonoBehaviour
                         ResetPosition();
                     }
                     selectedObj = null;
+                    selectedTransform = null;
                 }
             }
 
@@ -152,6 +153,7 @@ public class BoxDrag : MonoBehaviour
                                 ResetPosition();
                             }
                             selectedObj = null;
+                            selectedTransform = null;
                         }
                     }
                 }

@@ -19,7 +19,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
     public PuzzleModule currentModule;
     
     private bool _gameStarted = false;
-
+    private bool checkingWin = false;
     private int spawnAll = 0;
 
     //Using a coroutine as we need to wait until other cube is detected
@@ -187,7 +187,15 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
                 counter++;
             }
         }
-        if(counter == 5)
+        if(counter == 5) //lmao hard code
+        {
+            if(!checkingWin)
+            {
+                checkingWin = true;
+                InvokeRepeating("CheckAllModuleCompleted", 10, 5);
+            }
+        }
+        if(counter >= 6)
         {
             SceneManager.LoadScene(4);
         }

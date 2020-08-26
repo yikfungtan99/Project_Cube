@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6582449744663803161285feab9b8, type: 3}
   m_Name: SymbolPuzzleVariation
   m_EditorClassIdentifier: 
-  puzzleInteractor: {fileID: 6653125489864035362, guid: 83b9208d049c8b041a527a63f743c15a,
+  puzzleInteractor: {fileID: 2393271982265937518, guid: 6e7560518b7101b4b835df6329358627,
     type: 3}
-  puzzleReactor: {fileID: 2915022762149683135, guid: ebf34428d907f2e46869564314b37214,
+  puzzleReactor: {fileID: 4047623198113552711, guid: d23ddafbc5418114f919cab963210e7d,
     type: 3}

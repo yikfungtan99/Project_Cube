@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c250d63341302b444bb8009ed7de3460, type: 3}
   m_Name: SecondAlphabetDragBox
   m_EditorClassIdentifier: 
-  boxPrefabs: {fileID: 5906323523427631000, guid: 3a4c5657286d9e9489ddc1f7504c1073,
+  boxPrefabs: {fileID: 9059413068666381642, guid: f5f1ac951fbccd545a53cecf72b88d08,
     type: 3}
   boxType: 0
   boxIndex: 2

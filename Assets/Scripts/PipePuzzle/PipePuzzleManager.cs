@@ -26,6 +26,7 @@ public class PipePuzzleManager : PuzzleManager
     public override void Start()
     {
         base.Start();
+        InitializeSolveButton();
         if (!isReactor) return;
         InitializePipes();
         StartCoroutine(Shuffle());

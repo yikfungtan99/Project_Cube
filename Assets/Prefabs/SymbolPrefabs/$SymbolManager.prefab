@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4303117147456496860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4303117147456496862}
+  - component: {fileID: 4303117147456496861}
+  m_Layer: 0
+  m_Name: $SymbolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4303117147456496862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303117147456496860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4303117147456496861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303117147456496860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f2f26abda8f0c4eac4d5da039755dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symbolPrefab1: {fileID: 6653125489864035362, guid: f51dc82197e73cd4397f8035f234236d,
+    type: 3}
+  symbolPrefab2: {fileID: 2915022762149683135, guid: 7f47abf9457d812439bd61a69424a92d,
+    type: 3}
+  buttonGroup:
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  - buttonP1Collider: {fileID: 0}
+    button1ColliderEnabled: 1
+    buttonP2Collider: {fileID: 0}
+    button2ColliderEnabled: 0
+    textureP1: {fileID: 0}
+    textureP2: {fileID: 0}
+  symbolData: {fileID: 11400000, guid: 80e42282443a7424581dc6cc46faa040, type: 2}

@@ -10,11 +10,13 @@ public enum BoxType
 
 public enum BoxIndex
 {
-    notAlphabetAns = 0,
+    empty = 0,
     firstAlphabet = 1,
     secondAlphabet = 2,
     thirdAlphabet = 3,
-    fourthAlphabet = 4
+    fourthAlphabet = 4,
+    fifthAlphabet = 5,
+    sixthAlphabet = 6,
 }
 
 public class BoxData : ScriptableObject

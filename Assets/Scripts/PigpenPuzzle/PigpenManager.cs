@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.CodeDom.Compiler;
 
 public class PigpenManager : PuzzleManager
 {
@@ -11,8 +12,17 @@ public class PigpenManager : PuzzleManager
     [SerializeField] List<GameObject> dragBox;
     [SerializeField] List<GameObject> dragBoxPos;
     [SerializeField] GameObject pigpenPrefab;
-    int ansBoxes = 4;
-    int alphabetBoxes = 6;
+    [SerializeField] int ansBoxes = 4;
+    //int alphabetBoxes = 6;
+
+    private void Start()
+    {
+        BoxDrag[] tempBox = GetComponentsInChildren<BoxDrag>();
+        for(int i = 0; i < tempBox.Length; i++)
+        {
+            dragBox.Add(tempBox[i].gameObject);
+        }
+    }
 
     // private void Awake()
     // {
@@ -54,23 +64,27 @@ public class PigpenManager : PuzzleManager
     public void CompareIndex()
     {
         if (!isInteractor) return;
-        print("Compare Index");
+        int counter = 0;
         foreach (GameObject boxDrag in dragBox)
         {
             if(boxDrag.GetComponent<BoxDrag>().BoxIndex == boxDrag.GetComponent<BoxDrag>().SlotIndex)
             {
-                Debug.Log("YOU WIN!");
+                counter++;
             }
 
             if(boxDrag.GetComponent<BoxDrag>().BoxIndex != boxDrag.GetComponent<BoxDrag>().SlotIndex)
             {
-                Debug.Log("NO NO");
+                Debug.Log("Wrong Answer");
                 Debug.Log(" Box " + boxDrag.GetComponent<BoxDrag>().BoxIndex + " Slot " + boxDrag.GetComponent<BoxDrag>().SlotIndex);
                 foreach (GameObject dragBoxPosition in dragBoxPos)
                 {
                     dragBoxPosition.GetComponent<BoxDrag>().ResetPosition();
                 }
             }
+        }
+        if (counter >= ansBoxes) // checkwin
+        {
+            _puzzleModule.ModuleComplete();
         }
     }
 }

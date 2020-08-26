@@ -157,6 +157,7 @@ public class PlayerCube : MonoBehaviourPun, IPunInstantiateMagicCallback
         else
         {
             print("Not started");
+            //SceneManager.LoadScene(6);
         }
     }
 

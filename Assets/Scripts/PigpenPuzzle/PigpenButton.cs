@@ -7,10 +7,12 @@ public class PigpenButton : Interactor
 {
     //public static event Action ansCorrectPass;
     private PigpenManager _pigpenManager;
+    private Animator anim;
 
     private void Start()
     {
         _pigpenManager = GetComponentInParent<PigpenManager>();
+        anim = GetComponent<Animator>();
     }
     
     private void OnMouseDown()
@@ -21,6 +23,7 @@ public class PigpenButton : Interactor
     public override void Interact()
     {
         print("Interact");
+        anim.SetTrigger("isPressed");
 
         if (_pigpenManager)
         {

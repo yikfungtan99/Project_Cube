@@ -8,6 +8,12 @@ TagManager:
   - SpawnSystem
   - Cube
   - OtherCube
+  - PipesAnchor
+  - PipeButtonsAnchor
+  - Pipes
+  - CipherButtons
+  - Draggable
+  - Slots
   layers:
   - Default
   - TransparentFX
@@ -24,7 +30,7 @@ TagManager:
   - FlungTrash
   - WorldBall
   - Checkpoints
-  - 
+  - Test
   - 
   - 
   - 

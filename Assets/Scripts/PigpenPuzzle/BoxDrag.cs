@@ -20,9 +20,12 @@ public class BoxDrag : MonoBehaviour
     Transform selectedObj;
     
     [SerializeField] private bool simulateMouse;
+    bool isCollidingWithDraggable = false;
+    bool isCollidingWithSlot = false;
 
     //Reference scriptableobject data script
     [SerializeField] BoxData boxData;
+    private int slotIndex;
 
     private CubeState _cubeState;
 
@@ -30,7 +33,6 @@ public class BoxDrag : MonoBehaviour
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         _cubeState = GameObject.Find("CubeControl").GetComponent<CubeState>();
-        StoreBoxOriPos();
     }
 
     void Update()
@@ -39,7 +41,6 @@ public class BoxDrag : MonoBehaviour
         DragBox();
     }
 
-    int slotIndex;
     #region Getters
     public int BoxIndex
     {
@@ -58,7 +59,7 @@ public class BoxDrag : MonoBehaviour
         Vector3 truePos = cam.ScreenToWorldPoint(temp);
         if (simulateMouse)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) // on click
             {
                 ray = cam.ScreenPointToRay(Input.mousePosition);
                 Debug.DrawRay(ray.origin, ray.direction * 5, Color.red);
@@ -67,9 +68,9 @@ public class BoxDrag : MonoBehaviour
                     if (hit.collider.CompareTag("Draggable"))
                     {
                         selectedObj = hit.collider.transform;
-                        restorePos = hit.collider.transform.position;
                         if (selectedObj != null)
                         {
+                            StoreBoxOriPos();
                             selectedTransform = selectedObj.transform;
                             screenPoint = Camera.main.WorldToScreenPoint(selectedTransform.position);
                             objOffset = selectedTransform.position - Camera.main.ScreenToWorldPoint(new Vector3(
@@ -79,20 +80,26 @@ public class BoxDrag : MonoBehaviour
                         }
                     }
                 }
-
-                if (Input.GetMouseButtonUp(0) && selectedObj != null)
-                {
-                    selectedObj.transform.position = restorePos;
-                }
             }
 
-            if (Input.GetMouseButton(0) && selectedObj != null)
+            if (Input.GetMouseButton(0) && selectedTransform != null) // on hold
             {
-                //selectedTransform.position = new Vector3(truePos.x, truePos.y, selectedTransform.position.z);
+                selectedTransform.position = new Vector3(truePos.x, truePos.y, selectedTransform.position.z);
                 Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
                 Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + objOffset;
                 selectedTransform.position = cursorPosition;
-               
+            }
+
+            if (Input.GetMouseButtonUp(0)) // on lift
+            {
+                if (selectedObj != null)
+                {
+                    if(!isCollidingWithSlot || isCollidingWithDraggable)
+                    {
+                        ResetPosition();
+                    }
+                    selectedObj = null;
+                }
             }
 
 
@@ -115,6 +122,7 @@ public class BoxDrag : MonoBehaviour
                             selectedObj = hit.collider.transform;
                             if (selectedObj != null)
                             {
+                                StoreBoxOriPos();
                                 selectedTransform = selectedObj.transform;
                                 screenPoint = Camera.main.WorldToScreenPoint(selectedTransform.position);
                                 objOffset = selectedTransform.position - Camera.main.ScreenToWorldPoint(new Vector3(firstTap.position.x,
@@ -137,17 +145,47 @@ public class BoxDrag : MonoBehaviour
 
                     if (firstTap.phase == TouchPhase.Ended)
                     {
-                        selectedTransform = null;
+                        if (selectedObj != null)
+                        {
+                            if (!isCollidingWithSlot || isCollidingWithDraggable)
+                            {
+                                ResetPosition();
+                            }
+                            selectedObj = null;
+                        }
                     }
                 }
             }
         }
     }
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.CompareTag("Draggable"))
+        {
+            isCollidingWithDraggable = false;
+        }
+        if (col.CompareTag("Slots"))
+        {
+            isCollidingWithSlot = false;
+        }
+    }
 
     private void OnTriggerStay(Collider col)
     {
+        if (col.CompareTag("Draggable"))
+        {
+            if (!isCollidingWithDraggable)
+            {
+                isCollidingWithDraggable = true;
+            }
+        }
+
         if (col.CompareTag("Slots") /*&& firstTap.phase == TouchPhase.Ended*/)
         {
+            if (!isCollidingWithSlot)
+            {
+                isCollidingWithSlot = true;
+            }
             this.transform.position = col.transform.position;
             //Getting Slot Index number
             slotIndex = (int)col.GetComponent<DropSlots>().slotData.boxIndex;
@@ -157,12 +195,12 @@ public class BoxDrag : MonoBehaviour
 
     public void ResetPosition()
     {
-        gameObject.transform.position = boxOriPos;
+        this.transform.position = boxOriPos;
     }
 
     void StoreBoxOriPos()
     {
-        boxOriPos = gameObject.transform.position;
+        boxOriPos = this.transform.position;
     }
 
 }

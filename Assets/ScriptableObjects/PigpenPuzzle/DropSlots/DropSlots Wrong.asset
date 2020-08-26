@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c722cbae6f07940a7b2a00b15fb633, type: 3}
   m_Name: DropSlots Wrong
   m_EditorClassIdentifier: 
-  boxPrefabs: {fileID: 4962442081930310739, guid: 9ec117b97b103cf47a08b3a898dcfff6,
+  boxPrefabs: {fileID: 5724948146557864387, guid: 5811ef1f9e863fd49b241c2bbdcfc09a,
     type: 3}
   boxType: 1
   boxIndex: 0
